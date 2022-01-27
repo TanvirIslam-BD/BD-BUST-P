@@ -5,7 +5,6 @@ class UIHelperTagLib {
     static namespace = "UIHelper"
 
     AuthenticationService authenticationService
-    ContactGroupService contactGroupService
 
     def renderErrorMessage = { attrs, body ->
         def model = attrs.model
@@ -20,7 +19,23 @@ class UIHelperTagLib {
         out << '<li class="nav-item dropdown show">'
         out << g.link(class:"nav-link dropdown-toggle", "data-toggle":"dropdown"){authenticationService.getMemberName()}
         out << '<div class="dropdown-menu">'
+        out << g.link(controller: "authentication", action: "logout", class: "dropdown-item"){g.message(code:"Profile")}
+        out << g.link(controller: "authentication", action: "logout", class: "dropdown-item"){g.message(code:"Company Info")}
         out << g.link(controller: "authentication", action: "logout", class: "dropdown-item"){g.message(code:"logout")}
+        out << "</div></li>"
+    }
+
+
+    def systemServicesActionMenu = { attrs, body ->
+        out << '<li class="nav-item dropdown show">'
+        out << g.link(class:"nav-link dropdown-toggle", "data-toggle":"dropdown"){"SYSTEM SERVICE"}
+        out << '<div class="dropdown-menu">'
+        out << g.link(controller: "authentication", action: "logout", class: "dropdown-item"){g.message(code:"Counter")}
+        out << g.link(controller: "authentication", action: "logout", class: "dropdown-item"){g.message(code:"Counter Man")}
+        out << g.link(controller: "authentication", action: "logout", class: "dropdown-item"){g.message(code:"Fares")}
+        out << g.link(controller: "authentication", action: "logout", class: "dropdown-item"){g.message(code:"Driver")}
+        out << g.link(controller: "authentication", action: "logout", class: "dropdown-item"){g.message(code:"Supervisor")}
+        out << g.link(controller: "authentication", action: "logout", class: "dropdown-item"){g.message(code:"Trip")}
         out << "</div></li>"
     }
 
@@ -55,6 +70,24 @@ class UIHelperTagLib {
         select.HOME = "Home"
         select.PERSONAL = "Personal"
         select.OTHER = "Other"
+        out << g.select(from: select, name: name, optionKey: "key", optionValue: "value", value: value, class:"form-control")
+    }
+
+    def seatPlan = { attrs, body ->
+        String name = attrs.name ?: "seatPlan"
+        String value = attrs.value ?: ""
+        def select = [:]
+        select["45AC"] = "45 Seat AC"
+        select["51AC"] = "51 Seat AC"
+        out << g.select(from: select, name: name, optionKey: "key", optionValue: "value", value: value, class:"form-control")
+    }
+
+    def status = { attrs, body ->
+        String name = attrs.name ?: "status"
+        String value = attrs.value ?: ""
+        def select = [:]
+        select.ACTIVE = "Active"
+        select.INACTIVE = "Inactive"
         out << g.select(from: select, name: name, optionKey: "key", optionValue: "value", value: value, class:"form-control")
     }
 

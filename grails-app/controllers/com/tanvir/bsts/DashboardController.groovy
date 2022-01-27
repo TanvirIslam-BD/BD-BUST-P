@@ -2,5 +2,10 @@ package com.tanvir.bsts
 
 class DashboardController {
 
-    def index() { }
+    CoachService coachService
+
+    def index() {
+        def response = coachService.list(params)
+        [coach: response.list, total:response.count]
+    }
 }

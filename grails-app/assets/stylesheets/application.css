@@ -13,3 +13,32 @@
 *= require jquery-confirm.min
 *= require_self
 */
+
+nav.navbar.navbar-expand-lg.navbar-dark.fixed-top.bg-dark.rounded {
+    background: #253847 !important;
+    border-radius: 0 !important;
+}
+
+main.list-view-container.col-sm-9.ml-sm-auto.col-md-10.pt-3 {
+    max-width: 100.00% !important;
+    flex: 0 0 100%;
+}
+
+.bus-system-list-view.card .card-body {
+    padding: 0;
+}
+
+.bus-system-list-view.card .table .thead-dark th {
+    color: #fff;
+    background-color: #253847;
+    border-color: #607d8b;
+    text-align: center;
+    padding: 6px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.bus-system-list-view .table-bordered th, .bus-system-list-view .table-bordered td {
+    border: 1px solid #dee2e6;
+    text-align: center;
+}

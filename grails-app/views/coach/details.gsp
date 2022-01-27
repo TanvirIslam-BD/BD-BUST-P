@@ -52,7 +52,7 @@
 
 
         <div class="form-action-panel" style="margin-top: 8px;">
-            <g:link controller="contact" action="index" class="btn btn-primary"><g:message code="cancel"/></g:link>
+            <g:link controller="coach" action="index" class="btn btn-primary"><g:message code="cancel"/></g:link>
         </div>
     </div>
 </div>

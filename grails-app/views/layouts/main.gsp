@@ -27,7 +27,35 @@
 
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark rounded">
-        <a class="navbar-brand" href="#">Online Bus Ticket Booking System</a>
+        <a class="navbar-brand brand_name menu_font_detail home-logout" href="/">
+            <span class=" nav-active ">DASHBOARD</span>
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav dashboard_nav me-auto mb-2 mb-lg-0 menu_font_detail">
+                <li class="nav-item">
+                    <a class="nav-link menu_font_detail" aria-current="page" href="/vehicles">
+                        <span class="">COACH ACTIVE/INACTIVE</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu_font_detail" aria-current="page" href="/reports">
+                        <span class="">REPORTS</span>
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <UIHelper:systemServicesActionMenu/>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu_font_detail" aria-current="page" href="/user-reports">
+                        <span class="">USER REPORTS</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
                 data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -36,6 +64,7 @@
         %{--Member Action Menu--}%
         <ul class="navbar-nav ml-auto">
             <UIHelper:memberActionMenu/>
+
         </ul>
     </nav>
 </header>
@@ -43,22 +72,11 @@
 
 <div class="container-fluid">
     <div class="row">
-
-        <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
-            <ul class="list-group">
-                <UIHelper:leftNavigation/>
-            </ul>
-        </nav>
-
-
-        <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+        <main role="main" class="list-view-container col-sm-9 ml-sm-auto col-md-10 pt-3">
             <g:layoutBody/>
         </main>
     </div>
 </div>
-
-
-
 
 </body>
 </html>

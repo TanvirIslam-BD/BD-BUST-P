@@ -15,7 +15,7 @@ class Member {
     Date dateCreated
     Date lastUpdated
 
-    static hasMany = [contact: Contact, contactGroup: ContactGroup]
+    static hasMany = [coach: Coach]
 
     static constraints = {
         email(email: true, nullable: false, unique: true, blank: false)
@@ -36,8 +36,7 @@ class Member {
 
     static mapping = {
         version(false)
-        contact(cascade: 'all-delete-orphan')
-        contactGroup(cascade: 'all-delete-orphan')
+        coach(cascade: 'all-delete-orphan')
     }
 
 }

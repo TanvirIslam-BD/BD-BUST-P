@@ -11,7 +11,6 @@ class AuthenticationController {
         }
     }
 
-
     def doLogin() {
         if (authenticationService.doLogin(params.email, params.password)) {
             redirect(controller: "dashboard", action: "index")

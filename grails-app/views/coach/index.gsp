@@ -4,8 +4,8 @@
     <meta name="layout" content="main"/>
 </head>
 <body>
-   <div class="bus-system-list-view card">
-      <div class="card-header">
+<div class="bus-system-list-view card">
+    <div class="card-header">
         COACH
         <span class="float-right">
             <div class="btn-group">
@@ -26,7 +26,7 @@
             </div>
         </span>
     </div>
-      <div class="card-body">
+    <div class="card-body">
         <table class="table table-bordered">
             <thead class="thead-dark">
             <tr>
@@ -39,7 +39,7 @@
             </tr>
             </thead>
             <tbody>
-            <g:each in="${coach}" var="info">
+            <g:each in="${contact}" var="info">
                 <tr>
                     <td>${info?.coachNumber}</td>
                     <td>${info?.registrationNumber}</td>
@@ -60,6 +60,6 @@
             <g:paginate total="${total ?: 0}" />
         </div>
     </div>
-  </div>
+</div>
 </body>
 </html>
