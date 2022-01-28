@@ -2,14 +2,17 @@ package com.tanvir.bsts
 
 import grails.web.servlet.mvc.GrailsParameterMap
 
+import javax.transaction.Transactional
+
 
 class MemberService {
 
+    @Transactional
     def save(GrailsParameterMap params) {
         Member member = new Member(params)
         def response = AppUtil.saveResponse(false, member)
         if (member.validate()) {
-            member.save(flush: true)
+            member.save()
             if (!member.hasErrors()){
                 response.isSuccess = true
             }
@@ -17,12 +20,12 @@ class MemberService {
         return response
     }
 
-
+    @Transactional
     def update(Member member, GrailsParameterMap params) {
         member.properties = params
         def response = AppUtil.saveResponse(false, member)
         if (member.validate()) {
-            member.save(flush: true)
+            member.save()
             if (!member.hasErrors()){
                 response.isSuccess = true
             }
@@ -49,10 +52,10 @@ class MemberService {
         return [list: memberList, count: memberList.totalCount]
     }
 
-
+    @Transactional
     def delete(Member member) {
         try {
-            member.delete(flush: true)
+            member.delete()
         } catch (Exception e) {
             println(e.getMessage())
             return false

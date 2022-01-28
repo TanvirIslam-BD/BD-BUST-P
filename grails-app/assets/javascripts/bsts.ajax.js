@@ -1,5 +1,5 @@
 
-OCB.ajax = (function(){
+BSTS.ajax = (function(){
 
     return{
 

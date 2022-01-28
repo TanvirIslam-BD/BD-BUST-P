@@ -6,7 +6,7 @@ class CoachController {
 
     def index() {
         def response = coachService.list(params)
-        [contact: response.list, total:response.count]
+        [coach: response.list, total:response.count]
     }
 
     def details(Integer id) {
@@ -14,12 +14,12 @@ class CoachController {
         if (!response){
             redirect(controller: "coach", action: "index")
         }else{
-            [contact: response]
+            [coach: response]
         }
     }
 
     def create() {
-        [contact: flash.redirectParams]
+        [coach: flash.redirectParams]
     }
 
     def save() {
@@ -36,14 +36,14 @@ class CoachController {
 
     def edit(Integer id) {
         if (flash.redirectParams) {
-            [contact: flash.redirectParams]
+            [coach: flash.redirectParams]
         } else {
             def response = coachService.get(id)
             if (!response) {
                 flash.message = AppUtil.infoMessage(g.message(code: "invalid.entity"), false)
                 redirect(controller: "coach", action: "index")
             } else {
-                [contact: response]
+                [coach: response]
             }
         }
     }

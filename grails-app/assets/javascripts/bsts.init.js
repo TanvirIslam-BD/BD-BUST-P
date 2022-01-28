@@ -8,8 +8,8 @@ jQuery(document).ready(function () {
 
     jQuery('.card-body').on('click', '.add-new-number ', function () {
         var _this = jQuery(this);
-        OCB.ajax.call({
-            url: OCB.baseURL + "contactDetails/create",
+        BSTS.ajax.call({
+            url: BSTS.baseURL + "coachDetails/create",
             dataType: "html",
             success: function (content) {
                 jQuery('.details-panel').append(content);
@@ -25,7 +25,7 @@ jQuery(document).ready(function () {
 
     jQuery('.card-body').on('click', '.remove-number', function () {
         var _this = jQuery(this),
-            contactId = _this.attr("data-id");
+            coachId = _this.attr("data-id");
 
         jQuery.confirm({
             title: 'Delete Confirmation!',
@@ -35,15 +35,15 @@ jQuery(document).ready(function () {
                     text: 'Yes',
                     btnClass: 'btn-blue',
                     action: function () {
-                        if(contactId !== undefined){
-                            OCB.ajax.call({
-                                url: OCB.baseURL + "contactDetails/delete/" + contactId,
+                        if(coachId !== undefined){
+                            BSTS.ajax.call({
+                                url: BSTS.baseURL + "coachDetails/delete/" + coachId,
                                 success: function (content) {
                                     if(content.success === true){
-                                        OCB.messageBox.showMessage(true, content.info);
+                                        BSTS.messageBox.showMessage(true, content.info);
                                         _this.closest(".form-group").remove();
                                     }else{
-                                        OCB.messageBox.showMessage(false, content.info)
+                                        BSTS.messageBox.showMessage(false, content.info)
                                     }
                                 }
                             });

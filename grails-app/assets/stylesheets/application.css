@@ -15,7 +15,7 @@
 */
 
 nav.navbar.navbar-expand-lg.navbar-dark.fixed-top.bg-dark.rounded {
-    background: #253847 !important;
+    background: #1199c4!important;
     border-radius: 0 !important;
 }
 
@@ -30,8 +30,8 @@ main.list-view-container.col-sm-9.ml-sm-auto.col-md-10.pt-3 {
 
 .bus-system-list-view.card .table .thead-dark th {
     color: #fff;
-    background-color: #253847;
-    border-color: #607d8b;
+    background-color: #03a9f4;
+    border-color: #77b1cb;
     text-align: center;
     padding: 6px;
     font-size: 14px;
@@ -41,4 +41,27 @@ main.list-view-container.col-sm-9.ml-sm-auto.col-md-10.pt-3 {
 .bus-system-list-view .table-bordered th, .bus-system-list-view .table-bordered td {
     border: 1px solid #dee2e6;
     text-align: center;
+    padding: 0.2rem;
+    vertical-align: middle;
+}
+
+.bus-system-list-view span.badge.badge-success {
+    padding: 0.7em 1em;
+}
+
+.bus-system-list-view a.btn.btn-secondary {
+    background-color: #607d8b;
+    border-color: #ffffff;
+}
+
+.bus-system-list-view  .card-header {
+    border: 1px solid #fff;
+    padding: 0.55rem 1rem;
+}
+
+.bus-system-list-view span.badge-secondary {
+    padding: 0.7em 0.5em;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
 }

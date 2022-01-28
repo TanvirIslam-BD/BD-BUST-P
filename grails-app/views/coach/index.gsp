@@ -27,7 +27,7 @@
         </span>
     </div>
     <div class="card-body">
-        <table class="table table-bordered">
+        <table class="table table-bordered table-striped">
             <thead class="thead-dark">
             <tr>
                 <th>COACH NUMBER</th>
@@ -39,21 +39,28 @@
             </tr>
             </thead>
             <tbody>
-            <g:each in="${contact}" var="info">
-                <tr>
-                    <td>${info?.coachNumber}</td>
-                    <td>${info?.registrationNumber}</td>
-                    <td>${info?.seatCapacity}</td>
-                    <td>${info?.seatPlan}</td>
-                    <td><span class="badge badge-success">${info?.status}</span></td>
-                    <td>
-                        <div class="btn-group">
-                            <g:link controller="coach" action="edit" class="btn btn-secondary" id="${info.id}"><i class="fas fa-edit"></i></g:link>
-                            <g:link controller="coach" action="delete" id="${info.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
-                        </div>
-                    </td>
-                </tr>
-            </g:each>
+            <g:if test="${coach}">
+                <g:each in="${coach}" var="info">
+                    <tr>
+                        <td>${info?.coachNumber}</td>
+                        <td>${info?.registrationNumber}</td>
+                        <td>${info?.seatCapacity}</td>
+                        <td>${info?.seatPlan}</td>
+                        <td><span class="badge ${(info?.status == "ACTIVE") ?  "badge-success" :  "badge-secondary"}">${info?.status}</span></td>
+                        <td>
+                            <div class="btn-group">
+                                <g:link controller="coach" action="edit" class="btn btn-secondary" id="${info.id}"><i class="fas fa-edit"></i></g:link>
+                                <g:link controller="coach" action="delete" id="${info.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
+                            </div>
+                        </td>
+                    </tr>
+                </g:each>
+            </g:if>
+           <g:else>
+               <tr>
+                   <td>No Coach Found!</td>
+               </tr>
+           </g:else>
             </tbody>
         </table>
         <div class="paginate">

@@ -19,8 +19,8 @@ class UIHelperTagLib {
         out << '<li class="nav-item dropdown show">'
         out << g.link(class:"nav-link dropdown-toggle", "data-toggle":"dropdown"){authenticationService.getMemberName()}
         out << '<div class="dropdown-menu">'
-        out << g.link(controller: "authentication", action: "logout", class: "dropdown-item"){g.message(code:"Profile")}
-        out << g.link(controller: "authentication", action: "logout", class: "dropdown-item"){g.message(code:"Company Info")}
+        out << g.link(controller: "member", action: "details", id:"${authenticationService.getMember().id}", class: "dropdown-item"){g.message(code:"Profile")}
+        out << g.link(controller: "member", action: "index", class: "dropdown-item"){g.message(code:"Member List")}
         out << g.link(controller: "authentication", action: "logout", class: "dropdown-item"){g.message(code:"logout")}
         out << "</div></li>"
     }
@@ -43,8 +43,8 @@ class UIHelperTagLib {
     def leftNavigation = { attrs, body ->
         List navigations = [
                 [controller: "dashboard", action: "index", name: "dashboard"],
-                [controller: "contactGroup", action: "index", name: "contact.group"],
-                [controller: "contact", action: "index", name: "contact"],
+                [controller: "coachGroup", action: "index", name: "coach.group"],
+                [controller: "coach", action: "index", name: "coach"],
         ]
 
         if(authenticationService.isAdministratorMember()){
@@ -56,21 +56,6 @@ class UIHelperTagLib {
             out << g.link(controller: menu.controller, action: menu.action) { g.message(code: menu.name, args: ['']) }
             out << '</li>'
         }
-    }
-
-    def contactGroup = { attrs, body ->
-        String name = attrs.name ?: "contactGroup"
-        out << g.select(class:"form-control", multiple: "multiple", optionValue: "name", optionKey: "id", value: attrs.value, name: name, from: contactGroupService.getGroupList())
-    }
-
-    def contactType = { attrs, body ->
-        String name = attrs.name ?: "type"
-        String value = attrs.value ?: ""
-        def select = [:]
-        select.HOME = "Home"
-        select.PERSONAL = "Personal"
-        select.OTHER = "Other"
-        out << g.select(from: select, name: name, optionKey: "key", optionValue: "value", value: value, class:"form-control")
     }
 
     def seatPlan = { attrs, body ->

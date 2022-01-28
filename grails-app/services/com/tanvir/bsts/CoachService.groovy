@@ -65,5 +65,4 @@ class CoachService {
         return true
     }
 
-
 }
