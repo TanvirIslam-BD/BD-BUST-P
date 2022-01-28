@@ -15,7 +15,7 @@
 */
 
 nav.navbar.navbar-expand-lg.navbar-dark.fixed-top.bg-dark.rounded {
-    background: #1199c4!important;
+    background: #005c88!important;
     border-radius: 0 !important;
 }
 
@@ -29,13 +29,13 @@ main.list-view-container.col-sm-9.ml-sm-auto.col-md-10.pt-3 {
 }
 
 .bus-system-list-view.card .table .thead-dark th {
-    color: #fff;
-    background-color: #03a9f4;
-    border-color: #77b1cb;
+    color: #ffffff;
+    background-color: #477286;
+    border-color: #f2f2f2;
     text-align: center;
     padding: 6px;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 .bus-system-list-view .table-bordered th, .bus-system-list-view .table-bordered td {
@@ -63,5 +63,9 @@ main.list-view-container.col-sm-9.ml-sm-auto.col-md-10.pt-3 {
     padding: 0.7em 0.5em;
 }
 .navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+}
+
+.bus-system-list-view.card .table .thead-dark th a {
     color: #fff;
 }

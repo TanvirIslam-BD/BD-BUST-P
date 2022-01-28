@@ -1,7 +1,7 @@
 %{--Include Main Layout--}%
 <meta name="layout" content="main"/>
 
-<div class="card">
+<div class="bus-system-list-view card">
     <div class="card-header">
         <g:message code="member" args="['List']"/>
 

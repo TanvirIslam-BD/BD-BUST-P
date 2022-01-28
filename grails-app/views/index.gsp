@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<h1>Bismillah Online Bus Ticket Booking System View</h1>
+<h1>Bus Ticket Booking System View</h1>
 
 </body>
 </html>
