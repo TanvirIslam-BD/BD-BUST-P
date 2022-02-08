@@ -40,8 +40,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu_font_detail" aria-current="page" href="/reports">
-                        <span class="">REPORTS</span>
+                    <a class="nav-link menu_font_detail" aria-current="page" href="/seatMap">
+                        <span class="">SEAT MAP</span>
                     </a>
                 </li>
 
