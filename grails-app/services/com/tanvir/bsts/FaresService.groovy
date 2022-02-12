@@ -6,16 +6,18 @@ import grails.web.servlet.mvc.GrailsParameterMap
 import javax.servlet.http.HttpServletRequest
 
 @Transactional
-class SeatMapService {
+class FaresService {
 
-    AuthenticationService authenticationService
+    def get(Serializable id) {
+        return Fares.get(id)
+    }
 
-    def update(SeatMap seatMap, GrailsParameterMap params, HttpServletRequest request) {
-        seatMap.properties = params
-        def response = AppUtil.saveResponse(false, seatMap)
-        if (seatMap.validate()) {
-            seatMap.save()
-            if (!seatMap.hasErrors()){
+    def update(Fares fares, GrailsParameterMap params, HttpServletRequest request) {
+        fares.properties = params
+        def response = AppUtil.saveResponse(false, fares)
+        if (fares.validate()) {
+            fares.save()
+            if (!fares.hasErrors()){
                 response.isSuccess = true
             }
         }
@@ -23,25 +25,20 @@ class SeatMapService {
     }
 
     def save(GrailsParameterMap params, HttpServletRequest request) {
-        SeatMap seatMap = new SeatMap(params)
-        def response = AppUtil.saveResponse(false, seatMap)
-        if (seatMap.validate()) {
-            seatMap.save()
-            if (!seatMap.hasErrors()){
+        Fares fares = new Fares(params)
+        def response = AppUtil.saveResponse(false, fares)
+        if (fares.validate()) {
+            fares.save()
+            if (!fares.hasErrors()){
                 response.isSuccess = true
             }
         }
         return response
     }
 
-
-    def get(Serializable id) {
-        return SeatMap.get(id)
-    }
-
     def list(GrailsParameterMap params) {
         params.max = params.max ?: GlobalConfig.itemsPerPage()
-        List<SeatMap> seatMapList = SeatMap.createCriteria().list(params) {
+        List<Fares> faresList = Fares.createCriteria().list(params) {
             if (params?.colName && params?.colValue) {
                 like(params.colName, "%" + params.colValue + "%")
             }
@@ -49,20 +46,19 @@ class SeatMapService {
                 order("id", "desc")
             }
         }
-        return [list: seatMapList, count: seatMapList.totalCount]
+        return [list: faresList, count: faresList.totalCount]
     }
 
 
-    def delete(SeatMap seatMap) {
+    def delete(Fares fares) {
         try {
-            seatMap.delete()
+            fares.delete()
         } catch (Exception e) {
             println(e.getMessage())
             return false
         }
         return true
     }
-
 
 
 }

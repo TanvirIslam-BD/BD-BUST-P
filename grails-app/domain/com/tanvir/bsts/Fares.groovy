@@ -1,12 +1,19 @@
 package com.tanvir.bsts
 
-class SeatMap {
+class Fares {
 
     Integer id
 
-    Long seatRows = 4
-    Long seatColumns = 10
     String name = ""
+
+    Counter fromStoppage
+    Counter toStoppage
+
+    Double amount = 0.00
+
+    String seatClass = "AC"
+
+    String status
 
     Date dateCreated
     Date lastUpdated

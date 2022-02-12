@@ -3,10 +3,13 @@ package com.tanvir.bsts
 class Coach {
 
     Integer id
+
+    String name
+
     String coachNumber
     String registrationNumber
     String seatCapacity
-    String seatPlan
+    SeatMap seatMap
 
     String status
 
@@ -18,6 +21,8 @@ class Coach {
     static constraints = {
 
     }
+
+    static belongsTo = SeatMap
 
     static mapping = {
         version(false)

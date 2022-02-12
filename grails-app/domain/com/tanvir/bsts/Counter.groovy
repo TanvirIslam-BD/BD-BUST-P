@@ -1,12 +1,13 @@
 package com.tanvir.bsts
 
-class SeatMap {
+class Counter {
 
     Integer id
 
-    Long seatRows = 4
-    Long seatColumns = 10
+    Integer sequence = 0
     String name = ""
+
+    String status
 
     Date dateCreated
     Date lastUpdated
@@ -14,4 +15,5 @@ class SeatMap {
     static constraints = {
 
     }
+
 }

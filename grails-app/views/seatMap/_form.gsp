@@ -1,12 +1,11 @@
 <div class="form-group">
     <label><g:message code="rows"/> *</label>
-    <g:textField name="rows" class="form-control" value="${seatMap?.rows}" placeholder="Please Enter Rows"/>
-    <UIHelper:renderErrorMessage fieldName="rows" model="${seatMap?.rows}" errorMessage="Please Enter Rows"/>
+    <g:select class="form-control" from="${2..26}" name="seatRows" value="${seatMap?.seatRows}"></g:select>
 </div>
 
 <div class="form-group">
     <label><g:message code="columns"/></label>
-    <g:textField name="columns" class="form-control" value="${seatMap?.columns}" placeholder="Please Enter Columns"/>
+    <g:select class="form-control" from="${3..4}" name="seatColumns" value="${seatMap?.seatColumns}"></g:select>
 </div>
 
 <div class="form-group">

@@ -4,22 +4,17 @@
     <meta name="layout" content="main"/>
 </head>
 <body>
-   <div class="bus-system-list-view card">
-      <div class="card-header">
+<div class="bus-system-list-view card">
+    <div class="card-header">
         COACH
         <span class="float-right">
             <div class="btn-group">
                 <g:form controller="coach" action="index" method="GET">
                     <div class="input-group" id="search-area">
-                        <g:select name="colName" class="form-control" from="[coachNumber:'Coach Number', registrationNumber:'Registration Number', seatCapacity:'Seat Capacity']" value="${params?.colName}" optionKey="key" optionValue="value"/>
+                        <g:select name="colName" class="form-control" from="[name:'Name']" value="${params?.colName}" optionKey="key" optionValue="value"/>
                         <g:textField name="colValue" class="form-control" value="${params?.colValue}"/>
                         <span class="input-group-btn">
-                        <button type="submit" class="search-button btn btn-outline-secondary">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
-                            </svg>
-                        </button>
-
+                            <button class="btn btn-default" type="submit">Search</button>
                         </span>
                     </div>
                 </g:form>
@@ -31,7 +26,7 @@
             </div>
         </span>
     </div>
-      <div class="card-body">
+    <div class="card-body">
         <table class="table table-bordered table-striped">
             <thead class="thead-dark">
             <tr>
@@ -50,7 +45,7 @@
                         <td>${info?.coachNumber}</td>
                         <td>${info?.registrationNumber}</td>
                         <td>${info?.seatCapacity}</td>
-                        <td>${info?.seatPlan}</td>
+                        <td>${info?.seatMap?.name}</td>
                         <td><span class="badge ${(info?.status == "ACTIVE") ?  "badge-success" :  "badge-secondary"}">${info?.status}</span></td>
                         <td>
                             <div class="btn-group">
@@ -63,7 +58,7 @@
             </g:if>
             <g:else>
                 <tr>
-                    <td>No Coach Found!</td>
+                    No Coach Found!
                 </tr>
             </g:else>
             </tbody>
@@ -72,6 +67,6 @@
             <g:paginate total="${total ?: 0}" />
         </div>
     </div>
-  </div>
+</div>
 </body>
 </html>

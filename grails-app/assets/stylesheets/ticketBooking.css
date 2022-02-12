@@ -1,0 +1,37 @@
+.card-body {
+    display: flex;
+}
+
+.seat-plan-design {
+    width: 45%;
+    border-right: solid 3px #e9ecef;
+}
+
+.seat-info-booking-info {
+    padding-left: 5%;
+}
+
+ul.seatCharts-legendList {
+    display: flex;
+    text-align: center;
+}
+
+li.seatCharts-legendItem {
+    margin-left: 29px;
+}
+div.seatCharts-seat {
+    background-color: #1b1c1c;
+    color: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    cursor: default;
+}
+
+.seat-info table.table.information_table.table-responsive {
+    border: 2px solid #e9ecef;
+}
+.seat-info span#selected-seats {
+    display: block;
+    min-height: 60px;
+}

@@ -14,6 +14,48 @@ class SeatMapController {
         [seatMap: flash.redirectParams]
     }
 
+
+    def edit(Integer id) {
+        if (flash.redirectParams) {
+            [seatMap: flash.redirectParams]
+        } else {
+            def response = seatMapService.get(id)
+            if (!response) {
+                flash.message = AppUtil.infoMessage(g.message(code: "invalid.entity"), false)
+                redirect(controller: "seatMap", action: "index")
+            } else {
+                [seatMap: response]
+            }
+        }
+    }
+
+    def details(Integer id) {
+        def response = seatMapService.get(id)
+        if (!response){
+            redirect(controller: "seatMap", action: "index")
+        }else{
+            [seatMap: response]
+        }
+    }
+
+    def update() {
+        def response = seatMapService.get(params.id)
+        if (!response){
+            flash.message = AppUtil.infoMessage(g.message(code: "invalid.entity"), false)
+            redirect(controller: "seatMap", action: "index")
+        }else{
+            response = seatMapService.update(response, params, request)
+            if (!response.isSuccess){
+                flash.redirectParams = response.model
+                flash.message = AppUtil.infoMessage(g.message(code: "unable.to.update"), false)
+                redirect(controller: "seatMap", action: "edit")
+            }else{
+                flash.message = AppUtil.infoMessage(g.message(code: "updated"))
+                redirect(controller: "seatMap", action: "index")
+            }
+        }
+    }
+
     def save(){
         def response = seatMapService.save(params, request)
         if (response.isSuccess) {

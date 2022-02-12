@@ -27,7 +27,7 @@
 
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark rounded">
-        <a class="navbar-brand brand_name menu_font_detail home-logout" href="/">
+        <a class="navbar-brand brand_name menu_font_detail home-logout" href="/busTicket">
             <span class=" nav-active ">DASHBOARD</span>
         </a>
 
@@ -49,8 +49,13 @@
                     <UIHelper:systemServicesActionMenu/>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu_font_detail" aria-current="page" href="/user-reports">
-                        <span class="">USER REPORTS</span>
+                    <a class="nav-link menu_font_detail" aria-current="page" href="/counter/index">
+                        <span class="">COUNTERS</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu_font_detail" aria-current="page" href="/fares/index">
+                        <span class="">FARES</span>
                     </a>
                 </li>
             </ul>

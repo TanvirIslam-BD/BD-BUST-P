@@ -1,3 +1,4 @@
+<%@ page import="com.tanvir.bsts.SeatMap" %>
 <div class="form-group">
     <coachNumber>Coach No. *</coachNumber>
     <g:textField name="coachNumber" class="form-control" value="${coach?.coachNumber}" placeholder="Please Enter Coach No."/>
@@ -12,7 +13,7 @@
 
 <div class="form-group">
     <label>Seat Plan</label>
-    <UIHelper:seatPlan value="${coach}"/>
+    <UIHelper:domainSelect  class="form-control" domain="${SeatMap}" name="seatMap" value="${coach ? coach?.seatMap?.id : null}"/>
     <UIHelper:renderErrorMessage fieldName="name" model="${coach}" errorMessage="Seat Capacity"/>
 </div>
 

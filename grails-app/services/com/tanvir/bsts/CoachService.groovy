@@ -12,6 +12,7 @@ class CoachService {
     def save(GrailsParameterMap params, HttpServletRequest request) {
         Coach coach = new Coach(params)
         coach.member = authenticationService.getMember()
+        coach.name = coach.coachNumber
         def response = AppUtil.saveResponse(false, coach)
         if (coach.validate()) {
             coach.save()

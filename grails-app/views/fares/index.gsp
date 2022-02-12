@@ -6,7 +6,7 @@
 <body>
 <div class="bus-system-list-view card">
     <div class="card-header">
-        COACH
+        Fares
         <span class="float-right">
             <div class="btn-group">
                 <g:form controller="coach" action="index" method="GET">
@@ -21,8 +21,8 @@
             </div>
 
             <div class="btn-group">
-                <g:link controller="coach" action="create" class="btn btn-success"><g:message code="create"/></g:link>
-                <g:link controller="coach" action="index" class="btn btn-primary"><g:message code="reload"/></g:link>
+                <g:link controller="fares" action="create" class="btn btn-success"><g:message code="create"/></g:link>
+                <g:link controller="fares" action="index" class="btn btn-primary"><g:message code="reload"/></g:link>
             </div>
         </span>
     </div>
@@ -30,27 +30,27 @@
         <table class="table table-bordered table-striped">
             <thead class="thead-dark">
             <tr>
-                <th>COACH NUMBER</th>
-                <th>REGISTRATION NUMBER</th>
-                <th>SEAT CAPACITY</th>
-                <th>SEAT PLAN</th>
+                <th>FROM STOPPAGE </th>
+                <th>TO STOPPAGE</th>
+                <th>SEAT CLASS</th>
+                <th>FARE AMOUNT</th>
                 <th>STATUS</th>
                 <th class="action-row"><g:message code="action"/></th>
             </tr>
             </thead>
             <tbody>
-            <g:if test="${coach}">
-                <g:each in="${coach}" var="info">
+            <g:if test="${faresList}">
+                <g:each in="${faresList}" var="fares">
                     <tr>
-                        <td>${info?.coachNumber}</td>
-                        <td>${info?.registrationNumber}</td>
-                        <td>${info?.seatCapacity}</td>
-                        <td>${info?.seatMap?.name}</td>
-                        <td><span class="badge ${(info?.status == "ACTIVE") ?  "badge-success" :  "badge-secondary"}">${info?.status}</span></td>
+                        <td>${fares?.fromStoppage?.name}</td>
+                        <td>${fares?.toStoppage?.name}</td>
+                        <td>${fares?.seatClass}</td>
+                        <td><span class="badge badge-primary">${fares?.amount}</span></td>
+                        <td><span class="badge ${(fares?.status == "ACTIVE") ?  "badge-success" :  "badge-secondary"}">${fares?.status}</span></td>
                         <td>
                             <div class="btn-group">
-                                <g:link controller="coach" action="edit" class="btn btn-secondary" id="${info.id}"><i class="fas fa-edit"></i></g:link>
-                                <g:link controller="coach" action="delete" id="${info.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
+                                <g:link controller="coach" action="edit" class="btn btn-secondary" id="${fares.id}"><i class="fas fa-edit"></i></g:link>
+                                <g:link controller="coach" action="delete" id="${fares.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
                             </div>
                         </td>
                     </tr>
@@ -58,7 +58,7 @@
             </g:if>
            <g:else>
                <tr>
-                  No Coach Found!
+                  No Fares Found!
                </tr>
            </g:else>
             </tbody>
