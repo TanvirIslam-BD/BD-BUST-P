@@ -1,4 +1,9 @@
 <%@ page import="com.tanvir.bsts.Counter; com.tanvir.bsts.SeatMap" %>
+
+<div class="form-group">
+    <label><g:message code="name"/></label>
+    <g:textField name="name" class="form-control" value="${fares?.name}" placeholder="Please Enter Fares Name"/>
+</div>
 <div class="form-group">
     <label>From Stoppage</label>
     <UIHelper:domainSelect class="form-control" domain="${Counter}" name="fromStoppage" value="${fares?.fromStoppage ? fares?.fromStoppage?.id : null}"/>

@@ -35,3 +35,11 @@ div.seatCharts-seat {
     display: block;
     min-height: 60px;
 }
+p.total-paid-title.font_detail.fw-bold {
+    font-weight: 500;
+}
+.total-flare-title {
+    font-weight: 500;
+    color: #008605;
+}
+

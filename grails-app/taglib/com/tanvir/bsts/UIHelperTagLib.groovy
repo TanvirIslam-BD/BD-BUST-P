@@ -78,6 +78,15 @@ class UIHelperTagLib {
         out << g.select(from: select, name: name, optionKey: "key", optionValue: "value", value: value, class:"form-control")
     }
 
+    def gender = { attrs, body ->
+        String name = attrs.name ?: "sex"
+        String value = attrs.value ?: ""
+        def select = [:]
+        select.male = "Male"
+        select.female = "Female"
+        out << g.select(from: select, name: name, optionKey: "key", optionValue: "value", value: value, class:"form-control")
+    }
+
 
     def stoppage = { attrs, body ->
         String name = attrs.name ?: "fromStoppage"

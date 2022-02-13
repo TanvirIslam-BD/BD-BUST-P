@@ -8,6 +8,11 @@ class BusTicket {
 
     Coach coach
 
+    Collection<PurchaseTicket> purchaseTickets
+
+    static hasMany = [purchaseTickets: PurchaseTicket]
+
     static constraints = {
+
     }
 }

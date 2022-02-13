@@ -1,3 +1,4 @@
+<%@ page import="com.tanvir.bsts.Counter" %>
 %{--Include Main Layout--}%
 <meta name="layout" content="main"/>
 <asset:stylesheet src="jquery.seat-charts.css"/>
@@ -37,7 +38,7 @@
                              <span class="orange-bold-text" id="selected-seats"></span>
                         </td>
                         <td class="border-1 text-center font_detail">
-                             <span id="total"  class="orange-bold-text"></span>
+                             <span id="total"  class="total-flare-title orange-bold-text"></span>
                         </td>
                     </tr>
                     </tbody>
@@ -50,190 +51,32 @@
                         <table border="0">
                             <tbody class="dashboard_tble">
                             <tr>
+                                <td><p class="font_detail">Mobile</p></td>
                                 <td>
-                                    <p class="font_detail">Passenger
-                                    Mobile</p>
-                                </td>
-                                <td>
-                                    <div class="input-group form_width font_detail">
-                                        <input type="text" class="form-control font_detail" aria-label="Passenger Mobile" aria-describedby="basic-addon1" wire:model.lazy="passenger_mobile">
-                                    </div>
+                                    <div class="input-group form_width font_detail"><input name="mobile" type="text" class="form-control font_detail" aria-label="Passenger Mobile"></div>
                                 </td>
                             </tr>
                             <tr>
+                                <td><p class="font_detail">Name</p></td>
+                                <td><input name="name" class="form-control form_width font_detail" type="text"></td>
+                            </tr>
+                            <tr>
+                                <td><p class="font_detail">Gender</p></td>
                                 <td>
-                                    <p class="font_detail">Name</p>
-                                </td>
-                                <td>
-                                    <input class="form-control form_width font_detail" type="text" wire:model.lazy="passenger_name">
+                                    <UIHelper:gender value="${busTicket}"/>
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <p class="font_detail">Gender</p>
-                                </td>
-                                <td>
-                                    <select class="form-select form-select-sm form_width font_detail" aria-label="example" wire:model="passenger_gender">
-                                        <option selected="" value="">Select an
-                                        option
-                                        </option>
-                                        <option value="Male">Male
-                                        </option>
-                                        <option value="Female">Female
-                                        </option>
-                                    </select>
-                                </td>
+                                <td><p class="font_detail">Age</p></td>
+                                <td><input name="age" class="form-control form_width font_detail" type="text"></td>
                             </tr>
                             <tr>
-                                <td>
-                                    <p class="font_detail">Age</p>
-                                </td>
-                                <td>
-                                    <input class="form-control form_width font_detail" type="text" wire:model.lazy="passenger_age">
-                                </td>
+                                <td><p class="font_detail">Passport</p></td>
+                                <td><input name="passport" class="form-control form_width font_detail" type="text"></td>
                             </tr>
                             <tr>
-                                <td>
-                                    <p class="font_detail">Passport</p>
-                                </td>
-                                <td>
-                                    <input class="form-control form_width font_detail" type="text" wire:model.lazy="passenger_passport">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p class="font_detail">Net pay</p>
-                                </td>
-                                <td>
-                                    <input class="form-control form_width font_detail" disabled="" type="number" wire:model="net_pay">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p class="font_detail">Discount</p>
-                                </td>
-                                <td>
-                                    <input class="form-control form_width font_detail" type="number" wire:model="total_discount">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p class="font_detail">Referenced Counter</p>
-                                </td>
-                                <td>
-                                    <select class="form-select form-select-sm form_width font_detail" aria-label="example" wire:model="referenced_counter">
-                                        <option value="">Select a Counter
-                                        </option>
-                                        <option value="31">
-                                            Dhaka
-                                        </option>
-                                        <option value="32">
-                                            Kamalapur counter (Dhaka)
-                                        </option>
-                                        <option value="33">
-                                            Tikatuli (Dhaka)
-                                        </option>
-                                        <option value="34">
-                                            Shanir akhra 1 (Dhaka)
-                                        </option>
-                                        <option value="35">
-                                            Shanir akhra 2 (Dhaka)
-                                        </option>
-                                        <option value="36">
-                                            Signboard 1 (Dhaka)
-                                        </option>
-                                        <option value="37">
-                                            Signboard 2 (Dhaka)
-                                        </option>
-                                        <option value="38">
-                                            Chittagong Road (Dhaka)
-                                        </option>
-                                        <option value="39">
-                                            Kachpur (Dhaka)
-                                        </option>
-                                        <option value="40">
-                                            Kachua
-                                        </option>
-                                        <option value="41">
-                                            Hajiganj
-                                        </option>
-                                        <option value="42">
-                                            Katakhali
-                                        </option>
-                                        <option value="43">
-                                            Khalifar dorja
-                                        </option>
-                                        <option value="44">
-                                            Sonapur
-                                        </option>
-                                        <option value="45">
-                                            Ramganj
-                                        </option>
-                                        <option value="46">
-                                            Paddar bazar
-                                        </option>
-                                        <option value="47">
-                                            Panpara
-                                        </option>
-                                        <option value="48">
-                                            Mirganj
-                                        </option>
-                                        <option value="49">
-                                            Bangla bazar
-                                        </option>
-                                        <option value="50">
-                                            Kalibazar
-                                        </option>
-                                        <option value="51">
-                                            Palerhat
-                                        </option>
-                                        <option value="52">
-                                            Bhuiyarhat
-                                        </option>
-                                        <option value="53">
-                                            Bagbari
-                                        </option>
-                                        <option value="54">
-                                            Laxmipur
-                                        </option>
-                                        <option value="55">
-                                            Bashubazar
-                                        </option>
-                                        <option value="77">
-                                            Mirpur
-                                        </option>
-                                        <option value="116">
-                                            Fatehpur
-                                        </option>
-                                        <option value="337">
-                                            Fakir bazar
-                                        </option>
-                                        <option value="339">
-                                            Kachukhet
-                                        </option>
-                                        <option value="340">
-                                            Mirpur 10
-                                        </option>
-                                        <option value="341">
-                                            Mirpur 1
-                                        </option>
-                                        <option value="342">
-                                            Adabor
-                                        </option>
-                                        <option value="343">
-                                            Jigatola
-                                        </option>
-                                        <option value="344">
-                                            Nilkhet
-                                        </option>
-                                        <option value="347">
-                                            Sonargaon (Dhaka)
-                                        </option>
-                                        <option value="349">
-                                            Laxmipur Station
-                                        </option>
-                                    </select>
-                                </td>
+                                <td><p class="font_detail">Referenced Counter</p></td>
+                                <td><UIHelper:domainSelect class="form-control" domain="${Counter}" name="referencedCounter"/></td>
                             </tr>
                             </tbody>
                         </table>
@@ -243,40 +86,24 @@
                         <table border="0" class="inner_dashboard_table">
                             <tbody class="dashboard_tble">
                             <tr>
-                                <td>
-                                    <p class="font_detail">Address</p>
-                                </td>
-                                <td>
-                                    <input class="form-control form_width font_detail" type="text" wire:model.lazy="passenger_address">
-                                </td>
+                                <td><p class="font_detail">Address</p></td>
+                                <td><input name="address" class="form-control form_width font_detail" type="text"></td>
                             </tr>
                             <tr>
-                                <td>
-                                    <p class="font_detail">
-                                        Nationality</p>
-                                </td>
-                                <td>
-                                    <input class="form-control form_width font_detail" type="text" wire:model.lazy="passenger_nationality">
-                                </td>
+                                <td><p class="font_detail">Nationality</p></td>
+                                <td><input name="nationality" class="form-control form_width font_detail" type="text" value="BANGLADESHI"></td>
                             </tr>
                             <tr>
-                                <td>
-                                    <p class="font_detail">Boarding
-                                    Place</p>
-                                </td>
-                                <td>
-                                    <input class="form-control form_width font_detail" type="text" wire:model.lazy="boarding_place">
-                                </td>
+                                <td><p class="font_detail">Boarding Place</p></td>
+                                <td><input name="boardingPlace" class="form-control form_width font_detail" type="text"/></td>
                             </tr>
-
                             <tr>
-                                <td>
-                                    <p class="font_detail fw-bold">Total
-                                    Paid</p>
-                                </td>
-                                <td>
-                                    <input class="form-control form_width fw-bold font_detail" type="number" disabled="" wire:model.lazy="total_paid">
-                                </td>
+                                <td><p class="font_detail">Discount</p></td>
+                                <td><input name="discount" class="form-control form_width font_detail" type="number" value="0"></td>
+                            </tr>
+                            <tr class="total-paid-row">
+                                <td><p class="total-paid-title font_detail fw-bold">Total Paid</p></td>
+                                <td><input name="totalPaid" class="total-paid-amount form-control form_width fw-bold font_detail" disabled type="number"></td>
                             </tr>
 
                             </tbody>

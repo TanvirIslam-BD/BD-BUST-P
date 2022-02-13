@@ -18,6 +18,7 @@ $(document).ready(function() {
     var $cart = $('#selected-seats'),
         $counter = $('#counter'),
         $total = $('#total'),
+        $totalPaidAmountInput = $('.total-paid-amount'),
 
         sc = seatMap.seatCharts({
 
@@ -120,21 +121,21 @@ $(document).ready(function() {
             },
             click: function () {
                 if (this.status() == 'available') {
-
-                    $('<li>'+this.settings.label+': <b>$'+this.data().price+'</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
+                    $('<li class="selected-book-seats-item"> <b>'+this.settings.label+'</b><a href="#" class="cancel-cart-item">[cancel]</a></li>')
                         .attr('id', 'cart-item-'+this.settings.id)
                         .data('seatId', this.settings.id)
                         .appendTo($cart);
 
                     $counter.text(sc.find('selected').length+1);
                     $total.text(recalculateTotal(sc)+this.data().price + " TK");
-
+                    $totalPaidAmountInput.val(recalculateTotal(sc)+this.data().price);
                     return 'selected';
                 } else if (this.status() == 'selected') {
 
                     $counter.text(sc.find('selected').length-1);
 
                     $total.text(recalculateTotal(sc)-this.data().price);
+                    $totalPaidAmountInput.val(recalculateTotal(sc)-this.data().price);
 
 
                     $('#cart-item-'+this.settings.id).remove();
