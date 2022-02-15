@@ -35,14 +35,22 @@ div.seatCharts-seat.available {
 
 div .seatCharts-seat {
 	height: 35px;
-	width: 50px;
+	width: 70px;
 	padding: 10px;
 }
 
 .seatCharts-row div:nth-child(even) {
-	width: 50px;
+	width: 70px;
 }
 
 .form-action-panel {
 	padding: 10px;
+}
+span.seatCharts-legendDescription {
+	font-size: 12px;
+}
+
+.seatCharts-legendItem .seatCharts-seat.seatCharts-cell {
+	height: 25px;
+	width: 50px;
 }

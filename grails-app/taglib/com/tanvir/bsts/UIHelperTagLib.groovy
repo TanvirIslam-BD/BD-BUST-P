@@ -17,6 +17,14 @@ class UIHelperTagLib {
         }
     }
 
+    def memberName = { attrs, body ->
+        out << authenticationService.getMemberName()
+    }
+
+    def memberDetails = { attrs, body ->
+        out << "/member/details?id=${authenticationService.getMember().id}"
+    }
+
     def memberActionMenu = { attrs, body ->
         out << '<li class="nav-item dropdown show">'
         out << g.link(class:"nav-link dropdown-toggle", "data-toggle":"dropdown"){authenticationService.getMemberName()}

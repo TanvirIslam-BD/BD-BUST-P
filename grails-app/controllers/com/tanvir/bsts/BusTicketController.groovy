@@ -6,6 +6,7 @@ class BusTicketController {
 
     def index() {
         def response = busTicketService.list(params)
+        session.activeTab = "Dashboard"
         [busTickets: response.list, total:response.count]
     }
 
@@ -31,6 +32,19 @@ class BusTicketController {
             flash.redirectParams = response.model
             flash.message = AppUtil.infoMessage(g.message(code: "unable.to.save"), false)
             redirect(controller: "busTicket", action: "create")
+        }
+    }
+
+
+    def saveBookingTicket() {
+        def response = busTicketService.saveBookingTicket(params, request)
+        if (response.isSuccess) {
+            flash.message = AppUtil.infoMessage(g.message(code: "booked"))
+            redirect(controller: "busTicket", action: "details")
+        } else {
+            flash.redirectParams = response.model
+            flash.message = AppUtil.infoMessage(g.message(code: "unable.to.book"), false)
+            redirect(controller: "busTicket", action: "details")
         }
     }
 

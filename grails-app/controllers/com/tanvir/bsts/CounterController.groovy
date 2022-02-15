@@ -6,6 +6,7 @@ class CounterController {
 
     def index() {
         def response = counterService.list(params)
+        session.activeTab = "Counters"
         [counters: response.list, total:response.count]
     }
 

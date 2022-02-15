@@ -1,72 +1,74 @@
-<!doctype html>
-<html>
-<head>
-    <meta name="layout" content="main"/>
-</head>
-<body>
-<div class="bus-system-list-view card">
-    <div class="card-header">
-        Fares
-        <span class="float-right">
-            <div class="btn-group">
-                <g:form controller="coach" action="index" method="GET">
-                    <div class="input-group" id="search-area">
-                        <g:select name="colName" class="form-control" from="[name:'Name']" value="${params?.colName}" optionKey="key" optionValue="value"/>
-                        <g:textField name="colValue" class="form-control" value="${params?.colValue}"/>
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="submit">Search</button>
-                        </span>
-                    </div>
-                </g:form>
-            </div>
 
-            <div class="btn-group">
-                <g:link controller="fares" action="create" class="btn btn-success"><g:message code="create"/></g:link>
-                <g:link controller="fares" action="index" class="btn btn-primary"><g:message code="reload"/></g:link>
-            </div>
-        </span>
-    </div>
-    <div class="card-body">
-        <table class="table table-bordered table-striped">
-            <thead class="thead-dark">
-            <tr>
-                <th>FROM STOPPAGE </th>
-                <th>TO STOPPAGE</th>
-                <th>SEAT CLASS</th>
-                <th>FARE AMOUNT</th>
-                <th>STATUS</th>
-                <th class="action-row"><g:message code="action"/></th>
-            </tr>
-            </thead>
-            <tbody>
-            <g:if test="${faresList}">
-                <g:each in="${faresList}" var="fares">
-                    <tr>
-                        <td>${fares?.fromStoppage?.name}</td>
-                        <td>${fares?.toStoppage?.name}</td>
-                        <td>${fares?.seatClass}</td>
-                        <td><span class="badge badge-primary">${fares?.amount}</span></td>
-                        <td><span class="badge ${(fares?.status == "ACTIVE") ?  "badge-success" :  "badge-secondary"}">${fares?.status}</span></td>
-                        <td>
-                            <div class="btn-group">
-                                <g:link controller="coach" action="edit" class="btn btn-secondary" id="${fares.id}"><i class="fas fa-edit"></i></g:link>
-                                <g:link controller="coach" action="delete" id="${fares.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
+<meta name="layout" content="main"/>
+
+<div class="common-list-table-view-ui col-lg-13 mt-4 col-13">
+    <div class="card mb-4">
+        <div class="card-header pb-0">
+            <div class="row">
+                <div class="col-lg-6 col-7">
+                    <h6>Fares</h6>
+                    <p class="text-sm mb-0">
+                        <i class="fa fa-check text-info" aria-hidden="true"></i>
+                        Operate this section with the corresponding UI
+                    </p>
+                </div>
+                <div class="col-lg-6 col-5 my-auto text-end">
+                    <div class="btn-group">
+                        <g:form controller="fares" action="index" method="GET">
+                            <div class="input-group" id="search-area">
+                                <g:select name="colName" class="form-control" from="[name: 'Name']" value="${params?.colName}" optionKey="key" optionValue="value"/>
+                                <g:textField name="colValue" class="form-control" value="${params?.colValue}"/>
+                                <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
                             </div>
-                        </td>
+                        </g:form>
+                    </div>
+
+                    <div class="btn-group">
+                        <g:link controller="fares" action="create" class="btn btn-success"><g:message code="create"/></g:link>
+                        <g:link controller="fares" action="index" class="btn btn-primary"><g:message code="reload"/></g:link>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body px-0 pb-2">
+            <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                    <tr>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FROM STOPPAGE</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">TO STOPPAGE</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SEAT CLASS</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FARE AMOUNT</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">STATUS</th>
+                        <th class="text-secondary opacity-7"></th>
                     </tr>
-                </g:each>
-            </g:if>
-           <g:else>
-               <tr>
-                  No Fares Found!
-               </tr>
-           </g:else>
-            </tbody>
-        </table>
-        <div class="paginate">
-            <g:paginate total="${total ?: 0}" />
+                    </thead>
+                    <tbody>
+                    <g:each in="${faresList}" var="fares">
+                        <tr>
+                            <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${fares?.fromStoppage?.name}</span></td>
+                            <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${fares?.toStoppage?.name}</span></td>
+                            <td class="text-center text-sm"><span class="text-xs font-weight-bold">${fares?.seatClass}</span></td>
+                            <td class="text-center text-sm"><span class="badge badge-sm badge-primary price-amount-badge">${fares?.amount}</span></td>
+                            <td class="text-center text-sm"><span class="badge badge-sm  ${(fares?.status == "ACTIVE") ?  "bg-gradient-success" :  "bg-gradient-secondary"}">${fares?.status}</span></td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <g:link controller="fares" action="details" class="btn btn-secondary" id="${fares.id}"><i class="fas fa-eye"></i></g:link>
+                                    <g:link controller="fares" action="edit" class="btn btn-secondary" id="${fares.id}"><i class="fas fa-edit"></i></g:link>
+                                    <g:link controller="fares" action="delete" id="${fares.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
+                                </div>
+                            </td>
+                        </tr>
+                    </g:each>
+                    </tbody>
+                </table>
+                <div class="paginate">
+                    <g:paginate total="${total ?: 0}" />
+                </div>
+            </div>
         </div>
     </div>
 </div>
-</body>
-</html>
+
+
+

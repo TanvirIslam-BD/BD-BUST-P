@@ -5,6 +5,7 @@ class CoachController {
     CoachService coachService
 
     def index() {
+        session.activeTab = "Coaches"
         def response = coachService.list(params)
         [coach: response.list, total:response.count]
     }

@@ -2,6 +2,8 @@ package com.tanvir.bsts
 
 class BusTicket {
 
+    Integer id
+
     Date boardingTimeAndDate
 
     Fares fares

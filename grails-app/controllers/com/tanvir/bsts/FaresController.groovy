@@ -6,6 +6,7 @@ class FaresController {
 
     def index() {
         def response = faresService.list(params)
+        session.activeTab = "Fares"
         [faresList: response.list, total:response.count]
     }
 
@@ -43,7 +44,7 @@ class FaresController {
                 flash.message = AppUtil.infoMessage(g.message(code: "invalid.entity"), false)
                 redirect(controller: "fares", action: "index")
             } else {
-                [coach: response]
+                [fares: response]
             }
         }
     }

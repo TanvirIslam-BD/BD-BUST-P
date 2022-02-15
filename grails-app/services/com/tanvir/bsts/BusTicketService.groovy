@@ -36,6 +36,22 @@ class BusTicketService {
         return response
     }
 
+   def saveBookingTicket(GrailsParameterMap params, HttpServletRequest request) {
+        params.seatBooked = params.seatBooked.toString()
+        BusTicket busTicket = BusTicket.get(params.busTicketId)
+        PurchaseTicket purchaseTicket = new PurchaseTicket(params)
+        def response = AppUtil.saveResponse(false, purchaseTicket)
+        if (purchaseTicket.validate()) {
+            purchaseTicket.save()
+            if (!purchaseTicket.hasErrors()){
+                busTicket.purchaseTickets.add(purchaseTicket)
+                busTicket.merge()
+                response.isSuccess = true
+            }
+        }
+        return response
+    }
+
     def list(GrailsParameterMap params) {
         params.max = params.max ?: GlobalConfig.itemsPerPage()
         List<BusTicket> busTicketList = BusTicket.createCriteria().list(params) {

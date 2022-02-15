@@ -10,6 +10,16 @@
 </div>
 
 <div class="form-group">
+    <label><g:message code="Mobile"/></label>
+    <g:textField name="mobile" class="form-control" value="${member?.mobile}" placeholder="Please  Mobile"/>
+</div>
+
+<div class="form-group">
+    <label><g:message code="Address"/></label>
+    <g:textField name="address" class="form-control" value="${member?.address}" placeholder="Please Address"/>
+</div>
+
+<div class="form-group">
     <label><g:message code="email.address"/> *</label>
     <g:field type="email" name="email" class="form-control" value="${member?.email}" placeholder="Please Enter Email"/>
     <UIHelper:renderErrorMessage fieldName="email" model="${member}" errorMessage="Your Email Address is not Valid / Already Exist in System"/>

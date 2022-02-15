@@ -15,8 +15,8 @@
 */
 
 nav.navbar.navbar-expand-lg.navbar-dark.fixed-top.bg-dark.rounded {
-    background: #2196f3!important;
-    border-radius: 0 !important;
+    /* background: #2196f3!important; */
+    /* border-radius: 0 !important; */
 }
 
 main.list-view-container.col-sm-9.ml-sm-auto.col-md-10.pt-3 {
@@ -71,4 +71,42 @@ main.list-view-container.col-sm-9.ml-sm-auto.col-md-10.pt-3 {
 }
 span.badge.badge-primary {
     padding: 8px;
+}
+body {
+    background-color: #f9f9f9;
+}
+
+.common-list-table-view-ui div#search-area {
+    padding-bottom: 13px;
+}
+
+.sidenav-header {
+    background: url(https://gos3.ibcdn.com/bus-1616762332.png);
+}
+span.badge.badge-sm.badge-primary.price-amount-badge {
+    min-width: 56px;
+    font-size: 12px;
+}
+
+
+a.nav-link.mb-0.px-0.py-1.member-status.active {
+    color: #fff;
+    background-image: linear-gradient(310deg, #17ad37 0%, #98ec2d 100%);
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+}
+
+
+a.nav-link.mb-0.px-0.py-1.active.member-type {
+    color: #fff;
+    background-image: linear-gradient(310deg, #2196f3 0%, #5dcdff 100%);
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+    margin-left: 10px;
+}
+
+.register-form-ots{
+    margin-top: -23rem !important;
 }

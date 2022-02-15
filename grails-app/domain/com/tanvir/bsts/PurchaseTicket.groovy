@@ -3,11 +3,10 @@ package com.tanvir.bsts
 class PurchaseTicket {
 
     Long id
-    Long displayId
 
     String name
     String sex
-    String userName
+    String email
     String mobile
     String age
     String passport
@@ -21,16 +20,19 @@ class PurchaseTicket {
 
     Double totalPaid
 
-    String bookedSeats = ""
+    String seatBooked = ""
+
+
+    Date dateCreated
+    Date lastUpdated
 
 
     static belongsTo = [BusTicket, Counter]
 
 
-
     static constraints = {
         name(blank: false, size: 1..100, maxSize: 100)
-        userName(blank: false, unique: true, maxSize: 100)
+        email(nullable: true)
         sex(nullable: true, maxSize: 100)
         boardingPlace(nullable: true)
         address(nullable: true)
@@ -41,20 +43,19 @@ class PurchaseTicket {
         age(nullable: true)
         mobile(nullable: true)
         totalPaid(nullable: true)
-        bookedSeats(nullable: true)
-        displayId(nullable: true)
+        seatBooked(nullable: true)
     }
 
     def beforeValidate() {
-        if(!this.created) {
-            this.created = new Date().gmt()
+        if(!this.dateCreated) {
+            this.dateCreated = new Date()
         }
-        if(!this.updated) {
-            this.updated = new Date().gmt()
+        if(!this.lastUpdated) {
+            this.lastUpdated = new Date()
         }
     }
 
     def beforeUpdate() {
-        this.updated = new Date().gmt()
+        this.lastUpdated = new Date()
     }
 }

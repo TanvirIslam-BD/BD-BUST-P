@@ -7,6 +7,7 @@ class SeatMapController {
 
     def index() {
         def response = seatMapService.list(params)
+        session.activeTab = "Seat Plans"
         [seatMapList: response.list, total:response.count]
     }
 

@@ -6,11 +6,13 @@ class MemberController {
 
     def index() {
         def response = memberService.list(params)
+        session.activeTab = "Members"
         [memberList: response.list, total:response.count]
     }
 
     def details(Integer id) {
         def response = memberService.getById(id)
+        session.activeTab = "Profile"
         if (!response){
             redirect(controller: "member", action: "index")
         }else{
