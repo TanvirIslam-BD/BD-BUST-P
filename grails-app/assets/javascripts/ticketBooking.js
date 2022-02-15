@@ -158,7 +158,7 @@ $(document).ready(function() {
     });
 
     //let's pretend some seats have already been booked
-    sc.get(['1_2', '4_1', '7_1', '8_2']).status('unavailable');
+    sc.get(['2_1', '4_1', '7_1', '8_2']).status('unavailable');
 
 });
 

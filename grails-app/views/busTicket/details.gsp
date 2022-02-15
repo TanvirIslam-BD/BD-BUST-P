@@ -17,7 +17,7 @@
                 <div class="booking-details">
                     <div id="legend"></div>
                 </div>
-                <div id="seat-map" class="seat-panel" price="${busTicket.fares.amount}" rows="${busTicket.coach.seatMap.seatRows}" columns="${busTicket.coach.seatMap.seatColumns}" >
+                <div id="seat-map" class="seat-panel" bookedseats="${busTicket.purchaseTickets.seatBooked.toString()}" price="${busTicket.fares.amount}" rows="${busTicket.coach.seatMap.seatRows}" columns="${busTicket.coach.seatMap.seatColumns}" >
 
                 </div>
             </g:if>
@@ -49,10 +49,10 @@
                 <g:form controller="busTicket" action="saveBookingTicket">
                     <input type="hidden" name="busTicketId" value="${busTicket.id}">
                     <div class="booked-seat" style="display: none;">
-                        <input type="hidden" name="seatBooked" value="A1">
-                        <input type="hidden" name="seatBooked" value="A2">
-                        <input type="hidden" name="seatBooked" value="B1">
-                        <input type="hidden" name="seatBooked" value="B2">
+                        <input type="hidden" name="seatBooked" value="C1">
+                        <input type="hidden" name="seatBooked" value="C2">
+                        <input type="hidden" name="seatBooked" value="E1">
+                        <input type="hidden" name="seatBooked" value="E2">
                     </div>
                     <div class="row">
                         <div class="col-sm-12 col-md-6 col-lg-6">
