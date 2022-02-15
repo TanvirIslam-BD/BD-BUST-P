@@ -1,7 +1,5 @@
 
 <meta name="layout" content="main"/>
-<parameter name="pageType" value="Coaches" />
-
 
 <div class="common-list-table-view-ui col-lg-13 mt-4 col-13">
     <div class="card mb-4">
@@ -65,7 +63,6 @@
                             <td class="text-center text-sm"><span class="badge badge-sm  ${(info?.status == "ACTIVE") ?  "bg-gradient-success" :  "bg-gradient-secondary"}">${info?.status}</span></td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <g:link controller="coach" action="details" class="btn btn-secondary" id="${info.id}"><i class="fas fa-eye"></i></g:link>
                                     <g:link controller="coach" action="edit" class="btn btn-secondary" id="${info.id}"><i class="fas fa-edit"></i></g:link>
                                     <g:link controller="coach" action="delete" id="${info.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
                                 </div>

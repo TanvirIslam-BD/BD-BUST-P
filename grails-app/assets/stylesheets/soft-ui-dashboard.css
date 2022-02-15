@@ -21487,7 +21487,7 @@ hr.horizontal.gray-light {
 }
 
 .sidenav[data-color="success"] .navbar-nav>.nav-item>.nav-link.active .icon {
-  background-image: linear-gradient(310deg, #82d616 0%, #82d616 100%);
+  background-image: linear-gradient(310deg, #17c1e8 0%, #17c1e8 100%);
 }
 
 .sidenav[data-color="info"] .navbar-nav>.nav-item>.nav-link.active .icon {
@@ -21624,7 +21624,7 @@ hr.horizontal.gray-light {
 }
 
 .navbar-vertical .navbar-nav>.nav-item .nav-link.active .icon {
-  background-image: linear-gradient(310deg, #cb0c9f 0%, #cb0c9f 100%);
+  background-image: linear-gradient(310deg, #17c1e8 0%, #17c1e8 100%);
 }
 
 .navbar-vertical .navbar-nav>.nav-item .nav-link.active .icon svg .color-background,

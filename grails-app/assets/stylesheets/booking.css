@@ -54,3 +54,6 @@ span.seatCharts-legendDescription {
 	height: 25px;
 	width: 50px;
 }
+.form-action-panel.top-right-corner {
+	float: right;
+}

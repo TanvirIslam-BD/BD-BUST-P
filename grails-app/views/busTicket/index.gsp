@@ -114,7 +114,7 @@
 
                     <div class="btn-group">
                         <g:link controller="busTicket" action="create" class="btn btn-success"><g:message code="create"/></g:link>
-                        <g:link controller="busTicket" action="index" class="btn btn-primary"><g:message code="reload"/></g:link>
+                        <g:link controller="busTicket" action="index" class="btn btn-secondary"><g:message code="reload"/></g:link>
                     </div>
                 </div>
             </div>

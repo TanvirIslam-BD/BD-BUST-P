@@ -12,13 +12,10 @@
             <div id="seat-map" class="seat-panel" rows="${seatMap.seatRows}" columns="${seatMap.seatColumns}" >
 
             </div>
-            <div class="booking-details">
-                <div id="legend"></div>
-            </div>
         </g:if>
-    </div>
-    <div class="form-action-panel">
-        <g:link controller="seatMap" action="index" class="btn btn-primary"><g:message code="cancel"/></g:link>
+        <div class="form-action-panel top-right-corner">
+            <g:link controller="seatMap" action="index" class="btn btn-secondary">Back</g:link>
+        </div>
     </div>
     <asset:javascript src="jquery.seat-charts.js"/>
 
