@@ -105,17 +105,18 @@
                     <div class="btn-group">
                         <g:form controller="busTicket" action="index" method="GET">
                             <div class="input-group" id="search-area">
-                                <g:select name="colName" class="form-control" from="[name: 'Name']" value="${params?.colName}" optionKey="key" optionValue="value"/>
-                                <g:textField name="colValue" class="form-control" value="${params?.colValue}"/>
+                                <g:select name="colName" class="form-control form-control-sm" from="[name: 'Name']" value="${params?.colName}" optionKey="key" optionValue="value"/>
+                                <g:textField name="colValue" class="form-control form-control-sm" value="${params?.colValue}"/>
                                 <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
                             </div>
                         </g:form>
                     </div>
 
-                    <div class="btn-group">
-                        <g:link controller="busTicket" action="create" class="btn btn-success"><g:message code="create"/></g:link>
-                        <g:link controller="busTicket" action="index" class="btn btn-secondary"><g:message code="reload"/></g:link>
+                    <div class="form-group">
+                        <g:link controller="busTicket" action="create" class="btn bg-gradient-success btn-sm pull-end"><g:message code="create"/></g:link>
+                        <g:link controller="busTicket" action="index" class="btn bg-gradient-info btn-sm pull-end"><g:message code="reload"/></g:link>
                     </div>
+
                 </div>
             </div>
         </div>

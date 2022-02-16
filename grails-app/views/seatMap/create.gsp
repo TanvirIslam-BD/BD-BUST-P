@@ -8,8 +8,8 @@
         <g:form controller="seatMap" action="save">
             <g:render template="form"/>
             <div class="form-action-panel">
-                <g:submitButton class="btn btn-primary" name="save" value="${g.message(code: "save")}"/>
-                <g:link controller="member" action="index" class="btn btn-secondary"><g:message code="cancel"/></g:link>
+                <g:submitButton class="btn bg-gradient-success pull-end" name="save" value="Add"/>
+                <g:link controller="seatMap" id="kanban-cancel-item" action="index" class="btn bg-gradient-light pull-end me-2"><g:message code="cancel"/></g:link>
             </div>
         </g:form>
     </div>

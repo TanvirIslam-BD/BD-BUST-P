@@ -1,25 +1,26 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>
         <g:layoutTitle default="Booking System"/>
     </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/images/apple-icon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/images/apple-icon.png">
     <link rel="icon" type="image/png" href="/assets/images/favicon.png">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <asset:link rel="icon" href="favicon.ico" type="image/x-ico"/>
     <asset:stylesheet src="application.css"/>
     <asset:stylesheet src="nucleo-icons.css"/>
     <asset:stylesheet src="nucleo-svg.css"/>
-    <asset:stylesheet src="nucleo-svg.css"/>
-    <asset:stylesheet src="soft-ui-dashboard.css"/>
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <asset:stylesheet id="pagestyle" src="soft-ui-dashboard.css"/>
+
+
     <asset:javascript src="application.js"/>
+    <asset:javascript src="BSTS.js"/>
+
 
     <script type="text/javascript">
         BSTS.baseURL = "${UIHelper.appBaseURL()}";
@@ -35,7 +36,7 @@
 
 <body class="g-sidenav-show  bg-gray-100">
 
-<aside data-color="success" class="bg-white sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-scrollbar">
+<aside data-color="success" class="bg-white sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0" href="https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.html" target="_blank">
@@ -251,13 +252,21 @@
                             <span class="d-sm-inline d-none"><UIHelper:memberName/></span>
                         </a>
                     </li>
-
+                    <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                        <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                            <div class="sidenav-toggler-inner">
+                                <i class="sidenav-toggler-line"></i>
+                                <i class="sidenav-toggler-line"></i>
+                                <i class="sidenav-toggler-line"></i>
+                            </div>
+                        </a>
+                    </li>
                     <li class="nav-item px-3 d-flex align-items-center">
                         <a href="javascript:;" class="nav-link text-body p-0"></a>
                     </li>
                     <li class="nav-item dropdown pe-2 d-flex align-items-center">
                         <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa fa fa-mail-forward fixed-plugin-button-nav cursor-pointer"></i>
+                            <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
                         </a>
                         <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
                             <li class="mb-2">
@@ -287,6 +296,11 @@
 <asset:javascript src="perfect-scrollbar.min.js"/>
 <asset:javascript src="smooth-scrollbar.min.js"/>
 <asset:javascript src="chartjs.min.js"/>
+<asset:javascript src="bootstrap-notify.js"/>
+<asset:javascript src="bsts.ajax.js"/>
+<asset:javascript src="bsts.init.js"/>
+<asset:javascript src="bsts.message.box.js"/>
+<asset:javascript src="soft-ui-dashboard.js"/>
 
 <script>
     var win = navigator.platform.indexOf('Win') > -1;

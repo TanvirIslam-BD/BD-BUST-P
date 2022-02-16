@@ -7,8 +7,8 @@
         <g:form controller="coach" action="save" enctype="multipart/form-data">
             <g:render template="form"/>
             <div class="form-action-panel">
-                <g:submitButton class="btn btn-primary" name="login" value="ADD VEHICLE"/>
-                <g:link controller="coach" action="index" class="btn btn-secondary"><g:message code="cancel"/></g:link>
+                <g:submitButton class="btn bg-gradient-success pull-end" name="save" value="ADD VEHICLE"/>
+                <g:link controller="coach" id="kanban-cancel-item" action="index" class="btn bg-gradient-light pull-end me-2"><g:message code="cancel"/></g:link>
             </div>
         </g:form>
     </div>

@@ -1,13 +1,8 @@
 <%@ page import="com.tanvir.bsts.Coach; com.tanvir.bsts.Fares" %>
 
 <div class="form-group">
-    <label>Date And Time</label>
-    <div class='input-group date' id='datetimepicker1'>
-        <input  name="boardingTimeAndDate" type='date' class="form-control" />
-        <span class="input-group-addon">
-            <span class="glyphicon glyphicon-calendar"></span>
-        </span>
-    </div>
+    <label for="example-datetime-local-input" class="form-control-label">Date And Time</label>
+    <input  name="boardingTimeAndDate" class="form-control" type="datetime-local" value="${busTicket?.boardingTimeAndDate}" id="example-datetime-local-input" onfocus="focused(this)">
 </div>
 <div class="form-group">
     <label>Fares</label>

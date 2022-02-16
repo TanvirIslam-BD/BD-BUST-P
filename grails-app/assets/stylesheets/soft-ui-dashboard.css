@@ -3246,7 +3246,7 @@ textarea.form-control-lg {
 .input-group-text {
   display: flex;
   align-items: center;
-  padding: 0.5rem 0.75rem;
+  padding: 0.2rem 0.75rem;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.4rem;
@@ -20892,6 +20892,7 @@ hr.horizontal.gray-light {
   overflow-y: auto;
   padding: 0;
   box-shadow: none;
+  z-index: 999999999999999;
 }
 
 .navbar-vertical.navbar-expand-xs .navbar-collapse {
@@ -24927,3 +24928,60 @@ pre[class*="language-"] {
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
+.paginate span.currentStep {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff !important;
+  padding: 0 !important;
+  margin: 0 3px;
+  border-radius: 50%!important;
+  width: 36px;
+  height: 36px;
+  font-size: .875rem !important;
+}
+
+.paginate a.step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8392ab;
+  padding: 0;
+  margin: 0 3px;
+  border-radius: 50%!important;
+  width: 36px;
+  height: 36px;
+  font-size: .875rem;
+}
+
+
+
+.paginate a.nextLink,
+.paginate a.prevLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8392ab;
+  padding: 0;
+  margin: 0 3px;
+  border-radius: 50%!important;
+  width: 36px;
+  height: 36px;
+  font-size: .875rem;
+
+}
+
+.paginate a.nextLink,
+.paginate a.prevLink {
+  font-size: 0px;
+}
+
+.paginate a.nextLink:after {
+  content: "N";
+  font-size: 15px;
+}
+
+.paginate a.prevLink:after {
+  content: "P";
+  font-size: 15px;
+}
