@@ -31,7 +31,7 @@
     "frontend",
     "responsive bootstrap dashboard"
   ],
-  "author": "Creative Tim <hello@creative-tim.com> (https://www.creative-tim.com/)",
+  "author": "Creative Tim <hello@tanvir.com> (https://www.tanvir.com/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/creativetimofficial/soft-ui-dashboard/issues"
@@ -45,5 +45,5 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-open": "^3.0.1"
   },
-  "homepage": "http://creative-tim.com/product/soft-ui-dashboard"
+  "homepage": "http://tanvir.com/product/soft-ui-dashboard"
 }
