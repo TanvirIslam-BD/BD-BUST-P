@@ -3,7 +3,7 @@
 }
 
 .seat-plan-design {
-    width: 45%;
+    /* width: 45%; */
     border-right: solid 3px #e9ecef;
 }
 
@@ -42,3 +42,20 @@ p.total-paid-title.font_detail.fw-bold {
     font-weight: 500;
     color: #008605;
 }
+@media only screen and (max-width: 600px) {
+
+    .card-body.seat-booking-panel-with-seat-plan-design {
+        display: grid;
+    }
+
+    .card-body.seat-booking-panel-with-seat-plan-design .seat-info-booking-info {
+        margin-top: 50px;
+    }
+
+    .card-body.seat-booking-panel-with-seat-plan-design .seat-plan-design {
+        border: none;
+    }
+
+}
+
+

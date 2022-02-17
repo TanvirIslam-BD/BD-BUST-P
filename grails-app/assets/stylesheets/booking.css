@@ -1,11 +1,11 @@
 .seat-panel{
 	margin: auto;
 	float: left;
-	padding-left: 27%;
+	padding-left: 25%;
 }
 div .seatCharts-seat{
-	width: 32px;
-	height: 30px;
+	width: 30px;
+	height: 25px;
 }
 .seatCharts-row div:first-child{
 	display: none;
@@ -21,8 +21,8 @@ div.seatCharts-seat.selected{
 	padding-right: 29%;
 }
 .seatCharts-cell.seatCharts-space {
-	height: 30px;
-	width: 30px;
+	height: 20px;
+	width: 25px;
 }
 
 .seatCharts-row.seatCharts-header {
@@ -34,13 +34,13 @@ div.seatCharts-seat.available {
 }
 
 div .seatCharts-seat {
-	height: 35px;
-	width: 70px;
-	padding: 10px;
+	height: 25px;
+	width: 30px;
+	padding: 4px;
 }
 
 .seatCharts-row div:nth-child(even) {
-	width: 70px;
+	width: 30px;
 }
 
 .form-action-panel {
@@ -56,4 +56,11 @@ span.seatCharts-legendDescription {
 }
 .form-action-panel.top-right-corner {
 	float: right;
+}
+.seatCharts-cell.seatCharts-space {
+	width: 25px !important;
+}
+
+div.seatCharts-row {
+	height: 30px !important;
 }

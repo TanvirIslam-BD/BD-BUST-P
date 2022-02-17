@@ -35,7 +35,7 @@ div.seatCharts-space {
 	background-color: white;
 }
 div.seatCharts-row {
-	height: 50px;
+	height: 30px;
 }
 
 div.seatCharts-row:after {
@@ -55,7 +55,7 @@ div.seatCharts-seat.available {
 }
 
 div.seatCharts-seat.unavailable {
-	background-color: red;
+	background-color: #607d8bb5;
 	cursor: not-allowed;
 }
 

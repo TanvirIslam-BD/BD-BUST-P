@@ -108,6 +108,11 @@ $(document).ready(function() {
                 top : true,
                 left : true,
                 getLabel : function (character, row, column) {
+                    if(columns == 3 && column == 3){
+                        column = column - 1
+                    }else if(columns == 4 && column == 4){
+                        column = column - 1
+                    }
                     return character + column;
                 },
             },
@@ -116,19 +121,22 @@ $(document).ready(function() {
                 items : [
                     [ 'f', 'available', 'Available' ],
                     [ 'f', 'readytobook', 'Selected' ],
-                    [ 'f', 'unavailable', 'Already Booked']
+                    [ 'f', 'unavailable', 'Booked']
                 ]
             },
             click: function () {
                 if (this.status() == 'available') {
                     $('<li class="selected-book-seats-item"> <b>'+this.settings.label+'</b><a href="#" class="cancel-cart-item">[cancel]</a></li>')
                         .attr('id', 'cart-item-'+this.settings.id)
+                        .attr('seatno', this.settings.id)
                         .data('seatId', this.settings.id)
                         .appendTo($cart);
 
                     $counter.text(sc.find('selected').length+1);
                     $total.text(recalculateTotal(sc)+this.data().price + " TK");
                     $totalPaidAmountInput.val(recalculateTotal(sc)+this.data().price);
+                    $(".booked-seat-map-numbers").append('<input type="hidden" name="seatBooked" value="'+this.settings.id+'">')
+
                     return 'selected';
                 } else if (this.status() == 'selected') {
 
@@ -139,6 +147,7 @@ $(document).ready(function() {
 
 
                     $('#cart-item-'+this.settings.id).remove();
+                    $(".booked-seat-map-numbers").find('input[value="'+this.settings.id+'"]').remove();
 
 
                     return 'available';
@@ -158,7 +167,8 @@ $(document).ready(function() {
     });
 
     //let's pretend some seats have already been booked
-    sc.get(['2_1', '4_1', '7_1', '8_2']).status('unavailable');
+    // sc.get($("#seat-map").attr("bookedseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").split(",")).status('unavailable');
+    sc.get($("#seat-map").attr("bookedseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('unavailable');
 
 });
 
