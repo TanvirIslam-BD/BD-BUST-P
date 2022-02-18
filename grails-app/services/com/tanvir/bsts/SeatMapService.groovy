@@ -11,6 +11,7 @@ class SeatMapService {
     AuthenticationService authenticationService
 
     def update(SeatMap seatMap, GrailsParameterMap params, HttpServletRequest request) {
+        params.extraSeatInLastRow = params.extraSeatInLastRow ?: false
         seatMap.properties = params
         def response = AppUtil.saveResponse(false, seatMap)
         if (seatMap.validate()) {

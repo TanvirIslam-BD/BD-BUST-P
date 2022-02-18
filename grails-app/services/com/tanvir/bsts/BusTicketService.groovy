@@ -98,9 +98,11 @@ class BusTicketService {
     }
 
    def saveBookingTicket(GrailsParameterMap params, HttpServletRequest request) {
+        def totalBookedSeat = params.seatBooked.size()
         params.seatBooked = params.seatBooked.toString()
         BusTicket busTicket = BusTicket.get(params.busTicketId)
         PurchaseTicket purchaseTicket = new PurchaseTicket(params)
+       purchaseTicket.totalBookedSeat = totalBookedSeat
         def response = AppUtil.saveResponse(false, purchaseTicket)
         if (purchaseTicket.validate()) {
             purchaseTicket.save()

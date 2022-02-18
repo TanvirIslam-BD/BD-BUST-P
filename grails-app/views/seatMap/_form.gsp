@@ -15,7 +15,7 @@
 
 <div class="form-group">
     <div class="form-check form-switch ps-0">
-        <input class="form-check-input ms-auto" name="extraSeatInLastRow" type="checkbox" id="extraSeatInLastRow" ${seatMap?.extraSeatInLastRow ? "checked" : ""}>
+        <input uncheck-value="false" value="true" class="form-check-input ms-auto" name="extraSeatInLastRow" type="checkbox" id="extraSeatInLastRow" ${seatMap?.extraSeatInLastRow ? "checked" : ""}>
         <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="extraSeatInLastRow">Extra Seat in Last Row</label>
     </div>
 </div>

@@ -9,7 +9,7 @@ class Coach {
     String coachNumber
     String seatClass = "ac"
     String registrationNumber
-    String seatCapacity
+    Integer seatCapacity
     SeatMap seatMap
 
     String status

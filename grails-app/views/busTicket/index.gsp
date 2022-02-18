@@ -123,8 +123,8 @@
                         <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.fares?.toStoppage?.name}</span></td>
                         <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.coach?.registrationNumber}</span></td>
                         <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><g:message code="${ticket?.fares?.seatClass}"/> </span></td>
-                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${52} </span></td>
-                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${0} </span></td>
+                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> <UIHelper:getBookedSeatsCount ticketId="${ticket?.id}"/> </span></td>
+                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> <UIHelper:getAvailableSeatsCount ticketId="${ticket?.id}"/> </span></td>
                         <td>
                             <div class="btn-group">
                                 <g:link controller="busTicket" action="details" class="btn btn-secondary seat-ticket-book-button" id="${ticket.id}"><i class="fa fa-ticket"></i></g:link>

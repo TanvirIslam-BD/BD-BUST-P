@@ -69,6 +69,14 @@ p.total-paid-title.font_detail.fw-bold {
         width: 18rem !important;
     }
 
+}
+
+@media only screen and (max-width: 986px) {
+
+ .col-sm-12{
+     flex: 0 0 auto;
+     width: 100%;
+ }
 
 }
 
@@ -92,4 +100,14 @@ p.total-paid-title.font_detail.fw-bold {
 
 .seat-plan-design {
     padding-right: 5rem;
+}
+
+.booking-info p.font_detail {
+    font-size: 0.8rem;
+    font-family: Helvetica Neue;
+    font-style: normal;
+}
+
+.booking-info td .form-control {
+    margin-bottom: 6px;
 }

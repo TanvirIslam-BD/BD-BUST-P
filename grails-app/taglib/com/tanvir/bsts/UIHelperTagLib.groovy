@@ -136,11 +136,34 @@ class UIHelperTagLib {
         }
     }
 
+    def getBookedSeatsCount = { attrs, body ->
+        def ticketId = attrs.ticketId ?: ""
+        if(ticketId){
+            BusTicket busTicket = BusTicket.get(ticketId)
+            def bookedCount = busTicket.purchaseTickets.sum {it.totalBookedSeat}
+            out << bookedCount ?: "0"
+        }
+    }
+
+    def getAvailableSeatsCount = { attrs, body ->
+        def ticketId = attrs.ticketId ?: ""
+        if(ticketId){
+            BusTicket busTicket = BusTicket.get(ticketId)
+            def totalSeat = busTicket.coach.seatCapacity
+            def bookedCount = busTicket.purchaseTickets.sum {it.totalBookedSeat}
+            if(bookedCount){
+                out << totalSeat - bookedCount
+            }else {
+                out << totalSeat
+            }
+
+        }
+    }
+
 
     def appBaseURL = { attrs, body ->
         out << AppUtil.baseURL();
     }
-
 
     def domainSelect = { attrs, body ->
         Class domain = attrs.domain;

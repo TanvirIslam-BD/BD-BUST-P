@@ -22,6 +22,8 @@ class PurchaseTicket {
 
     String seatBooked = ""
 
+    Integer totalBookedSeat = 0
+
 
     Date dateCreated
     Date lastUpdated

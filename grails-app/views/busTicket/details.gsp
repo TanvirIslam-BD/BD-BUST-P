@@ -17,7 +17,7 @@
                     <div class="booking-details">
                         <div id="legend"></div>
                     </div>
-                    <div id="seat-map" class="seat-panel" bookedseats="${busTicket.purchaseTickets.seatBooked.toString()}" price="${busTicket.fares.amount}" rows="${busTicket.coach.seatMap.seatRows}" columns="${busTicket.coach.seatMap.seatColumns}" >
+                    <div id="seat-map" class="seat-panel" extraseatinlastrow="${busTicket.coach.seatMap.extraSeatInLastRow}" bookedseats="${busTicket.purchaseTickets.seatBooked.toString()}" price="${busTicket.fares.amount}" rows="${busTicket.coach.seatMap.seatRows}" columns="${busTicket.coach.seatMap.seatColumns}" >
 
                     </div>
                 </g:if>
@@ -39,6 +39,7 @@
                             </td>
                             <td class="border-1 text-center font_detail">
                                 <span id="total"  class="total-flare-title orange-bold-text"></span>
+                                <input type="hidden" class="total-amount-to-paid-to-calc" name="totalAmountToPaidToCalc" value="0">
                             </td>
                         </tr>
                         </tbody>
@@ -54,27 +55,27 @@
                                 <table border="0">
                                     <tbody class="dashboard_tble">
                                     <tr>
-                                        <td><p class="font_detail">Mobile</p></td>
+                                        <td><p class="font_detail">PASSENGER MOBILE</p></td>
                                         <td>
                                             <div class="input-group form_width font_detail"><input name="mobile" type="text" class="form-control font_detail" aria-label="Passenger Mobile"></div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><p class="font_detail">Name</p></td>
+                                        <td><p class="font_detail">NAME</p></td>
                                         <td><input name="name" class="form-control form_width font_detail" type="text"></td>
                                     </tr>
                                     <tr>
-                                        <td><p class="font_detail">Gender</p></td>
+                                        <td><p class="font_detail">GENDER</p></td>
                                         <td>
                                             <UIHelper:gender value="${busTicket}"/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><p class="font_detail">Age</p></td>
+                                        <td><p class="font_detail">AGE</p></td>
                                         <td><input name="age" class="form-control form_width font_detail" type="text"></td>
                                     </tr>
                                     <tr>
-                                        <td><p class="font_detail">Passport</p></td>
+                                        <td><p class="font_detail">PASSPORT</p></td>
                                         <td><input name="passport" class="form-control form_width font_detail" type="text"></td>
                                     </tr>
                                     <tr>
@@ -101,7 +102,7 @@
                                     </tr>
                                     <tr>
                                         <td><p class="font_detail">Discount</p></td>
-                                        <td><input name="discount" class="form-control form_width font_detail" type="number" value="0"></td>
+                                        <td><input name="discount" class="form-control booked-seat-discount-on-total form_width font_detail" type="number" value="0"></td>
                                     </tr>
                                     <tr class="total-paid-row">
                                         <td><p class="total-paid-title font_detail fw-bold">Total Paid</p></td>
