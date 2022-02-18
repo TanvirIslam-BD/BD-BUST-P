@@ -7,6 +7,7 @@ class Coach {
     String name
 
     String coachNumber
+    String seatClass = "ac"
     String registrationNumber
     String seatCapacity
     SeatMap seatMap

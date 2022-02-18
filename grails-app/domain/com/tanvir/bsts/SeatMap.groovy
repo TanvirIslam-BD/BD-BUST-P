@@ -6,6 +6,7 @@ class SeatMap {
 
     Long seatRows = 4
     Long seatColumns = 10
+    boolean extraSeatInLastRow = true
     String name = ""
 
     Date dateCreated

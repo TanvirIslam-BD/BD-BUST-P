@@ -1,7 +1,7 @@
 <meta name="layout" content="main"/>
 <div class="card">
     <div class="card-header">
-       Coach Update
+        Vehicle Update
     </div>
     <div class="card-body">
         <g:form controller="coach" action="update" enctype="multipart/form-data">

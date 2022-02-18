@@ -24,6 +24,11 @@
 </div>
 
 <div class="form-group">
+    <label>Seat Class</label>
+    <UIHelper:seatClass name="seatClass" value="${coach?.seatClass}"/>
+</div>
+
+<div class="form-group">
     <label>Status</label>
     <UIHelper:status value="${coach}"/>
     <UIHelper:renderErrorMessage fieldName="status" model="${coach}" errorMessage="please.enter.name"/>

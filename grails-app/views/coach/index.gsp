@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="d-flex flex-column justify-content-center">
                                         <h6 class="mb-0 text-sm">${info?.coachNumber}</h6>
-                                        <p class="text-xs text-secondary mb-0">Ac/Non AC</p>
+                                        <p class="text-xs text-secondary mb-0">Seat Class: <g:message code="${info?.seatClass}"/></p>
                                     </div>
                                 </div>
                             </td>

@@ -4,7 +4,9 @@ class BusTicket {
 
     Integer id
 
-    Date boardingTimeAndDate
+    Date boardingDate
+
+    String boardingTime
 
     Fares fares
 
@@ -15,6 +17,8 @@ class BusTicket {
     static hasMany = [purchaseTickets: PurchaseTicket]
 
     static constraints = {
-
+        purchaseTickets(nullable: true)
+        fares(nullable: true)
+        coach(nullable: true)
     }
 }

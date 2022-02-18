@@ -2,6 +2,11 @@ package com.tanvir.bsts
 
 import grails.converters.JSON
 
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+
 class UIHelperTagLib {
 
     static namespace = "UIHelper"
@@ -113,8 +118,22 @@ class UIHelperTagLib {
         String value = attrs.value ?: ""
         def select = [:]
         select.ac = "AC"
-        select.nonAc = "Non AC"
+        select.nonac = "Non AC"
         out << g.select(from: select, name: name, optionKey: "key", optionValue: "value", value: value, class:"form-control")
+    }
+
+    def parseTimeInFormat = { attrs, body ->
+        String time = attrs.time ?: ""
+        if(time){
+            out << LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm")).format("hh:mm a")
+        }
+    }
+
+    def parseDateInFormat = { attrs, body ->
+        String date = attrs.date ?: ""
+        if(date){
+            out << LocalDate.parse(date.split(" ")[0], DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString()
+        }
     }
 
 

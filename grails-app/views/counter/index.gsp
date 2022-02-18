@@ -36,8 +36,8 @@
                 <table class="table align-items-center mb-0">
                     <thead>
                     <tr>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Sequence</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SL</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">SEQUENCE</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">STATUS</th>
                         <th class="text-secondary opacity-7"></th>

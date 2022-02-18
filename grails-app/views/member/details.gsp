@@ -46,7 +46,7 @@
                             <h6 class="mb-0">Profile Information</h6>
                         </div>
                         <div class="col-md-4 text-end">
-                            <a href="javascript:;">
+                            <a href="/member/edit?id=${member.id}">
                                 <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="" aria-hidden="true" data-bs-original-title="Edit Profile" aria-label="Edit Profile"></i><span class="sr-only">Edit Profile</span>
                             </a>
                         </div>

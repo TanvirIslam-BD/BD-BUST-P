@@ -1,7 +1,7 @@
 %{--Include Main Layout--}%
 <meta name="layout" content="main"/>
 <div class="row">
-    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
         <div class="card">
             <div class="card-body p-3">
                 <div class="row">
@@ -23,29 +23,7 @@
             </div>
         </div>
     </div>
-    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-        <div class="card">
-            <div class="card-body p-3">
-                <div class="row">
-                    <div class="col-8">
-                        <div class="numbers">
-                            <p class="text-sm mb-0 text-capitalize font-weight-bold">Today's Users</p>
-                            <h5 class="font-weight-bolder mb-0">
-                                2,300
-                                <span class="text-success text-sm font-weight-bolder">+3%</span>
-                            </h5>
-                        </div>
-                    </div>
-                    <div class="col-4 text-end">
-                        <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                            <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
         <div class="card">
             <div class="card-body p-3">
                 <div class="row">
@@ -67,7 +45,7 @@
             </div>
         </div>
     </div>
-    <div class="col-xl-3 col-sm-6">
+    <div class="col-xl-4 col-sm-6">
         <div class="card">
             <div class="card-body p-3">
                 <div class="row">
@@ -95,7 +73,7 @@
         <div class="card-header pb-0">
             <div class="row">
                 <div class="col-lg-6 col-7">
-                    <h6>Tickets</h6>
+                    <h6>Tickets to Seat Booking</h6>
                     <p class="text-sm mb-0">
                         <i class="fa fa-check text-info" aria-hidden="true"></i>
                         Operate this section with the corresponding UI
@@ -113,7 +91,7 @@
                     </div>
 
                     <div class="form-group">
-                        <g:link controller="busTicket" action="create" class="btn bg-gradient-success btn-sm pull-end"><g:message code="create"/></g:link>
+                        <g:link controller="busTicket" action="generateTickets" class="btn bg-gradient-warning btn-sm pull-end">Generate Tickets</g:link>
                         <g:link controller="busTicket" action="index" class="btn bg-gradient-info btn-sm pull-end"><g:message code="reload"/></g:link>
                     </div>
 
@@ -139,20 +117,22 @@
                     <tbody>
                     <g:each in="${busTickets}" var="ticket">
                         <tr>
-                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.boardingTimeAndDate} </span></td>
+                            <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><span class="time-ticket-badge"><UIHelper:parseTimeInFormat time="${ticket?.boardingTime}"/></span> <UIHelper:parseDateInFormat date="${ticket?.boardingDate}"/></span></td>
                         <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.coach?.coachNumber} </span></td>
                         <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.fares?.fromStoppage?.name} </span></td>
                         <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.fares?.toStoppage?.name}</span></td>
                         <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.coach?.registrationNumber}</span></td>
-                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.fares?.seatClass} </span></td>
+                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><g:message code="${ticket?.fares?.seatClass}"/> </span></td>
                         <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${52} </span></td>
                         <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${0} </span></td>
                         <td>
                             <div class="btn-group">
-                                <g:link controller="busTicket" action="details" class="btn btn-secondary" id="${ticket.id}"><i class="fas fa-baby-carriage"></i></g:link>
-                                <g:link controller="busTicket" action="edit" class="btn btn-secondary" id="${ticket.id}"><i class="fas fa-edit"></i></g:link>
-                                <g:link controller="busTicket" action="delete" id="${ticket.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
+                                <g:link controller="busTicket" action="details" class="btn btn-secondary seat-ticket-book-button" id="${ticket.id}"><i class="fa fa-ticket"></i></g:link>
                             </div>
+%{--                            <div class="btn-group">--}%
+%{--                                <g:link controller="busTicket" action="edit" class="btn btn-secondary" id="${ticket.id}"><i class="fas fa-edit"></i></g:link>--}%
+%{--                                <g:link controller="busTicket" action="delete" id="${ticket.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>--}%
+%{--                            </div>--}%
                         </td>
                     </tr>
                     </g:each>

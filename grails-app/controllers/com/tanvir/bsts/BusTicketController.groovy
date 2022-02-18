@@ -35,11 +35,22 @@ class BusTicketController {
         }
     }
 
+    def generateTickets() {
+        def response = busTicketService.generateTickets(params, request)
+        if (response.isSuccess) {
+            flash.message = AppUtil.infoMessage("Ticket Generate Successful")
+            redirect(controller: "busTicket", action: "index")
+        } else {
+            flash.redirectParams = response.model
+            flash.message = AppUtil.infoMessage(g.message(code: "unable.to.generate"), false)
+            redirect(controller: "busTicket", action: "index")
+        }
+    }
 
     def saveBookingTicket() {
         def response = busTicketService.saveBookingTicket(params, request)
         if (response.isSuccess) {
-            flash.message = AppUtil.infoMessage(g.message(code: "booked"))
+            flash.message = AppUtil.infoMessage("Successfully Booked")
             redirect(controller: "busTicket", action: "details", id: params.busTicketId)
         } else {
             flash.redirectParams = response.model

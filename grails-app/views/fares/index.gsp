@@ -35,6 +35,7 @@
                 <table class="table align-items-center mb-0">
                     <thead>
                     <tr>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SL.	</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FROM STOPPAGE</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">TO STOPPAGE</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SEAT CLASS</th>
@@ -46,9 +47,10 @@
                     <tbody>
                     <g:each in="${faresList}" var="fares">
                         <tr>
+                            <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${fares?.id}</span></td>
                             <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${fares?.fromStoppage?.name}</span></td>
                             <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${fares?.toStoppage?.name}</span></td>
-                            <td class="text-center text-sm"><span class="text-xs font-weight-bold">${fares?.seatClass}</span></td>
+                            <td class="text-center text-sm"><span class="text-xs font-weight-bold"><g:message code="${fares?.seatClass}"/></span></td>
                             <td class="text-center text-sm"><span class="badge badge-sm badge-primary price-amount-badge">${fares?.amount}</span></td>
                             <td class="text-center text-sm"><span class="badge badge-sm  ${(fares?.status == "ACTIVE") ?  "bg-gradient-success" :  "bg-gradient-secondary"}">${fares?.status}</span></td>
                             <td class="text-center">

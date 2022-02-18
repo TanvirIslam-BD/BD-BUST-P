@@ -105,8 +105,7 @@
                                     </tr>
                                     <tr class="total-paid-row">
                                         <td><p class="total-paid-title font_detail fw-bold">Total Paid</p></td>
-                                        <td><input name="totalPaid" class="total-paid-amount form-control form_width fw-bold font_detail" style="pointer-events: none;
-                                        background-color: #E9ECEF;" type="number"></td>
+                                        <td><input name="totalPaid" class="total-paid-amount form-control form_width fw-bold font_detail" disabled type="number"></td>
                                     </tr>
 
                                     </tbody>

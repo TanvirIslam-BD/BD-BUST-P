@@ -18,6 +18,7 @@ ul.seatCharts-legendList {
 
 li.seatCharts-legendItem {
     margin-left: 29px;
+    display: grid;
 }
 div.seatCharts-seat {
     background-color: #1b1c1c;
@@ -29,7 +30,7 @@ div.seatCharts-seat {
 }
 
 .seat-info table.table.information_table.table-responsive {
-    border: 2px solid #e9ecef;
+    border: 1px solid #e9ecef;
 }
 .seat-info span#selected-seats {
     display: block;
@@ -56,6 +57,39 @@ p.total-paid-title.font_detail.fw-bold {
         border: none;
     }
 
+    .seat-panel {
+        padding-left: 18%;
+    }
+
+    ul.seatCharts-legendList {
+        padding-left: 0rem;
+    }
+
+    .seat-info table.table.information_table.table-responsive {
+        width: 18rem !important;
+    }
+
+
+}
+
+@media only screen and (min-width: 600px) {
+
+    .seatCharts-row div:nth-child(even) {
+        width: 33px;
+    }
+
+    div .seatCharts-seat {
+        width: 40px;
+        padding: 4px;
+    }
+
+    .seatCharts-cell.seatCharts-space {
+        width: 33px !important;
+    }
+
 }
 
 
+.seat-plan-design {
+    padding-right: 5rem;
+}
