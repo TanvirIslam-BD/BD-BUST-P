@@ -73,10 +73,10 @@ p.total-paid-title.font_detail.fw-bold {
 
 @media only screen and (max-width: 986px) {
 
- .col-sm-12{
-     flex: 0 0 auto;
-     width: 100%;
- }
+    .col-sm-12{
+        flex: 0 0 auto;
+        width: 100%;
+    }
 
 }
 
@@ -92,7 +92,7 @@ p.total-paid-title.font_detail.fw-bold {
     }
 
     .seatCharts-cell.seatCharts-space {
-        width: 33px !important;
+        width: 39px !important;
     }
 
 }

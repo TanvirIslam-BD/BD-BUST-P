@@ -145,7 +145,11 @@ class UIHelperTagLib {
         if(ticketId){
             BusTicket busTicket = BusTicket.get(ticketId)
             def bookedCount = busTicket.purchaseTickets.sum {it.totalBookedSeat}
-            out << bookedCount ?: "0"
+            if(bookedCount){
+                out << bookedCount
+            }else {
+                out << 0
+            }
         }
     }
 

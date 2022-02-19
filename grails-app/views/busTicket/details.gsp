@@ -89,6 +89,14 @@
                                 <table border="0" class="inner_dashboard_table">
                                     <tbody class="dashboard_tble">
                                     <tr>
+                                        <td><p class="font_detail">Start From</p></td>
+                                        <td><input name="address" class="form-control form_width font_detail" type="text" value="${busTicket.fares.fromStoppage.name}" disabled></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="font_detail">End To</p></td>
+                                        <td><input name="address" class="form-control form_width font_detail"  value="${busTicket.fares.toStoppage.name}" type="text" disabled></td>
+                                    </tr>
+                                    <tr>
                                         <td><p class="font_detail">Address</p></td>
                                         <td><input name="address" class="form-control form_width font_detail" type="text"></td>
                                     </tr>
