@@ -5388,7 +5388,7 @@ fieldset:disabled .btn {
 
 .card-body {
   flex: 1 1 auto;
-  padding: 1rem 1rem;
+  /* padding: 1rem 1rem; */
 }
 
 .card-title {
@@ -19385,7 +19385,7 @@ fieldset:disabled .btn {
 
 .card .card-body {
   font-family: "Open Sans";
-  padding: 1.5rem;
+  padding-top: 0;
 }
 
 .card.card-plain {
@@ -24992,3 +24992,16 @@ a.btn.btn-secondary.seat-ticket-book-button:hover {
   height: 14rem;
   margin-left: 1rem;
 }
+.table-responsive .btn-group a.btn {
+  margin-bottom: 0 !important;
+  padding-bottom: 6px;
+  padding-top: 6px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+tbody tr:hover {
+  background: #dcefff;
+}
+
+
+

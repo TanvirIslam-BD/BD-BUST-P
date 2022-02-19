@@ -9,6 +9,6 @@ class GlobalConfig {
 
 
     public static Integer itemsPerPage() {
-        return 5
+        return 50
     }
 }
