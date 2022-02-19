@@ -119,7 +119,7 @@
 
                                 <div class="form-action-panel">
                                     <g:submitButton class="btn btn-primary" name="save" value="Confirm"/>
-                                    <g:link controller="busTicket" action="index" class="btn btn-secondary"><g:message code="cancel"/></g:link>
+                                    <g:link controller="busTicket" action="index" class="btn btn-secondary">Back</g:link>
                                 </div>
                             </div>
                         </div>

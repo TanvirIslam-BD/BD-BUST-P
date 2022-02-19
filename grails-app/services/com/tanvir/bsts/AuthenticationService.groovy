@@ -40,6 +40,11 @@ class AuthenticationService {
         return "${member.firstName} ${member.lastName}"
     }
 
+    def getMemberType(){
+        def member = getMember()
+        return member.memberType
+    }
+
     def isAdministratorMember(){
         def member = getMember()
         if (member && member.memberType == GlobalConfig.USER_TYPE.ADMINISTRATOR){

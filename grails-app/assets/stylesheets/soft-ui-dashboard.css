@@ -2705,9 +2705,9 @@ progress {
 .form-control:focus {
   color: #495057;
   background-color: #fff;
-  border-color: #e293d3;
+  border-color: #9ad2ff;
   outline: 0;
-  box-shadow: 0 0 0 2px #e9aede;
+  box-shadow: 0 0 0 2px #cbe8ff;
 }
 
 .form-control::-webkit-date-and-time-value {
@@ -19916,8 +19916,8 @@ fieldset:disabled .btn {
 }
 
 .input-group .form-control:focus {
-  border-left: 1px solid #e293d3 !important;
-  border-right: 1px solid #e293d3 !important;
+  border-left: 1px solid #60b9ff !important;
+  border-right: 1px solid #83c8ff !important;
 }
 
 .input-group .form-control:not(:first-child) {

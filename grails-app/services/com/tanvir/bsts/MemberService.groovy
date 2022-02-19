@@ -43,7 +43,16 @@ class MemberService {
         params.max = params.max ?: GlobalConfig.itemsPerPage()
         List<Member> memberList = Member.createCriteria().list(params) {
             if (params?.colName && params?.colValue) {
-                like(params.colName, "%" + params.colValue + "%")
+                if(params.colName == "name"){
+                    or {
+                        like('firstName', "%" + params.colValue + "%")
+                        like('lastName', "%" + params.colValue + "%")
+                    }
+
+                }else {
+                    like(params.colName, "%" + params.colValue + "%")
+                }
+
             }
             if (!params.sort) {
                 order("id", "desc")

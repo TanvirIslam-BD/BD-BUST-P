@@ -26,6 +26,10 @@ class UIHelperTagLib {
         out << authenticationService.getMemberName()
     }
 
+    def memberType = { attrs, body ->
+        out << authenticationService.getMemberType()
+    }
+
     def memberDetails = { attrs, body ->
         out << "/member/details?id=${authenticationService.getMember().id}"
     }
@@ -218,6 +222,61 @@ class UIHelperTagLib {
         }
         out << "</select>"
     }
+
+
+    def namedSelect = { attrs, body ->
+        def keyMap = attrs.remove("key")
+        List values = attrs.remove("values") ?: []
+        if (attrs["value"]) {
+            values.add(attrs.remove("value"))
+        }
+        Map prependMap = attrs['prepend'] ?: null
+        Map appendMap = attrs['append'] ?: null
+        Map customAttrs = attrs['custom-attrs'] ?: null
+        String optionKey = attrs.optionKey ?: "key"
+        String optionLabel = attrs.optionLabel ?: "label"
+        out << "<select "
+        attrs.each {
+            if (it.key == "disabled" && it.value == "false") {
+                return
+            }
+            out << "${it.key}=\"${it.value}\""
+        }
+        if (customAttrs) {
+            customAttrs.each {
+                if (it.value) {
+                    out << "${it.key}='${it.value}'"
+                }
+            }
+        }
+        out << ">"
+        if (prependMap) {
+            prependMap.each {
+                out << "<option value='${it.key}'>${g.message(code: it.value)}</option>"
+            }
+        }
+
+        if (keyMap instanceof Map) {
+            keyMap.each {
+                out << "<option value='${it.key}' ${it.key in values ? "selected" : ""}>${g.message(code: it.value)}</option>"
+            }
+        } else if (keyMap instanceof List) {
+            keyMap.each {
+                if (it instanceof Map) {
+                    out << "<option value='${it[optionKey]}' ${it[optionKey] in values ? "selected" : ""}>${g.message(code: it[optionLabel])}</option>"
+                } else {
+                    out << "<option value='${it}' ${it in values ? "selected" : ""}>${g.message(code: it)}</option>"
+                }
+            }
+        }
+        if (appendMap) {
+            appendMap.each {
+                out << "<option value='${it.key}'>${g.message(code: it.value)}</option>"
+            }
+        }
+        out << "</select>"
+    }
+
 
 
 }

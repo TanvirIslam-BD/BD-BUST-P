@@ -1,3 +1,4 @@
+<%@ page import="com.tanvir.bsts.GlobalConfig" %>
 %{--Include Main Layout--}%
 <meta name="layout" content="main"/>
 <div class="row">
@@ -83,15 +84,19 @@
                     <div class="btn-group">
                         <g:form controller="busTicket" action="index" method="GET">
                             <div class="input-group" id="search-area">
-                                <g:select name="colName" class="form-control form-control-sm" from="[name: 'Name']" value="${params?.colName}" optionKey="key" optionValue="value"/>
-                                <g:textField name="colValue" class="form-control form-control-sm" value="${params?.colValue}"/>
-                                <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                                <g:select name="colName" class="form-control" from="[boardingTime: 'Boarding Time']" value="${params?.colName}" optionKey="key" optionValue="value"/>
+                                <input name="colValue" class="form-control" type="time" value="${params?.colValue}">
+                                <span class="input-group-text text-body">
+                                    <button class="btn btn-sm" type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
+                                </span>
                             </div>
                         </g:form>
                     </div>
 
                     <div class="form-group">
-                        <g:link controller="busTicket" action="generateTickets" class="btn bg-gradient-warning btn-sm pull-end">Generate Tickets</g:link>
+                        <g:if test="${UIHelper.memberType() == GlobalConfig.USER_TYPE.ADMINISTRATOR}">
+                            <g:link controller="busTicket" action="generateTickets" class="btn bg-gradient-warning btn-sm pull-end">Generate Tickets</g:link>
+                        </g:if>
                         <g:link controller="busTicket" action="index" class="btn bg-gradient-info btn-sm pull-end"><g:message code="reload"/></g:link>
                     </div>
 

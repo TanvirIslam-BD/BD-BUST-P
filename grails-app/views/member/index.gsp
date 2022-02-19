@@ -16,9 +16,11 @@
                     <div class="btn-group">
                         <g:form controller="member" action="index" method="GET">
                             <div class="input-group" id="search-area">
-                                <g:select name="colName" class="form-control form-control-sm" from="[name: 'Name']" value="${params?.colName}" optionKey="key" optionValue="value"/>
-                                <g:textField name="colValue" class="form-control form-control-sm" value="${params?.colValue}"/>
-                                <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                                <g:select name="colName" class="form-control" from="[name: 'NAME']" value="${params?.colName}" optionKey="key" optionValue="value"/>
+                                <g:textField placeholder="search here" name="colValue" class="form-control" value="${params?.colValue}"/>
+                                <span class="input-group-text text-body">
+                                    <button class="btn btn-sm" type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
+                                </span>
                             </div>
                         </g:form>
                     </div>
@@ -36,7 +38,7 @@
                     <thead>
                     <tr>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">mobile</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>

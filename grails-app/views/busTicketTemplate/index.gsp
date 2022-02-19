@@ -16,9 +16,11 @@
                     <div class="btn-group">
                         <g:form controller="busTicketTemplate" action="index" method="GET">
                             <div class="input-group" id="search-area">
-                                <g:select name="colName" class="form-control form-control-sm" from="[name: 'Name']" value="${params?.colName}" optionKey="key" optionValue="value"/>
-                                <g:textField name="colValue" class="form-control form-control-sm" value="${params?.colValue}"/>
-                                <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                                <g:select name="colName" class="form-control" from="[boardingTime: 'Boarding Time']" value="${params?.colName}" optionKey="key" optionValue="value"/>
+                                <input name="colValue" class="form-control" type="time" value="${params?.colValue}">
+                                <span class="input-group-text text-body">
+                                    <button class="btn btn-sm" type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
+                                </span>
                             </div>
                         </g:form>
                     </div>

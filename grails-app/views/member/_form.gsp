@@ -1,3 +1,4 @@
+<%@ page import="com.tanvir.bsts.GlobalConfig" %>
 <div class="form-group">
     <label><g:message code="first.name"/> *</label>
     <g:textField name="firstName" class="form-control" value="${member?.firstName}" placeholder="Please Enter First Name"/>
@@ -23,6 +24,11 @@
     <label><g:message code="email.address"/> *</label>
     <g:field type="email" name="email" class="form-control" value="${member?.email}" placeholder="Please Enter Email"/>
     <UIHelper:renderErrorMessage fieldName="email" model="${member}" errorMessage="Your Email Address is not Valid / Already Exist in System"/>
+</div>
+
+<div class="form-group">
+    <label>Role</label>
+    <UIHelper:namedSelect class="form-control" name="memberType" key="${GlobalConfig.USER_TYPE}" value="${member?.memberType}"/>
 </div>
 
 <g:if test="${!edit}">
