@@ -282,20 +282,9 @@
                         <a href="javascript:;" class="nav-link text-body p-0"></a>
                     </li>
                     <li class="nav-item dropdown pe-2 d-flex align-items-center">
-                        <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+                        <a  data-bs-toggle="tooltip" data-bs-placement="top"  title="Logout" href="/authentication/logout" class="nav-link text-body p-0">
+                            <i class="fa fa-sign-out fixed-plugin-button-nav cursor-pointer"></i>
                         </a>
-                        <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-                            <li class="mb-2">
-                                <a class="dropdown-item border-radius-md" href="${UIHelper.memberDetails()}">Profile</a>
-                            </li>
-                            <li class="mb-2">
-                                <a class="dropdown-item border-radius-md" href="/member/index">Member List</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item border-radius-md" href="/authentication/logout">Logout</a>
-                            </li>
-                        </ul>
                     </li>
                 </ul>
             </div>

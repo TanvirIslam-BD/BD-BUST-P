@@ -57,8 +57,8 @@
                             <td class="text-center text-sm"><span class="badge badge-sm  ${(counter?.status == "ACTIVE") ?  "bg-gradient-success" :  "bg-gradient-secondary"}">${counter?.status}</span></td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <g:link controller="counter" action="edit" class="btn btn-secondary" id="${counter.id}"><i class="fas fa-edit"></i></g:link>
-                                    <g:link controller="counter" action="delete" id="${counter.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
+                                    <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Edit" controller="counter" action="edit" class="btn btn-secondary" id="${counter.id}"><i class="fas fa-edit"></i></g:link>
+                                    <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Delete" controller="counter" action="delete" id="${counter.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
                                 </div>
                             </td>
                         </tr>

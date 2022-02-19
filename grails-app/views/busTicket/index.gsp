@@ -132,7 +132,7 @@
                         <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> <UIHelper:getAvailableSeatsCount ticketId="${ticket?.id}"/> </span></td>
                         <td>
                             <div class="btn-group">
-                                <g:link controller="busTicket" action="details" class="btn btn-secondary seat-ticket-book-button" id="${ticket.id}"><i class="fa fa-ticket"></i></g:link>
+                                <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Book Seat" controller="busTicket" action="details" class="btn btn-secondary seat-ticket-book-button" id="${ticket.id}"><i class="fa fa-ticket"></i></g:link>
                             </div>
 %{--                            <div class="btn-group">--}%
 %{--                                <g:link controller="busTicket" action="edit" class="btn btn-secondary" id="${ticket.id}"><i class="fas fa-edit"></i></g:link>--}%
