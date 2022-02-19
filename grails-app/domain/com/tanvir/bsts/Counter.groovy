@@ -9,6 +9,8 @@ class Counter {
 
     String status
 
+    String type = GlobalConfig.COUNTER_TYPE.AGENT
+
     Date dateCreated
     Date lastUpdated
 

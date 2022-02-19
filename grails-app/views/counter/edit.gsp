@@ -7,7 +7,7 @@
     </div>
     <div class="card-body">
         <g:form controller="counter" action="update">
-            <g:hiddenField name="id" value="${counter.id}"/>
+            <g:hiddenField name="id" value="${counter?.id}"/>
             <g:render template="form" model="[edit:'yes']"/>
             <div class="form-action-panel">
                 <g:submitButton class="btn bg-gradient-info pull-end" name="update" value="${g.message(code: "update")}"/>

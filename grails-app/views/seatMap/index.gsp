@@ -37,6 +37,7 @@
                 <table class="table align-items-center mb-0">
                     <thead>
                     <tr>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SL.</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rows</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Columns</th>
@@ -47,6 +48,7 @@
                     <tbody>
                     <g:each in="${seatMapList}" var="seatMap">
                         <tr>
+                            <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${seatMap?.id}</span></td>
                             <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${seatMap?.name}</span></td>
                             <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${seatMap?.seatRows}</span></td>
                             <td class="text-center text-sm"><span class="text-xs font-weight-bold">${seatMap?.seatColumns}</span></td>

@@ -44,7 +44,7 @@ class CounterController {
                 flash.message = AppUtil.infoMessage(g.message(code: "invalid.entity"), false)
                 redirect(controller: "counter", action: "index")
             } else {
-                [coach: response]
+                [counter: response]
             }
         }
     }
