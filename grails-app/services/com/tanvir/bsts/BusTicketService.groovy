@@ -12,6 +12,26 @@ class BusTicketService {
         return BusTicket.get(id)
     }
 
+    def getFemaleBookedSeats(BusTicket busTicket) {
+        def femaleBookedSeats = []
+        if(busTicket){
+            femaleBookedSeats = busTicket.purchaseTickets.collect{
+                if(it.sex == "female"){
+                    return it
+                }
+            }
+        }
+        return femaleBookedSeats
+    }
+
+    def getRouteCounters(BusTicket busTicket) {
+        def routeCounters = []
+        if(busTicket){
+            routeCounters = busTicket.fares.counters
+        }
+        return routeCounters
+    }
+
     def getTicketTemplate(Serializable id) {
         return BusTicketTemplate.get(id)
     }

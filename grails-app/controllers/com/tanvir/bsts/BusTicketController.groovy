@@ -12,10 +12,12 @@ class BusTicketController {
 
     def details() {
         def response = busTicketService.get(params.id)
+        def femaleBookedSeats = busTicketService.getFemaleBookedSeats(response)
+        def routeCounters = busTicketService.getRouteCounters(response)
         if (!response){
             redirect(controller: "busTicket", action: "index")
         }else{
-            [busTicket: response]
+            [busTicket: response, femaleBookedSeats: femaleBookedSeats, routeCounters: routeCounters]
         }
     }
 

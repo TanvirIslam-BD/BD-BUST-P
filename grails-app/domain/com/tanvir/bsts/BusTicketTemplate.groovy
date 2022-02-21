@@ -10,7 +10,10 @@ class BusTicketTemplate {
 
     Coach coach
 
-    static constraints = {
+    static belongsTo = [fares: Fares, coach: Coach]
 
+    static constraints = {
+        fares(nullable: true)
+        coach(nullable: true)
     }
 }

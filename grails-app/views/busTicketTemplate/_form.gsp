@@ -5,7 +5,7 @@
     <input name="boardingTime" class="form-control" type="time" value="${busTicketTemplate?.boardingTime}" id="example-time-input" onfocus="focused(this)">
 </div>
 <div class="form-group">
-    <label>Fares</label>
+    <label>Routes</label>
     <UIHelper:domainSelect class="form-control" domain="${Fares}" name="fares" value="${busTicketTemplate?.fares ? busTicketTemplate?.fares?.id : null}"/>
 </div>
 

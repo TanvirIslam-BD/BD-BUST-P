@@ -131,7 +131,8 @@ $(document).ready(function() {
                 items : [
                     [ 'f', 'available', 'Available' ],
                     [ 'f', 'readytobook', 'Selected' ],
-                    [ 'f', 'unavailable', 'Booked']
+                    [ 'f', 'unavailable', 'Booked'],
+                    [ 'f', 'female-booked', 'Female Booked']
                 ]
             },
             click: function () {
@@ -193,6 +194,8 @@ $(document).ready(function() {
     //let's pretend some seats have already been booked
     // sc.get($("#seat-map").attr("bookedseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").split(",")).status('unavailable');
     sc.get($("#seat-map").attr("bookedseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('unavailable');
+
+    sc.get($("#seat-map").attr("femalebookedseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('female-booked');
 
 });
 

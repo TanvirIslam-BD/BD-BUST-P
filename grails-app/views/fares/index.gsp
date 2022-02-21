@@ -6,7 +6,7 @@
         <div class="card-header pb-0">
             <div class="row">
                 <div class="col-lg-6 col-7">
-                    <h6>Fares</h6>
+                    <h6>Routes</h6>
                     <p class="text-sm mb-0">
                         <i class="fa fa-check text-info" aria-hidden="true"></i>
                         Operate this section with the corresponding UI
@@ -38,6 +38,7 @@
                     <thead>
                     <tr>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SL.	</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ROUTE</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FROM STOPPAGE</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">TO STOPPAGE</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SEAT CLASS</th>
@@ -50,6 +51,7 @@
                     <g:each in="${faresList}" var="fares">
                         <tr>
                             <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${fares?.id}</span></td>
+                            <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${fares?.name}</span></td>
                             <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${fares?.fromStoppage?.name}</span></td>
                             <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${fares?.toStoppage?.name}</span></td>
                             <td class="text-center text-sm"><span class="text-xs font-weight-bold"><g:message code="${fares?.seatClass}"/></span></td>

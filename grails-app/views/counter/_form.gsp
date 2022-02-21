@@ -1,4 +1,4 @@
-<%@ page import="com.tanvir.bsts.GlobalConfig" %>
+<%@ page import="com.tanvir.bsts.Fares; com.tanvir.bsts.GlobalConfig" %>
 
 <div class="form-group">
     <label><g:message code="name"/></label>
@@ -16,4 +16,9 @@
 <div class="form-group">
     <label>Status</label>
     <UIHelper:status value="${counter}"/>
+</div>
+
+<div class="form-group">
+    <label>Routes</label>
+    <UIHelper:domainSelect multiple="true" class="form-control" domain="${Fares}" name="fares" value="${counter?.fares ? counter?.fares?.id : null}"/>
 </div>

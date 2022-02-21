@@ -18,7 +18,20 @@ class Fares {
     Date dateCreated
     Date lastUpdated
 
-    static constraints = {
+    Collection<Counter> counters = []
 
+    static hasMany = [counters: Counter]
+
+
+    static belongsTo = [
+            fromStoppage: Counter,
+            toStoppage: Counter,
+    ]
+
+    static mappedBy = [fromStoppage: "none",toStoppage: "none", counters: "fares"]
+
+    static constraints = {
+        fromStoppage(nullable: true)
+        toStoppage(nullable: true)
     }
 }

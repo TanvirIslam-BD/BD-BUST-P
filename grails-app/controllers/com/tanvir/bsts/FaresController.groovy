@@ -6,7 +6,7 @@ class FaresController {
 
     def index() {
         def response = faresService.list(params)
-        session.activeTab = "Fares"
+        session.activeTab = "Routes"
         [faresList: response.list, total:response.count]
     }
 

@@ -14,6 +14,9 @@
     <asset:stylesheet src="application.css"/>
     <asset:stylesheet src="nucleo-icons.css"/>
     <asset:stylesheet src="nucleo-svg.css"/>
+    <asset:stylesheet src="select2.min.css"/>
+    <asset:stylesheet src="select2-bootstrap-5-theme.min.css"/>
+    <asset:stylesheet src="select2-bootstrap-5-theme.rtl.min.css"/>
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <asset:stylesheet id="pagestyle" src="soft-ui-dashboard.css"/>
 
@@ -167,7 +170,7 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="nav-link-text ms-1">FARES</span>
+                    <span class="nav-link-text ms-1">ROUTES</span>
                 </a>
             </li>
 
@@ -307,6 +310,7 @@
 <asset:javascript src="bsts.init.js"/>
 <asset:javascript src="bsts.message.box.js"/>
 <asset:javascript src="soft-ui-dashboard.js"/>
+<asset:javascript src="select2.full.min.js"/>
 
 <script>
     var win = navigator.platform.indexOf('Win') > -1;
@@ -316,6 +320,8 @@
         }
         Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
+
+    $(".card-body select").select2();
 </script>
 
 <script async defer src="https://buttons.github.io/buttons.js"></script>

@@ -4,7 +4,7 @@
 <asset:stylesheet src="jquery.seat-charts.css"/>
 <asset:stylesheet src="booking.css"/>
 <asset:stylesheet src="ticketBooking.css"/>
-
+<asset:stylesheet src="seat.css"/>
 <asset:javascript src="ticketBooking.js"/>
 <div class="row">
     <div class="card">

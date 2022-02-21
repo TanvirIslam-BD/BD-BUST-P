@@ -178,6 +178,7 @@ class UIHelperTagLib {
         if (!domain) {
             return
         }
+        def multiple = attrs["multiple"]
         String key = attrs["key"] ?: "id"
         String text = attrs["text"] ?: "name"
         Map prependMap = attrs['prepend'] ?: null
@@ -191,7 +192,7 @@ class UIHelperTagLib {
 
         Closure filter
         List sect = filter ? domain.createCriteria().list(filter) : domain.list()
-        out << "<select class='${attrs["class"]}' ${attrs.name ? 'name="' + attrs.name + '"' : ''} ${attrs.id ? 'id="' + attrs.id + '"' : ''}"
+        out << "<select ${multiple ? "multiple" : ""} class='${attrs["class"]}' ${attrs.name ? 'name="' + attrs.name + '"' : ''} ${attrs.id ? 'id="' + attrs.id + '"' : ''}"
         out << "${attrs.validation ? 'validation="' + attrs.validation + '"' : ''} ${attrs.disabled == 'true' ? 'disabled="true"' : ''}"
         out << " ${key != "id" ? 'select-key="' + key + '"' : ''} ${text != "name" ? 'select-text="' + text + '"' : ''} select-values='${values as JSON}'"
         if (customAttrs) {
@@ -210,7 +211,8 @@ class UIHelperTagLib {
 
         def printChildren
         printChildren = { it ->
-                out << "<option value='${it[key]}' ${it[key] in values ? 'selected' : ''}>"
+                def isMatched = multiple ? it[key] in values[0] : it[key] in values
+                out << "<option value='${it[key]}' ${isMatched ? 'selected' : ''}>"
                 out << it[text]
                 out << "</option>"
         }

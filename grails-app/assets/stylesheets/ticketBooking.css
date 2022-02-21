@@ -4,11 +4,12 @@
 
 .seat-plan-design {
     /* width: 45%; */
-    border-right: solid 3px #e9ecef;
+    /* border-right: solid 3px #e9ecef; */
 }
 
 .seat-info-booking-info {
     padding-left: 5%;
+    width: 100%;
 }
 
 ul.seatCharts-legendList {
@@ -18,15 +19,15 @@ ul.seatCharts-legendList {
 
 li.seatCharts-legendItem {
     margin-left: 29px;
-    display: grid;
+    /* display: grid; */
 }
 div.seatCharts-seat {
     background-color: #1b1c1c;
-    color: white;
-    -webkit-border-radius: 5px;
+    /* color: white; */
+    /* -webkit-border-radius: 5px; */
     -moz-border-radius: 5px;
-    border-radius: 5px;
-    cursor: default;
+    /* border-radius: 5px; */
+    /* cursor: default; */
 }
 
 .seat-info table.table.information_table.table-responsive {
@@ -83,12 +84,12 @@ p.total-paid-title.font_detail.fw-bold {
 @media only screen and (min-width: 600px) {
 
     .seatCharts-row div:nth-child(even) {
-        width: 33px;
+        /* width: 33px; */
     }
 
     div .seatCharts-seat {
-        width: 40px;
-        padding: 4px;
+        /* width: 40px; */
+        /* padding: 4px; */
     }
 
     .seatCharts-cell.seatCharts-space {
@@ -98,8 +99,9 @@ p.total-paid-title.font_detail.fw-bold {
 }
 
 
+
 .seat-plan-design {
-    padding-right: 5rem;
+    /* padding-right: 5rem; */
 }
 
 .booking-info p.font_detail {
@@ -111,3 +113,27 @@ p.total-paid-title.font_detail.fw-bold {
 .booking-info td .form-control {
     margin-bottom: 6px;
 }
+
+.fa-steering-wheel {
+    height: 35px !important;
+    width: 35px !important;
+}
+.fa-steering-wheel {
+    display: block;
+    text-indent: -9999px;
+    background-image: url(/assets/steering-wheel.svg);
+    width: 23px;
+    height: 23px;
+}
+
+#table-div thead tr {
+    background: #607d8b0f;
+    border-top: 1px solid #dee2e6;
+}
+
+#table-div table thead th {
+    padding: 5px;
+    font-size: 14px;
+}
+
+

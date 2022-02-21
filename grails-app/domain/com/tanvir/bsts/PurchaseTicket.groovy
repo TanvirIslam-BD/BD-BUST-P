@@ -12,6 +12,10 @@ class PurchaseTicket {
     String passport
     Double discount
 
+    Counter fromCounter
+
+    Counter toCounter
+
     Counter referencedCounter
 
     String address
