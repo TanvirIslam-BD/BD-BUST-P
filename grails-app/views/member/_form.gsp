@@ -11,12 +11,13 @@
 </div>
 
 <div class="form-group">
-    <label><g:message code="Mobile"/></label>
+    <label><g:message code="mobile"/></label>
     <g:textField name="mobile" class="form-control" value="${member?.mobile}" placeholder="Please  Mobile"/>
+    <UIHelper:renderErrorMessage fieldName="firstName" model="${member}" errorMessage="please.enter.mobile"/>
 </div>
 
 <div class="form-group">
-    <label><g:message code="Address"/></label>
+    <label><g:message code="address"/></label>
     <g:textField name="address" class="form-control" value="${member?.address}" placeholder="Please Address"/>
 </div>
 

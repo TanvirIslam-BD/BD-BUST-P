@@ -1,10 +1,13 @@
 package com.tanvir.bsts
 
+import grails.gorm.multitenancy.CurrentTenant
 import grails.web.servlet.mvc.GrailsParameterMap
+import org.hibernate.query.criteria.internal.expression.function.CurrentDateFunction
 
 import javax.transaction.Transactional
 
 
+@CurrentTenant
 class MemberService {
 
     @Transactional

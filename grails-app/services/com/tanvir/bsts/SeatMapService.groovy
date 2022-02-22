@@ -1,10 +1,12 @@
 package com.tanvir.bsts
 
+import grails.gorm.multitenancy.CurrentTenant
 import grails.gorm.transactions.Transactional
 import grails.web.servlet.mvc.GrailsParameterMap
 
 import javax.servlet.http.HttpServletRequest
 
+@CurrentTenant
 @Transactional
 class SeatMapService {
 

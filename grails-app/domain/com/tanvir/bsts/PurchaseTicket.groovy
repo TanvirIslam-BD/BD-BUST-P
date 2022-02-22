@@ -1,6 +1,8 @@
 package com.tanvir.bsts
 
-class PurchaseTicket {
+import grails.gorm.MultiTenant
+
+class PurchaseTicket implements MultiTenant<PurchaseTicket> {
 
     Long id
 
