@@ -2,17 +2,26 @@
 <meta name="layout" content="main"/>
 <asset:stylesheet src="jquery.seat-charts.css"/>
 <asset:stylesheet src="booking.css"/>
+<asset:stylesheet src="ticketBooking.css"/>
+<asset:stylesheet src="seat.css"/>
 
 <div class="card">
     <div class="card-header">
         Seat Plan -  ${seatMap.name}
     </div>
     <div class="card-body">
+        <div class="seat-design-map-ui">
+        <div class="row">
+            <div class="col-md-offset-7 col-md-4 col-sm-offset-7 col-sm-4 col-xs-offset-7 col-xs-4 bus-steering-wheel">
+                <i class="fa fa-steering-wheel"></i>
+            </div>
+        </div>
         <g:if test="${seatMap}">
             <div id="seat-map" class="seat-panel"  extraseatinlastrow="${seatMap.extraSeatInLastRow}" rows="${seatMap.seatRows}" columns="${seatMap.seatColumns}" >
 
             </div>
         </g:if>
+        </div>
         <div class="form-action-panel top-right-corner">
             <g:link controller="seatMap" action="index" class="btn btn-secondary">Back</g:link>
         </div>

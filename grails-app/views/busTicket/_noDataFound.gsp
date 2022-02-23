@@ -1,5 +1,5 @@
 <tr class="no-data-found-row">
-    <td colspan="9">
+    <td colspan="10">
         <div class="empty-state">
             <div class="empty-state__content">
                 <div class="empty-state__icon">
