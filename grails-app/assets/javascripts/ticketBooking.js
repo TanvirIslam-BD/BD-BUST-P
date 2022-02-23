@@ -1,6 +1,7 @@
 var firstSeatLabel = 1;
 $(document).ready(function() {
     var seatMap = $('#seat-map');
+    var ticketId = seatMap.attr("ticketid");
     var rows = parseInt(seatMap.attr("rows"));
     var columns = parseInt(seatMap.attr("columns"));
     var price = parseFloat(seatMap.attr("price"));
@@ -150,6 +151,7 @@ $(document).ready(function() {
                     var totalPaidableAmount = totalPaidAmount - $(".booked-seat-discount-on-total").val()
                     $totalPaidAmountInput.val(totalPaidableAmount);
                     $(".booked-seat-map-numbers").append('<input type="hidden" name="seatBooked" value="'+this.settings.id+'">')
+                    $(".booked-seat-map-numbers").append('<input type="hidden" name="seatBookedForDisplay" value="'+ $("#"+this.settings.id).text() +'">')
 
                     return 'selected';
                 } else if (this.status() == 'selected') {
@@ -164,8 +166,7 @@ $(document).ready(function() {
 
                     $('#cart-item-'+this.settings.id).remove();
                     $(".booked-seat-map-numbers").find('input[value="'+this.settings.id+'"]').remove();
-
-
+                    $(".booked-seat-map-numbers").find('input[value="'+$("#"+this.settings.id).text()+'"]').remove();
                     return 'available';
                 } else if (this.status() == 'unavailable') {
 
@@ -189,15 +190,133 @@ $(document).ready(function() {
         $totalPaidAmountInput.val(totalPaidableAmount);
     })
 
-
-
     //let's pretend some seats have already been booked
     // sc.get($("#seat-map").attr("bookedseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").split(",")).status('unavailable');
     sc.get($("#seat-map").attr("bookedseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('unavailable');
 
     sc.get($("#seat-map").attr("femalebookedseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('female-booked');
 
+    BSTS.ajax.call({
+        url: BSTS.baseURL + "busTicket/bookedSeatDataList",
+        data: {id: ticketId},
+        success: function (resp) {
+            var reservedTickets = resp.bookedSeatDataList
+            $.each(reservedTickets,function() {
+                var ticket = this
+                var seatNo =  ticket.seatNo;
+                var seatDiv = $(`#${seatNo}`)
+                var seatName = seatDiv.text()
+                var name = ticket.passengerName;
+                var mobile = ticket.mobile;
+                var pickfrom = ticket.pickFrom;
+                var saleby =  ticket.saleBy;
+
+                seatDiv.attr("name", seatName);
+                seatDiv.attr("mobile", mobile);
+                seatDiv.attr("pickfrom", pickfrom);
+                seatDiv.attr("saleby", saleby);
+
+                previewPopover({
+                    control: seatNo,
+                    html: $('<div class="popover-panel-wrapper-tol">' +
+                        '<div class="arrow" style="left: 50%;"></div>' +
+                        '<h6 class="popover-title"><strong>'+ name +'</strong></h6>' +
+                        '<div class="popover-content">' +
+                        '<div class="table-responsive">' +
+                        '<table class="table table-bordered">' +
+                        '<tbody>'+
+                        '<tr>' +
+                        '<td class="poup-td">Phone</td>' +
+                        '<td class="poup-td">' +
+                        '<span class="btn-link" style="cursor: pointer;">' +
+                        + mobile  +
+                        '</span>' +
+                        '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td class="poup-td">From</td>' +
+                        '<td class="poup-td">'+ pickfrom +'</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td class="poup-td">Sale By</td>' +
+                        '<td class="poup-td">'+ saleby +'</td>' +
+                        '</tr>' +
+                        '</tbody>' +
+                        '</table>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>'),
+                    header: seatName,
+                    container:"body",
+                    placement: "auto",
+                });
+            });
+        }
+    });
+
 });
+
+
+
+
+function renderTemplate(templateName, templateData, templateDir = "/Templates/Shared") {
+    if (!renderTemplate.template_cache) {
+        renderTemplate.template_cache = {};
+    }
+
+    if (!renderTemplate.template_cache[templateName]) {
+        //if (typeof (templateDir) === 'undefined') {
+        //    templateDir = '/Templates';
+        //}
+
+        const  templateUrl = templateDir + "/" + templateName + ".html";
+
+        var templateString;
+        $.ajax({
+            url: templateUrl,
+            method: 'GET',
+            dataType: 'html',
+            async: false,
+            success: function (data) {
+                templateString = data;
+            }
+        });
+        _.templateSettings = {
+            evaluate: /\{\{(.+?)\}\}/g,
+            interpolate: /\{\{=(.+?)\}\}/g,
+            escape: /\{\{-(.+?)\}\}/g
+        };
+
+        renderTemplate.template_cache[templateName] = _.template(templateString);
+    }
+
+    return renderTemplate.template_cache[templateName](templateData);
+}
+
+function previewPopover(options) {
+    if (!$(`#${options.control}`).data('popover')) {
+        let closeBtn = $('<button/>',
+            {
+                type: "button",
+                html: '<i class="fa fa-times-circle"></i>',
+                id: options.control + '-close-popover',
+                style: 'font-size: initial;',
+                onclick: 'closePopover("' + options.control + '")'
+            });
+
+        closeBtn.attr("class", "close pull-right");
+
+        $(`#${options.control}`).popover({
+            html: true,
+            title: `<strong>${options.header}</strong>`,
+            content: options.html,
+            container: options.container,
+            placement: options.placement,
+            trigger: 'focus'
+        })
+    }
+};
+
 
 function recalculateTotal(sc) {
     var total = 0;

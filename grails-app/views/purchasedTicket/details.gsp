@@ -55,11 +55,6 @@
                 <div class="row  reservation-form">
                     <g:form class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="ticketForm" controller="busTicket" action="saveBookingTicket">
                         <input type="hidden" name="busTicketId" value="${busTicket.id}">
-                        <input type="hidden" name="coachNo" value="${busTicket.coach.coachNumber}">
-                        <input type="hidden" name="routeName" value="${busTicket.fares.name}">
-                        <input style="display: none" type="date" name="scheduledDate" value="${UIHelper.parseDateInFormat(date: busTicket.boardingDate)}">
-                        <input type="hidden" name="departureTime" value="${busTicket.boardingTime}">
-
                         <div class="booked-seat-map-numbers" style="display: none;"></div>
                         <div class="form-row">
                             <div class="form-group col-md-4">

@@ -1,5 +1,7 @@
 package com.tanvir.bsts
 
+import grails.converters.JSON
+
 class BusTicketController {
 
     BusTicketService busTicketService
@@ -19,6 +21,12 @@ class BusTicketController {
         }else{
             [busTicket: response, femaleBookedSeats: femaleBookedSeats, routeCounters: routeCounters]
         }
+    }
+
+    def bookedSeatDataList() {
+        BusTicket busTicket = busTicketService.get(params.id)
+        def response = busTicketService.getBookedSeatsData(busTicket)
+        render([bookedSeatDataList: response] as JSON)
     }
 
     def create() {

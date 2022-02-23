@@ -54,3 +54,6 @@ span.seatCharts-legendDescription { margin-left: 5px; line-height: 30px; }
 .seatCharts-seat.seatCharts-cell.female-booked {
     cursor: not-allowed;
 }
+.popover-panel-wrapper-tol td.poup-td {
+    border: 1px solid #e9ecef !important;
+}

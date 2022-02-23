@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest
 @Transactional
 class BusTicketService {
 
+    AuthenticationService authenticationService
+
     def get(Serializable id) {
         return BusTicket.get(id)
     }
@@ -24,6 +26,26 @@ class BusTicketService {
             }
         }
         return femaleBookedSeats
+    }
+
+
+    def getBookedSeatsData(BusTicket busTicket) {
+        def bookedSeatsData = [:]
+        if(busTicket){
+             busTicket.purchaseTickets.each{ticket ->
+               def seatList = ticket.seatBooked.replaceAll("\\[","").replaceAll("\\]","").replaceAll(" ","").split(",")
+                 seatList.each {seat ->
+                     bookedSeatsData[seat] = [
+                             seatNo: seat,
+                             passengerName: ticket.name,
+                             mobile: ticket.mobile,
+                             pickFrom: ticket.fromCounter.name,
+                             saleBy: ticket?.saleBy?.firstName +" "+ ticket?.saleBy?.lastName
+                     ]
+                 }
+            }
+        }
+        return bookedSeatsData
     }
 
     def getRouteCounters(BusTicket busTicket) {
@@ -122,9 +144,11 @@ class BusTicketService {
    def saveBookingTicket(GrailsParameterMap params, HttpServletRequest request) {
         def totalBookedSeat = params.seatBooked.size()
         params.seatBooked = params.seatBooked.toString()
+        params.seatBookedForDisplay = params.seatBookedForDisplay.toString()
         BusTicket busTicket = BusTicket.get(params.busTicketId)
         PurchaseTicket purchaseTicket = new PurchaseTicket(params)
-       purchaseTicket.totalBookedSeat = totalBookedSeat
+        purchaseTicket.totalBookedSeat = totalBookedSeat
+        purchaseTicket.saleBy = authenticationService.getMember()
         def response = AppUtil.saveResponse(false, purchaseTicket)
         if (purchaseTicket.validate()) {
             purchaseTicket.save()

@@ -15,34 +15,41 @@ class PurchaseTicket implements MultiTenant<PurchaseTicket> {
     Double discount
 
     Counter fromCounter
-
     Counter toCounter
 
     Counter referencedCounter
 
     String address
     String nationality
-    String boardingPlace
 
     Double totalPaid
 
     String seatBooked = ""
 
+    String seatBookedForDisplay = ""
+
     Integer totalBookedSeat = 0
 
+    String coachNo = "00"
+
+    String routeName
+
+    Date scheduledDate
+    String departureTime
+
+    Member saleBy
 
     Date dateCreated
     Date lastUpdated
 
 
-    static belongsTo = [BusTicket, Counter]
+    static belongsTo = [BusTicket, Counter, Member]
 
 
     static constraints = {
         name(blank: false, size: 1..100, maxSize: 100)
         email(nullable: true)
         sex(nullable: true, maxSize: 100)
-        boardingPlace(nullable: true)
         address(nullable: true)
         referencedCounter(nullable: true)
         discount(nullable: true)
@@ -52,6 +59,10 @@ class PurchaseTicket implements MultiTenant<PurchaseTicket> {
         mobile(nullable: true)
         totalPaid(nullable: true)
         seatBooked(nullable: true)
+        routeName(nullable: true)
+        departureTime(nullable: true)
+        coachNo(nullable: true)
+        seatBookedForDisplay(nullable: true)
     }
 
     def beforeValidate() {

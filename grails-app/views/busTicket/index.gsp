@@ -110,6 +110,7 @@
                     <tr>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">BOARDING TIME & DATE</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">COACH NO.</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ROUTE</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">STARTING COUNTER</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">END COUNTER</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">REGISTRATION NUMBER</th>
@@ -124,6 +125,7 @@
                         <tr>
                             <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><span class="time-ticket-badge"><UIHelper:parseTimeInFormat time="${ticket?.boardingTime}"/></span> <UIHelper:parseDateInFormat date="${ticket?.boardingDate}"/></span></td>
                         <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.coach?.coachNumber} </span></td>
+                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.fares?.name} </span></td>
                         <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.fares?.fromStoppage?.name} </span></td>
                         <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.fares?.toStoppage?.name}</span></td>
                         <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.coach?.registrationNumber}</span></td>
