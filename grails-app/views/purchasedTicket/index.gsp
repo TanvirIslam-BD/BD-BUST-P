@@ -51,29 +51,34 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <g:each in="${purchasedTickets}" var="ticket">
-                        <tr>
-                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><span class="time-ticket-badge">${ticket?.id}</td>
-                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.name} </span></td>
-                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.mobile} </span></td>
-                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${g.message(code: ticket?.sex)} </span></td>
-                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.routeName} </span></td>
-                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.coachNo}</span></td>
-                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> <UIHelper:parseDateInFormat date="${ticket?.scheduledDate}"/></span></td>
-                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><UIHelper:parseTimeInFormat time="${ticket?.departureTime}"/> </span></td>
-                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.totalBookedSeat}</span></td>
-                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.seatBookedForDisplay.replaceAll("\\]","").replaceAll("\\[","")}</span></td>
-%{--                        <td>--}%
-%{--                            <div class="btn-group">--}%
-%{--                                <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Book Seat" controller="busTicket" action="details" class="btn btn-secondary seat-ticket-book-button" id="${ticket.id}"><i class="fa fa-ticket"></i></g:link>--}%
-%{--                            </div>--}%
-%{--                            <div class="btn-group">--}%
-%{--                                <g:link controller="busTicket" action="edit" class="btn btn-secondary" id="${ticket.id}"><i class="fas fa-edit"></i></g:link>--}%
-%{--                                <g:link controller="busTicket" action="delete" id="${ticket.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>--}%
-%{--                            </div>--}%
-%{--                        </td>--}%
-                    </tr>
-                    </g:each>
+                    <g:if test="${purchasedTickets}">
+                        <g:each in="${purchasedTickets}" var="ticket">
+                            <tr>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><span class="time-ticket-badge">${ticket?.id}</td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.name} </span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.mobile} </span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${g.message(code: ticket?.sex)} </span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.routeName} </span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.coachNo}</span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> <UIHelper:parseDateInFormat date="${ticket?.scheduledDate}"/></span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><UIHelper:parseTimeInFormat time="${ticket?.departureTime}"/> </span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.totalBookedSeat}</span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.seatBookedForDisplay.replaceAll("\\]","").replaceAll("\\[","")}</span></td>
+                                %{--                        <td>--}%
+                                %{--                            <div class="btn-group">--}%
+                                %{--                                <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Book Seat" controller="busTicket" action="details" class="btn btn-secondary seat-ticket-book-button" id="${ticket.id}"><i class="fa fa-ticket"></i></g:link>--}%
+                                %{--                            </div>--}%
+                                %{--                            <div class="btn-group">--}%
+                                %{--                                <g:link controller="busTicket" action="edit" class="btn btn-secondary" id="${ticket.id}"><i class="fas fa-edit"></i></g:link>--}%
+                                %{--                                <g:link controller="busTicket" action="delete" id="${ticket.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>--}%
+                                %{--                            </div>--}%
+                                %{--                        </td>--}%
+                            </tr>
+                        </g:each>
+                    </g:if>
+                    <g:else>
+                        <g:render template="noDataFound" />
+                    </g:else>
                     </tbody>
                 </table>
                 <div class="paginate">

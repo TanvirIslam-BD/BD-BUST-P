@@ -46,31 +46,36 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <g:each in="${coach}" var="info">
-                        <tr>
-                            <td class="text-sm">
-                                <div class="d-flex px-2 py-1">
-                                    <div>
-                                        <asset:image class="avatar avatar-sm me-3" src="bus-logo-png-image.png" alt="bus_logo"/>
+                    <g:if test="${coach}">
+                        <g:each in="${coach}" var="info">
+                            <tr>
+                                <td class="text-sm">
+                                    <div class="d-flex px-2 py-1">
+                                        <div>
+                                            <asset:image class="avatar avatar-sm me-3" src="bus-logo-png-image.png" alt="bus_logo"/>
+                                        </div>
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="mb-0 text-sm">${info?.coachNumber}</h6>
+                                            <p class="text-xs text-secondary mb-0">Seat Class: <g:message code="${info?.seatClass}"/></p>
+                                        </div>
                                     </div>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <h6 class="mb-0 text-sm">${info?.coachNumber}</h6>
-                                        <p class="text-xs text-secondary mb-0">Seat Class: <g:message code="${info?.seatClass}"/></p>
+                                </td>
+                                <td class="text-center text-sm"><span class="d-flex px-2 py-1 text-xs font-weight-bold"> ${info?.registrationNumber} </span></td>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${info?.seatCapacity} </span></td>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${info?.seatMap?.name}</span></td>
+                                <td class="text-center text-sm"><span class="badge badge-sm  ${(info?.status == "ACTIVE") ?  "bg-gradient-success" :  "bg-gradient-secondary"}">${info?.status}</span></td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Edit" controller="coach" action="edit" class="btn btn-secondary" id="${info.id}"><i class="fas fa-edit"></i></g:link>
+                                        <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Delete" controller="coach" action="delete" id="${info.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="text-center text-sm"><span class="d-flex px-2 py-1 text-xs font-weight-bold"> ${info?.registrationNumber} </span></td>
-                            <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${info?.seatCapacity} </span></td>
-                            <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${info?.seatMap?.name}</span></td>
-                            <td class="text-center text-sm"><span class="badge badge-sm  ${(info?.status == "ACTIVE") ?  "bg-gradient-success" :  "bg-gradient-secondary"}">${info?.status}</span></td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Edit" controller="coach" action="edit" class="btn btn-secondary" id="${info.id}"><i class="fas fa-edit"></i></g:link>
-                                    <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Delete" controller="coach" action="delete" id="${info.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
-                                </div>
-                            </td>
-                        </tr>
-                    </g:each>
+                                </td>
+                            </tr>
+                        </g:each>
+                    </g:if>
+                    <g:else>
+                        <g:render template="noDataFound" />
+                    </g:else>
                     </tbody>
                 </table>
                 <div class="paginate">

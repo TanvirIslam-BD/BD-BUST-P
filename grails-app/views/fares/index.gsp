@@ -48,23 +48,28 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <g:each in="${faresList}" var="fares">
-                        <tr>
-                            <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${fares?.id}</span></td>
-                            <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${fares?.name}</span></td>
-                            <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${fares?.fromStoppage?.name}</span></td>
-                            <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${fares?.toStoppage?.name}</span></td>
-                            <td class="text-center text-sm"><span class="text-xs font-weight-bold"><g:message code="${fares?.seatClass}"/></span></td>
-                            <td class="text-center text-sm"><span class="badge badge-sm badge-primary price-amount-badge">${fares?.amount}</span></td>
-                            <td class="text-center text-sm"><span class="badge badge-sm  ${(fares?.status == "ACTIVE") ?  "bg-gradient-success" :  "bg-gradient-secondary"}">${fares?.status}</span></td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Edit" controller="fares" action="edit" class="btn btn-secondary" id="${fares.id}"><i class="fas fa-edit"></i></g:link>
-                                    <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Delete" controller="fares" action="delete" id="${fares.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
-                                </div>
-                            </td>
-                        </tr>
-                    </g:each>
+                    <g:if test="${faresList}">
+                        <g:each in="${faresList}" var="fares">
+                            <tr>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${fares?.id}</span></td>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${fares?.name}</span></td>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${fares?.fromStoppage?.name}</span></td>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${fares?.toStoppage?.name}</span></td>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold"><g:message code="${fares?.seatClass}"/></span></td>
+                                <td class="text-center text-sm"><span class="badge badge-sm badge-primary price-amount-badge">${fares?.amount}</span></td>
+                                <td class="text-center text-sm"><span class="badge badge-sm  ${(fares?.status == "ACTIVE") ?  "bg-gradient-success" :  "bg-gradient-secondary"}">${fares?.status}</span></td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Edit" controller="fares" action="edit" class="btn btn-secondary" id="${fares.id}"><i class="fas fa-edit"></i></g:link>
+                                        <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Delete" controller="fares" action="delete" id="${fares.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
+                                    </div>
+                                </td>
+                            </tr>
+                        </g:each>
+                    </g:if>
+                    <g:else>
+                        <g:render template="noDataFound" />
+                    </g:else>
                     </tbody>
                 </table>
                 <div class="paginate">

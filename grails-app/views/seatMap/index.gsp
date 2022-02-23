@@ -46,22 +46,27 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <g:each in="${seatMapList}" var="seatMap">
-                        <tr>
-                            <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${seatMap?.id}</span></td>
-                            <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${seatMap?.name}</span></td>
-                            <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${seatMap?.seatRows}</span></td>
-                            <td class="text-center text-sm"><span class="text-xs font-weight-bold">${seatMap?.seatColumns}</span></td>
-                            <td class="text-center text-sm"><span class="badge badge-sm  bg-gradient-success">ACTIVE</span></td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="View Design" controller="seatMap" action="details" class="btn btn-secondary" id="${seatMap.id}"><i class="fas fa-eye"></i></g:link>
-                                    <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Edit" controller="seatMap" action="edit" class="btn btn-secondary" id="${seatMap.id}"><i class="fas fa-edit"></i></g:link>
-                                    <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Delete" controller="seatMap" action="delete" id="${seatMap.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
-                                </div>
-                            </td>
-                        </tr>
-                    </g:each>
+                    <g:if test="${seatMapList}">
+                        <g:each in="${seatMapList}" var="seatMap">
+                            <tr>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${seatMap?.id}</span></td>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${seatMap?.name}</span></td>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${seatMap?.seatRows}</span></td>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold">${seatMap?.seatColumns}</span></td>
+                                <td class="text-center text-sm"><span class="badge badge-sm  bg-gradient-success">ACTIVE</span></td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="View Design" controller="seatMap" action="details" class="btn btn-secondary" id="${seatMap.id}"><i class="fas fa-eye"></i></g:link>
+                                        <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Edit" controller="seatMap" action="edit" class="btn btn-secondary" id="${seatMap.id}"><i class="fas fa-edit"></i></g:link>
+                                        <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Delete" controller="seatMap" action="delete" id="${seatMap.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
+                                    </div>
+                                </td>
+                            </tr>
+                        </g:each>
+                    </g:if>
+                    <g:else>
+                        <g:render template="noDataFound" />
+                    </g:else>
                     </tbody>
                 </table>
                 <div class="paginate">

@@ -48,22 +48,27 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <g:each in="${busTicketTemplates}" var="ticket">
-                        <tr>
-                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><span class="time-ticket-badge"><UIHelper:parseTimeInFormat time="${ticket?.boardingTime}"/></span></span></td>
-                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.coach?.coachNumber}</span></td>
-                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.fares?.fromStoppage?.name}</span></td>
-                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.fares?.toStoppage?.name}</span></td>
-                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.coach?.registrationNumber}</span></td>
-                        <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><g:message code="${ticket?.fares?.seatClass}"/></span></td>
-                        <td>
-                            <div class="btn-group">
-                                <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Edit" controller="busTicketTemplate" action="edit" class="btn btn-secondary" id="${ticket.id}"><i class="fas fa-edit"></i></g:link>
-                                <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Delete" controller="busTicketTemplate" action="delete" id="${ticket.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
-                            </div>
-                        </td>
-                    </tr>
-                    </g:each>
+                    <g:if test="${busTicketTemplates}">
+                        <g:each in="${busTicketTemplates}" var="ticket">
+                            <tr>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><span class="time-ticket-badge"><UIHelper:parseTimeInFormat time="${ticket?.boardingTime}"/></span></span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.coach?.coachNumber}</span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.fares?.fromStoppage?.name}</span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.fares?.toStoppage?.name}</span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.coach?.registrationNumber}</span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><g:message code="${ticket?.fares?.seatClass}"/></span></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Edit" controller="busTicketTemplate" action="edit" class="btn btn-secondary" id="${ticket.id}"><i class="fas fa-edit"></i></g:link>
+                                        <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Delete" controller="busTicketTemplate" action="delete" id="${ticket.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
+                                    </div>
+                                </td>
+                            </tr>
+                        </g:each>
+                    </g:if>
+                    <g:else>
+                        <g:render template="noDataFound" />
+                    </g:else>
                     </tbody>
                 </table>
                 <div class="paginate">

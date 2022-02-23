@@ -48,21 +48,26 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <g:each in="${counters}" var="counter">
-                        <tr>
-                            <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${counter?.id} </span></td>
-                            <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${counter?.sequence} </span></td>
-                            <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${counter?.name}</span></td>
-                            <td class="text-center text-sm"><span class="text-xs font-weight-bold">  ${GlobalConfig.COUNTER_TYPE[counter?.type]}</span></td>
-                            <td class="text-center text-sm"><span class="badge badge-sm  ${(counter?.status == "ACTIVE") ?  "bg-gradient-success" :  "bg-gradient-secondary"}">${counter?.status}</span></td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Edit" controller="counter" action="edit" class="btn btn-secondary" id="${counter.id}"><i class="fas fa-edit"></i></g:link>
-                                    <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Delete" controller="counter" action="delete" id="${counter.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
-                                </div>
-                            </td>
-                        </tr>
-                    </g:each>
+                    <g:if test="${counters}">
+                        <g:each in="${counters}" var="counter">
+                            <tr>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${counter?.id} </span></td>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${counter?.sequence} </span></td>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${counter?.name}</span></td>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold">  ${GlobalConfig.COUNTER_TYPE[counter?.type]}</span></td>
+                                <td class="text-center text-sm"><span class="badge badge-sm  ${(counter?.status == "ACTIVE") ?  "bg-gradient-success" :  "bg-gradient-secondary"}">${counter?.status}</span></td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Edit" controller="counter" action="edit" class="btn btn-secondary" id="${counter.id}"><i class="fas fa-edit"></i></g:link>
+                                        <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Delete" controller="counter" action="delete" id="${counter.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
+                                    </div>
+                                </td>
+                            </tr>
+                        </g:each>
+                    </g:if>
+                    <g:else>
+                        <g:render template="noDataFound" />
+                    </g:else>
                     </tbody>
                 </table>
                 <div class="paginate">
