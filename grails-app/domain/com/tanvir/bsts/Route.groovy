@@ -1,7 +1,5 @@
 package com.tanvir.bsts
 
-import grails.gorm.MultiTenant
-
 class Route  {
 
     Integer id
@@ -43,6 +41,5 @@ class Route  {
     static mapping = {
         version(false)
     }
-
 
 }
