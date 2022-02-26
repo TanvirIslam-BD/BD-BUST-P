@@ -1,3 +1,4 @@
+<%@ page import="grails.util.Environment" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -50,9 +51,9 @@
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
         <ul class="navbar-nav">
-
+            <g:set var="prodAppLocation" value="${grails.util.Environment.isDevelopmentMode() ? "/" : "/bus/"}" />
             <li class="nav-item">
-                <a class="nav-link ${session.activeTab == "DASHBOARD" ? "active" : ""}" href="/busTicket">
+                <a class="nav-link ${session.activeTab == "DASHBOARD" ? "active" : ""}" href="${prodAppLocation}busTicket">
                     <div data-color="success" class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>DASHBOARD</title>
@@ -72,7 +73,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link ${session.activeTab == "TICKET TEMPLATES" ? "active" : ""}" href="/busTicketTemplate">
+                <a class="nav-link ${session.activeTab == "TICKET TEMPLATES" ? "active" : ""}" href="${prodAppLocation}busTicketTemplate">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg class="text-dark" width="12px" height="12px" viewBox="0 0 42 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>basket</title>
@@ -92,7 +93,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link ${session.activeTab == "BOOKED TICKETS" ? "active" : ""}" href="/purchasedTicket">
+                <a class="nav-link ${session.activeTab == "BOOKED TICKETS" ? "active" : ""}" href="${prodAppLocation}purchasedTicket">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg class="text-dark" width="12px" height="12px" viewBox="0 0 42 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>BOOKED TICKETS</title>
@@ -112,7 +113,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link ${session.activeTab == "Coaches" ? "active" : ""}" href="/coach">
+                <a class="nav-link ${session.activeTab == "Coaches" ? "active" : ""}" href="${prodAppLocation}coach">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>office</title>
@@ -132,7 +133,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link ${session.activeTab == "Seat Plans" ? "active" : ""} " href="/seatMap">
+                <a class="nav-link ${session.activeTab == "Seat Plans" ? "active" : ""} " href="${prodAppLocation}seatMap">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>credit-card</title>
@@ -152,7 +153,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link ${session.activeTab == "Ticket Fare" ? "active" : ""}" href="/fares">
+                <a class="nav-link ${session.activeTab == "Ticket Fare" ? "active" : ""}" href="${prodAppLocation}fares">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>TICKET FARE</title>
@@ -172,7 +173,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link  ${session.activeTab == "ROUTES" ? "active" : ""}" href="/route">
+                <a class="nav-link  ${session.activeTab == "ROUTES" ? "active" : ""}" href="${prodAppLocation}route">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>settings</title>
@@ -193,7 +194,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link   ${session.activeTab == "Counters" ? "active" : ""} " href="/counter/index">
+                <a class="nav-link   ${session.activeTab == "Counters" ? "active" : ""} " href="${prodAppLocation}counter/index">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>box-3d-50</title>
@@ -239,7 +240,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link ${session.activeTab == "Members" ? "active" : ""}" href="/member/index">
+                <a class="nav-link ${session.activeTab == "Members" ? "active" : ""}" href="${prodAppLocation}member/index">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>document</title>
@@ -259,7 +260,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/authentication/registration">
+                <a class="nav-link" href="${prodAppLocation}authentication/registration">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="20px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>spaceship</title>
@@ -346,7 +347,7 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown pe-2 d-flex align-items-center">
-                        <a  data-bs-toggle="tooltip" data-bs-placement="top"  title="Logout" href="/authentication/logout" class="nav-link text-body p-0">
+                        <a  data-bs-toggle="tooltip" data-bs-placement="top"  title="Logout" href="${prodAppLocation}authentication/logout" class="nav-link text-body p-0">
                             <i class="fa fa-sign-out fixed-plugin-button-nav cursor-pointer"></i>
                         </a>
                     </li>
