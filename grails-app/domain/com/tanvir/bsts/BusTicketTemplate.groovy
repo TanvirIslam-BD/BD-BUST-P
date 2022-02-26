@@ -8,14 +8,14 @@ class BusTicketTemplate implements MultiTenant<BusTicketTemplate> {
 
     String boardingTime
 
-    Fares fares
+    Route route
 
     Coach coach
 
-    static belongsTo = [fares: Fares, coach: Coach]
+    static belongsTo = [route: Route, coach: Coach]
 
     static constraints = {
-        fares(nullable: true)
+        route(nullable: true)
         coach(nullable: true)
     }
 }

@@ -5,12 +5,12 @@
 <asset:stylesheet src="booking.css"/>
 <asset:stylesheet src="ticketBooking.css"/>
 <asset:stylesheet src="seat.css"/>
-
 <asset:javascript src="ticketBooking.js"/>
+
 <div class="row">
     <div class="card">
         <div class="card-header">
-            Ticket Booking - ( ${busTicket.fares.name}) : <UIHelper:parseTimeInFormat time="${busTicket.boardingTime}"/>
+            Ticket Booking - <span class="route-title-header">${busTicket.route.name}</span> :<span class="boardingtime-title-header"> <UIHelper:parseTimeInFormat time="${busTicket.boardingTime}"/> </span>
         </div>
         <div class="card-body seat-booking-panel-with-seat-plan-design seat-container">
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 seat-design-map-ui">
@@ -21,7 +21,7 @@
                 </div>
                 <g:if test="${busTicket.coach.seatMap}">
                     <div class="row" id="seat-design">
-                       <div ticketid="${busTicket.id}" id="seat-map" class="seat-panel seatCharts-container" femalebookedseats="${femaleBookedSeats.seatBooked.toString()}" extraseatinlastrow="${busTicket.coach.seatMap.extraSeatInLastRow}" bookedseats="${busTicket.purchaseTickets.seatBooked.toString()}" price="${busTicket.fares.amount}" rows="${busTicket.coach.seatMap.seatRows}" columns="${busTicket.coach.seatMap.seatColumns}" >
+                       <div ticketid="${busTicket.id}" id="seat-map" class="seat-panel seatCharts-container" femalebookedseats="${femaleBookedSeats.seatBooked.toString()}" extraseatinlastrow="${busTicket.coach.seatMap.extraSeatInLastRow}" bookedseats="${busTicket.purchaseTickets.seatBooked.toString()}" price="${100}" rows="${busTicket.coach.seatMap.seatRows}" columns="${busTicket.coach.seatMap.seatColumns}" >
 
                        </div>
                     </div>
@@ -56,7 +56,8 @@
                     <g:form class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="ticketForm" controller="busTicket" action="saveBookingTicket">
                         <input type="hidden" name="busTicketId" value="${busTicket.id}">
                         <input type="hidden" name="coachNo" value="${busTicket.coach.coachNumber}">
-                        <input type="hidden" name="routeName" value="${busTicket.fares.name}">
+                        <input type="hidden" name="routeName" value="${busTicket.route.name}">
+                        <input type="hidden" id="route-id" name="routeId" value="${busTicket.route.id}">
                         <input style="display: none" type="date" name="scheduledDate" value="${UIHelper.parseDateInFormat(date: busTicket.boardingDate)}">
                         <input type="hidden" name="departureTime" value="${busTicket.boardingTime}">
 
@@ -64,17 +65,21 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label class="required">Boarding (From)</label>
-                                <select name="fromCounter" class="form-control input-sm valid">
-                                    <g:each in="${routeCounters}" status="i" var="counter">
-                                        <option value="${counter.id}">${counter.name}</option>
+                                <select id="fromStoppage"  name="fromCounter" class="form-control fromToStoppage input-sm valid">
+                                    <g:each in="${routeCountersFrom}" status="i" var="counter">
+                                        <g:if test="${counter}">
+                                            <option value="${counter?.id}">${counter?.name}</option>
+                                        </g:if>
                                     </g:each>
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="required">Drop-off (To)</label>
-                                <select name="toCounter" class="form-control input-sm valid">
-                                    <g:each in="${routeCounters}" status="i" var="counter">
-                                        <option value="${counter.id}">${counter.name}</option>
+                                <select id="toStoppage" name="toCounter" class="form-control fromToStoppage input-sm valid">
+                                    <g:each in="${routeCountersTo}" status="i" var="counter">
+                                        <g:if test="${counter}">
+                                            <option value="${counter?.id}">${counter?.name}</option>
+                                        </g:if>
                                     </g:each>
                                 </select>
                             </div>
@@ -113,11 +118,6 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label class="required">Referenced Counter</label>
-                                <UIHelper:domainSelect class="form-control" domain="${Counter}" name="referencedCounter"/>
-                            </div>
-
-                            <div class="form-group col-md-4">
                                 <label >Discount</label>
                                 <input name="discount" class="form-control booked-seat-discount-on-total form_width font_detail" type="number" value="0">
                             </div>
@@ -130,7 +130,7 @@
                         <div class="form-row">
                             <div class="btn-group-wrap">
                                 <div class="btn-group">
-                                    <g:submitButton class="btn btn-primary" name="save" value="Confirm"/>
+                                    <g:submitButton class="btn btn-primary" name="save" value="Confirm" onclick="soft.showSwal('warning-message-and-confirmation')"/>
                                 </div>
                                 <div class="btn-group">
                                     <g:link controller="busTicket" action="index" class="btn btn-secondary">Trip List</g:link>

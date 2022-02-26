@@ -52,7 +52,7 @@
         <ul class="navbar-nav">
 
             <li class="nav-item">
-                <a class="nav-link ${session.activeTab == "Dashboard" ? "active" : ""}" href="/busTicket">
+                <a class="nav-link ${session.activeTab == "DASHBOARD" ? "active" : ""}" href="/busTicket">
                     <div data-color="success" class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>DASHBOARD</title>
@@ -68,11 +68,11 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="nav-link-text ms-1">Dashboard</span>
+                    <span class="nav-link-text ms-1">DASHBOARD</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link ${session.activeTab == "Ticket Templates" ? "active" : ""}" href="/busTicketTemplate">
+                <a class="nav-link ${session.activeTab == "TICKET TEMPLATES" ? "active" : ""}" href="/busTicketTemplate">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg class="text-dark" width="12px" height="12px" viewBox="0 0 42 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>basket</title>
@@ -88,14 +88,14 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="nav-link-text ms-1">Ticket Templates</span>
+                    <span class="nav-link-text ms-1">TICKET TEMPLATES</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link ${session.activeTab == "Booked Tickets" ? "active" : ""}" href="/purchasedTicket">
+                <a class="nav-link ${session.activeTab == "BOOKED TICKETS" ? "active" : ""}" href="/purchasedTicket">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg class="text-dark" width="12px" height="12px" viewBox="0 0 42 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <title>Booked Tickets</title>
+                            <title>BOOKED TICKETS</title>
                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                 <g transform="translate(-1869.000000, -741.000000)" fill="#FFFFFF" fill-rule="nonzero">
                                     <g transform="translate(1716.000000, 291.000000)">
@@ -108,7 +108,7 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="nav-link-text ms-1">Booked Tickets</span>
+                    <span class="nav-link-text ms-1">BOOKED TICKETS</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -152,6 +152,47 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link ${session.activeTab == "Ticket Fare" ? "active" : ""}" href="/fares">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <title>TICKET FARE</title>
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g transform="translate(-1869.000000, -293.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                    <g transform="translate(1716.000000, 291.000000)">
+                                        <g id="office" transform="translate(153.000000, 2.000000)">
+                                            <path class="color-background opacity-6" d="M12.25,17.5 L8.75,17.5 L8.75,1.75 C8.75,0.78225 9.53225,0 10.5,0 L31.5,0 C32.46775,0 33.25,0.78225 33.25,1.75 L33.25,12.25 L29.75,12.25 L29.75,3.5 L12.25,3.5 L12.25,17.5 Z"></path>
+                                            <path class="color-background" d="M40.25,14 L24.5,14 C23.53225,14 22.75,14.78225 22.75,15.75 L22.75,38.5 L19.25,38.5 L19.25,22.75 C19.25,21.78225 18.46775,21 17.5,21 L1.75,21 C0.78225,21 0,21.78225 0,22.75 L0,40.25 C0,41.21775 0.78225,42 1.75,42 L40.25,42 C41.21775,42 42,41.21775 42,40.25 L42,15.75 C42,14.78225 41.21775,14 40.25,14 Z M12.25,36.75 L7,36.75 L7,33.25 L12.25,33.25 L12.25,36.75 Z M12.25,29.75 L7,29.75 L7,26.25 L12.25,26.25 L12.25,29.75 Z M35,36.75 L29.75,36.75 L29.75,33.25 L35,33.25 L35,36.75 Z M35,29.75 L29.75,29.75 L29.75,26.25 L35,26.25 L35,29.75 Z M35,22.75 L29.75,22.75 L29.75,19.25 L35,19.25 L35,22.75 Z"></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <span class="nav-link-text ms-1">TICKET FARE</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link  ${session.activeTab == "ROUTES" ? "active" : ""}" href="/route">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <title>settings</title>
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g transform="translate(-2020.000000, -442.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                    <g transform="translate(1716.000000, 291.000000)">
+                                        <g transform="translate(304.000000, 151.000000)">
+                                            <polygon class="color-background opacity-6" points="18.0883333 15.7316667 11.1783333 8.82166667 13.3333333 6.66666667 6.66666667 0 0 6.66666667 6.66666667 13.3333333 8.82166667 11.1783333 15.315 17.6716667"></polygon>
+                                            <path class="color-background opacity-6" d="M31.5666667,23.2333333 C31.0516667,23.2933333 30.53,23.3333333 30,23.3333333 C29.4916667,23.3333333 28.9866667,23.3033333 28.48,23.245 L22.4116667,30.7433333 L29.9416667,38.2733333 C32.2433333,40.575 35.9733333,40.575 38.275,38.2733333 L38.275,38.2733333 C40.5766667,35.9716667 40.5766667,32.2416667 38.275,29.94 L31.5666667,23.2333333 Z"></path>
+                                            <path class="color-background" d="M33.785,11.285 L28.715,6.215 L34.0616667,0.868333333 C32.82,0.315 31.4483333,0 30,0 C24.4766667,0 20,4.47666667 20,10 C20,10.99 20.1483333,11.9433333 20.4166667,12.8466667 L2.435,27.3966667 C0.95,28.7083333 0.0633333333,30.595 0.00333333333,32.5733333 C-0.0583333333,34.5533333 0.71,36.4916667 2.11,37.89 C3.47,39.2516667 5.27833333,40 7.20166667,40 C9.26666667,40 11.2366667,39.1133333 12.6033333,37.565 L27.1533333,19.5833333 C28.0566667,19.8516667 29.01,20 30,20 C35.5233333,20 40,15.5233333 40,10 C40,8.55166667 39.685,7.18 39.1316667,5.93666667 L33.785,11.285 Z"></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <span class="nav-link-text ms-1">ROUTES</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link   ${session.activeTab == "Counters" ? "active" : ""} " href="/counter/index">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -172,28 +213,6 @@
                     <span class="nav-link-text ms-1">COUNTERS</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link  ${session.activeTab == "Fares" ? "active" : ""}" href="/fares/index">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <title>settings</title>
-                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                <g transform="translate(-2020.000000, -442.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                                    <g transform="translate(1716.000000, 291.000000)">
-                                        <g transform="translate(304.000000, 151.000000)">
-                                            <polygon class="color-background opacity-6" points="18.0883333 15.7316667 11.1783333 8.82166667 13.3333333 6.66666667 6.66666667 0 0 6.66666667 6.66666667 13.3333333 8.82166667 11.1783333 15.315 17.6716667"></polygon>
-                                            <path class="color-background opacity-6" d="M31.5666667,23.2333333 C31.0516667,23.2933333 30.53,23.3333333 30,23.3333333 C29.4916667,23.3333333 28.9866667,23.3033333 28.48,23.245 L22.4116667,30.7433333 L29.9416667,38.2733333 C32.2433333,40.575 35.9733333,40.575 38.275,38.2733333 L38.275,38.2733333 C40.5766667,35.9716667 40.5766667,32.2416667 38.275,29.94 L31.5666667,23.2333333 Z"></path>
-                                            <path class="color-background" d="M33.785,11.285 L28.715,6.215 L34.0616667,0.868333333 C32.82,0.315 31.4483333,0 30,0 C24.4766667,0 20,4.47666667 20,10 C20,10.99 20.1483333,11.9433333 20.4166667,12.8466667 L2.435,27.3966667 C0.95,28.7083333 0.0633333333,30.595 0.00333333333,32.5733333 C-0.0583333333,34.5533333 0.71,36.4916667 2.11,37.89 C3.47,39.2516667 5.27833333,40 7.20166667,40 C9.26666667,40 11.2366667,39.1133333 12.6033333,37.565 L27.1533333,19.5833333 C28.0566667,19.8516667 29.01,20 30,20 C35.5233333,20 40,15.5233333 40,10 C40,8.55166667 39.685,7.18 39.1316667,5.93666667 L33.785,11.285 Z"></path>
-                                        </g>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg>
-                    </div>
-                    <span class="nav-link-text ms-1">ROUTES</span>
-                </a>
-            </li>
-
 
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
@@ -284,6 +303,23 @@
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">
 
+%{--                    <div class="countdown-clock">--}%
+%{--                        <div class="screen-content">--}%
+%{--                            <div class="main-screen">--}%
+%{--                                <p class="time-off">88:88</p>--}%
+%{--                                <p class="time-on">--}%
+%{--                                    <span id="hours">00</span><span class="colon">:</span><span id="minutes">00</span>--}%
+%{--                                </p>--}%
+%{--                            </div>--}%
+%{--                            <div class="secondary-screen">--}%
+%{--                                <ul class="secondary-elements">--}%
+%{--                                    <li class="am">AM</li>--}%
+%{--                                    <li class="pm">PM</li>--}%
+%{--                                </ul>--}%
+%{--                            </div>--}%
+%{--                        </div>--}%
+%{--                    </div>--}%
+
                 </div>
                 <ul class="navbar-nav  justify-content-end">
                     <li class="nav-item d-flex align-items-center">
@@ -304,6 +340,11 @@
                     <li class="nav-item px-3 d-flex align-items-center">
                         <a href="javascript:;" class="nav-link text-body p-0"></a>
                     </li>
+                    <li class="nav-item px-3 d-flex align-items-center">
+                        <a href="javascript:;" class="nav-link text-body p-0">
+                            <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+                        </a>
+                    </li>
                     <li class="nav-item dropdown pe-2 d-flex align-items-center">
                         <a  data-bs-toggle="tooltip" data-bs-placement="top"  title="Logout" href="/authentication/logout" class="nav-link text-body p-0">
                             <i class="fa fa-sign-out fixed-plugin-button-nav cursor-pointer"></i>
@@ -318,6 +359,31 @@
        <g:layoutBody/>
     </div>
 </main>
+
+
+<div class="fixed-plugin">
+    <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
+        <i class="fa fa-cog py-2"> </i>
+    </a>
+    <div class="card shadow-lg ">
+        <div class="card-header pb-0 pt-3 ">
+            <div class="float-start">
+                <h6 class="mt-3 mb-0">Active Members</h6>
+            </div>
+            <div class="float-end mt-4">
+                <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
+                    <i class="fa fa-close"></i>
+                </button>
+            </div>
+        </div>
+        <hr class="horizontal dark my-1">
+        <div class="card-body pt-sm-3 pt-0">
+            <ul class="control-sidebar-menu" id="active-chat-user-list">
+                <UIHelper:activeMembersListUI/>
+            </ul>
+        </div>
+    </div>
+</div>
 
 
 <asset:javascript src="bootstrap.min.js"/>

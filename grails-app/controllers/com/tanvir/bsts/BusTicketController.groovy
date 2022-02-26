@@ -8,7 +8,7 @@ class BusTicketController {
 
     def index() {
         def response = busTicketService.list(params)
-        session.activeTab = "Dashboard"
+        session.activeTab = "DASHBOARD"
         [busTickets: response.list, total:response.count]
     }
 
@@ -16,11 +16,21 @@ class BusTicketController {
         def response = busTicketService.get(params.id)
         def femaleBookedSeats = busTicketService.getFemaleBookedSeats(response)
         def routeCounters = busTicketService.getRouteCounters(response)
+        def routeCountersFrom = busTicketService.getRouteCountersFrom(response)
+        def routeCountersTo = busTicketService.getRouteCountersTo(response)
         if (!response){
             redirect(controller: "busTicket", action: "index")
         }else{
-            [busTicket: response, femaleBookedSeats: femaleBookedSeats, routeCounters: routeCounters]
+            [
+             busTicket: response,routeCountersFrom: routeCountersFrom,routeCountersTo: routeCountersTo,
+             femaleBookedSeats: femaleBookedSeats, routeCounters: routeCounters
+            ]
         }
+    }
+
+    def fareByFromToStoppage(){
+        def seatFare = busTicketService.fareByFromToStoppage(params)
+        render([seatFare: seatFare] as JSON)
     }
 
     def bookedSeatDataList() {

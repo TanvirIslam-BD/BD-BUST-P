@@ -37,6 +37,20 @@ class MemberService {
     }
 
 
+    @Transactional
+    def updatePassword(Member member, GrailsParameterMap params) {
+        member.properties = params
+        def response = AppUtil.saveResponse(false, member)
+        if (member.validate()) {
+            member.save()
+            if (!member.hasErrors()){
+                response.isSuccess = true
+            }
+        }
+        return response
+    }
+
+
     def getById(Serializable id) {
         return Member.get(id)
     }

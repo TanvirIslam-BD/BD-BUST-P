@@ -6,7 +6,7 @@ class PurchasedTicketController {
 
     def index() {
         def response = purchasedTicketsService.list(params)
-        session.activeTab = "Booked Tickets"
+        session.activeTab = "BOOKED TICKETS"
         [purchasedTickets: response.list, total:response.count]
     }
 }

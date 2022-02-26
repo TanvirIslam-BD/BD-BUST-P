@@ -2,11 +2,11 @@ package com.tanvir.bsts
 
 import grails.gorm.MultiTenant
 
-class Fares implements MultiTenant<Fares> {
+class Route implements MultiTenant<Route> {
 
     Integer id
 
-    Route route
+    String name = ""
 
     City districtFrom
     City districtTo
@@ -14,14 +14,14 @@ class Fares implements MultiTenant<Fares> {
     Counter fromStoppage
     Counter toStoppage
 
-    Double amount = 0.00
-
-    String seatClass = "AC"
-
     String status
 
     Date dateCreated
     Date lastUpdated
+
+    Collection<Counter> counters = []
+
+    static hasMany = [counters: Counter]
 
 
     static belongsTo = [
@@ -29,21 +29,20 @@ class Fares implements MultiTenant<Fares> {
             toStoppage: Counter,
             districtFrom: City,
             districtTo: City,
-            route: Route,
     ]
 
-    static mappedBy = [route: "none", fromStoppage: "none",toStoppage: "none",districtFrom: "none",districtTo: "none"]
+    static mappedBy = [fromStoppage: "none",toStoppage: "none",districtFrom: "none",districtTo: "none", counters: "routes"]
 
     static constraints = {
         fromStoppage(nullable: true)
         toStoppage(nullable: true)
         districtFrom(nullable: true)
         districtTo(nullable: true)
-        route(nullable: true)
     }
 
     static mapping = {
         version(false)
     }
+
 
 }

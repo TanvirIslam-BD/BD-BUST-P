@@ -2,7 +2,6 @@ package com.tanvir.bsts
 
 import grails.converters.JSON
 
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -12,6 +11,8 @@ class UIHelperTagLib {
     static namespace = "UIHelper"
 
     AuthenticationService authenticationService
+
+    MemberService memberService
 
     def renderErrorMessage = { attrs, body ->
         def model = attrs.model
@@ -34,6 +35,32 @@ class UIHelperTagLib {
         out << "/member/details?id=${authenticationService.getMember().id}"
     }
 
+
+    def activeMembersListUI = { attrs, body ->
+        def memberList = memberService.list(params)
+        memberList.list.each {member ->
+
+            out << "<li id=\"active-user-li\">\n" +
+                    "                    <a href=\"javascript:void(0);\">\n" +
+                    "                        <div class=\"active-chat-user-image-container\">\n" +
+                    "                            <img src=\"/assets/man-icon-person-logo-png-clipart.png\" class=\"active-chat-user-image\">\n" +
+                    "                            <span class=\"icon-online\"></span>\n" +
+                    "                        </div>\n" +
+                    "                        <div class=\"menu-info\">\n" +
+                    "                            <h4 class=\"control-sidebar-subheading\">\n" +
+                    "${member.firstName} ${member.lastName}" +
+                    "                            </h4>\n" +
+                    "                            <p>\n" +
+                    "                                ${member.mobile}" +
+                    "                            </p>\n" +
+                    "                        </div>\n" +
+                    "                    </a>\n" +
+                    "                </li>"
+
+        }
+
+    }
+
     def memberActionMenu = { attrs, body ->
         out << '<li class="nav-item dropdown show">'
         out << g.link(class:"nav-link dropdown-toggle", "data-toggle":"dropdown"){authenticationService.getMemberName()}
@@ -51,7 +78,7 @@ class UIHelperTagLib {
         out << '<div class="dropdown-menu">'
         out << g.link(controller: "counter", action: "index", class: "dropdown-item"){g.message(code:"Counter")}
         out << g.link(controller: "authentication", action: "logout", class: "dropdown-item"){g.message(code:"Counter Man")}
-        out << g.link(controller: "fares", action: "index", class: "dropdown-item"){g.message(code:"Fares")}
+        out << g.link(controller: "route", action: "index", class: "dropdown-item"){g.message(code:"Fares")}
         out << g.link(controller: "authentication", action: "logout", class: "dropdown-item"){g.message(code:"Driver")}
         out << g.link(controller: "authentication", action: "logout", class: "dropdown-item"){g.message(code:"Supervisor")}
         out << g.link(controller: "authentication", action: "logout", class: "dropdown-item"){g.message(code:"Trip")}

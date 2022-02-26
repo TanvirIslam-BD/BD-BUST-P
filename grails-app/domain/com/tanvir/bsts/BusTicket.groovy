@@ -10,7 +10,7 @@ class BusTicket implements MultiTenant<BusTicket> {
 
     String boardingTime
 
-    Fares fares
+    Route route
 
     Coach coach
 
@@ -18,11 +18,11 @@ class BusTicket implements MultiTenant<BusTicket> {
 
     static hasMany = [purchaseTickets: PurchaseTicket]
 
-    static belongsTo = [fares: Fares, coach: Coach]
+    static belongsTo = [route: Route, coach: Coach]
 
     static constraints = {
         purchaseTickets(nullable: true)
-        fares(nullable: true)
+        route(nullable: true)
         coach(nullable: true)
     }
 }

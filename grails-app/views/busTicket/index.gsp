@@ -126,11 +126,11 @@
                             <tr>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><span class="time-ticket-badge"><UIHelper:parseTimeInFormat time="${ticket?.boardingTime}"/></span> <UIHelper:parseDateInFormat date="${ticket?.boardingDate}"/></span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.coach?.coachNumber} </span></td>
-                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.fares?.name} </span></td>
-                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.fares?.fromStoppage?.name} </span></td>
-                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.fares?.toStoppage?.name}</span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.route?.name} </span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.route?.fromStoppage?.name} </span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.route?.toStoppage?.name}</span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.coach?.registrationNumber}</span></td>
-                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><g:message code="${ticket?.fares?.seatClass}"/> </span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><g:message code="${ticket?.coach?.seatClass}"/> </span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> <UIHelper:getBookedSeatsCount ticketId="${ticket?.id}"/> </span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> <UIHelper:getAvailableSeatsCount ticketId="${ticket?.id}"/> </span></td>
                                 <td>

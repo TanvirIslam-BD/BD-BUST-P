@@ -6,7 +6,7 @@
         <div class="card-header pb-0">
             <div class="row">
                 <div class="col-lg-6 col-7">
-                    <h6>Ticket Templates</h6>
+                    <h6>TICKET TEMPLATES</h6>
                     <p class="text-sm mb-0">
                         <i class="fa fa-check text-info" aria-hidden="true"></i>
                         Operate this section with the corresponding UI
@@ -53,10 +53,10 @@
                             <tr>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><span class="time-ticket-badge"><UIHelper:parseTimeInFormat time="${ticket?.boardingTime}"/></span></span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.coach?.coachNumber}</span></td>
-                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.fares?.fromStoppage?.name}</span></td>
-                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.fares?.toStoppage?.name}</span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.route?.fromStoppage?.name}</span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.route?.toStoppage?.name}</span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.coach?.registrationNumber}</span></td>
-                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><g:message code="${ticket?.fares?.seatClass}"/></span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><g:message code="${ticket?.coach?.seatClass}"/></span></td>
                                 <td>
                                     <div class="btn-group">
                                         <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Edit" controller="busTicketTemplate" action="edit" class="btn btn-secondary" id="${ticket.id}"><i class="fas fa-edit"></i></g:link>

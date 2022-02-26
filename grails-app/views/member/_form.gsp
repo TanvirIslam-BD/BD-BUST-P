@@ -1,4 +1,4 @@
-<%@ page import="com.tanvir.bsts.GlobalConfig" %>
+<%@ page import="com.tanvir.bsts.Counter; com.tanvir.bsts.GlobalConfig" %>
 <div class="form-group">
     <label><g:message code="first.name"/> *</label>
     <g:textField name="firstName" class="form-control" value="${member?.firstName}" placeholder="Please Enter First Name"/>
@@ -30,6 +30,11 @@
 <div class="form-group">
     <label>Role</label>
     <UIHelper:namedSelect class="form-control" name="memberType" key="${GlobalConfig.USER_TYPE}" value="${member?.memberType}"/>
+</div>
+
+<div class="form-group">
+    <label class="required">Counter</label>
+    <UIHelper:domainSelect class="form-control" domain="${Counter}" name="counter" value="${member?.counter?.id}"/>
 </div>
 
 <g:if test="${!edit}">

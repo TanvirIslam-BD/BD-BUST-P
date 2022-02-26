@@ -41,6 +41,7 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">mobile</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Counter</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                         <th class="text-secondary opacity-7"></th>
                     </tr>
@@ -62,6 +63,7 @@
                             <td class="text-center text-sm"><span class="d-flex px-2 py-1 text-xs font-weight-bold"> ${info?.email} </span></td>
                             <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${info?.memberType} </span></td>
                             <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${info?.mobile}</span></td>
+                            <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${info?.counter?.name ?: "UNKNOWN"}</span></td>
                             <td class="text-center text-sm"><span class="badge badge-sm  ${info?.isActive ?  "bg-gradient-success" :  "bg-gradient-secondary"}">${info?.isActive ? "Active" : "Inactive"}</span></td>
                             <td class="text-center">
                                 <div class="btn-group">
@@ -69,6 +71,40 @@
                                     <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Edit" controller="member" action="edit" class="btn btn-secondary" id="${info.id}"><i class="fas fa-edit"></i></g:link>
                                     <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Delete" controller="member" action="delete" id="${info.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
                                 </div>
+                                <div class="btn-group">
+                                    <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Reset Password"   data-toggle="modal" data-target="#passResetModal" data-whatever="@getbootstrap"  id="${info.id}" class="btn btn-secondary"><i class="fa fa-user-secret"></i></g:link>
+
+                                    <div class="modal fade" id="passResetModal" tabindex="-1" role="dialog" aria-labelledby="passResetModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Change Password (${info?.firstName} ${info?.lastName})</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true"></span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                   <g:form controller="member" action="updatePassword">
+                                                       <input name="id" type="hidden" value="${info?.id}">
+                                                        <div class="form-group">
+                                                            <input type="password" class="form-control is-valid" name="password" placeholder="Enter New Password" required>
+                                                            <div class="invalid-feedback">Please fill out this field.</div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="password"  class="form-control is-valid" name="confirmPassword" placeholder="Confirm new password" required>
+                                                            <div class="invalid-feedback">Please fill out this field.</div>
+                                                        </div>
+                                                       <div class="form-action-panel">
+                                                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                           <g:submitButton class="btn bg-gradient-success pull-end" name="updatePassword" value="Change"/>
+
+                                                       </div>
+                                                   </g:form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 </div>
                             </td>
                         </tr>
                     </g:each>

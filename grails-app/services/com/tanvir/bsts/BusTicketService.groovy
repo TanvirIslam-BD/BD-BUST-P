@@ -51,7 +51,44 @@ class BusTicketService {
     def getRouteCounters(BusTicket busTicket) {
         def routeCounters = []
         if(busTicket){
-            routeCounters = busTicket.fares.counters
+            routeCounters = busTicket.route.counters
+        }
+        return routeCounters
+    }
+
+    def fareByFromToStoppage(def params) {
+        def amount = 0.0
+        Route route = Route.get(params.routeId)
+        Counter from = Counter.get(params.from)
+        Counter to = Counter.get(params.to)
+        def seatFares =  Fares.findAllByRouteAndFromStoppageAndToStoppage(route, from, to)
+        if(seatFares){
+            amount = seatFares[0].amount
+        }
+        return amount
+    }
+
+    def getRouteCountersFrom(BusTicket busTicket) {
+        def routeCounters = []
+        if(busTicket){
+            routeCounters = busTicket.route.counters.collect{
+                if(it.city == busTicket.route.districtFrom){
+                    return it
+                }
+            }
+        }
+        return routeCounters
+    }
+
+
+    def getRouteCountersTo(BusTicket busTicket) {
+        def routeCounters = []
+        if(busTicket){
+            routeCounters = busTicket.route.counters.collect{
+                if(it.city == busTicket.route.districtTo){
+                    return it
+                }
+            }
         }
         return routeCounters
     }
@@ -104,7 +141,7 @@ class BusTicketService {
             oldBusTicketList.each {oldBusTicket ->
                 oldBusTicket.purchaseTickets = null
                 oldBusTicket.coach = null
-                oldBusTicket.fares = null
+                oldBusTicket.route = null
                 oldBusTicket.delete()
             }
         }catch(Exception exception){
@@ -116,8 +153,7 @@ class BusTicketService {
                     BusTicket busTicket = new BusTicket()
                     busTicket.boardingDate = new Date()
                     busTicket.boardingTime = template.boardingTime
-                    busTicket.fares = template.fares
-                    busTicket.coach = template.coach
+                    busTicket.route = template.route
                     busTicket.coach = template.coach
                     busTicket.save()
                 }

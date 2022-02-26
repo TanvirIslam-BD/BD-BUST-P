@@ -254,9 +254,54 @@ $(document).ready(function() {
         }
     });
 
+
+
+    $(".fromToStoppage").on('change', function (e) {
+
+        $(".card-body.seat-booking-panel-with-seat-plan-design").append(" <div class=\"overlay show\">\n" +
+            "      <div class=\"spanner show\">\n" +
+            "      <div class=\"loader\"></div>\n" +
+            "   </div>")
+
+        let $fts = $(this);
+        let from = $fts.attr("id") === "fromStoppage" ? parseInt($fts.val()) : parseInt($('#fromStoppage').val());
+        let to = $fts.attr("id") === "toStoppage" ? parseInt($fts.val()) : parseInt($('#toStoppage').val());
+        let routeId = $("#route-id").val()
+        changeStoppage(routeId, from, to, sc, rowsCharacters);
+    })
+
+
+    $("#toStoppage").trigger("change")
+
 });
 
 
+function changeStoppage(routeId, from, to, busSeatMap, rowsCharacters) {
+
+    BSTS.ajax.call({
+        url: BSTS.baseURL + "busTicket/fareByFromToStoppage",
+        data: {routeId: routeId, from: from, to: to},
+        success: function (resp) {
+            var seatFare = resp.seatFare
+
+            $.each(rowsCharacters, function() {
+                busSeatMap.find(this).each(function () {
+                    this.data().price = seatFare;
+                });
+             })
+
+            $('.price').html(seatFare);
+            $('#Fare').val(seatFare);
+            $('.price').attr('data-price', seatFare);
+
+            $('#total').text(recalculateTotal(busSeatMap)).trigger('change');
+
+            $(".card-body.seat-booking-panel-with-seat-plan-design").find(".overlay.show").remove()
+
+        }
+    });
+
+}
 
 
 function renderTemplate(templateName, templateData, templateDir = "/Templates/Shared") {
@@ -325,6 +370,7 @@ function recalculateTotal(sc) {
     sc.find('selected').each(function () {
         total += this.data().price;
     });
-
+    $('.total-amount-to-paid-to-calc').val(total)
+    $('.total-paid-amount').val(total -  $(".booked-seat-discount-on-total").val());
     return total;
 }

@@ -1,4 +1,4 @@
-<%@ page import="com.tanvir.bsts.Coach; com.tanvir.bsts.Fares" %>
+<%@ page import="com.tanvir.bsts.Coach; com.tanvir.bsts.Route" %>
 
 <div class="form-group">
     <label for="example-datetime-local-input" class="form-control-label">Date And Time</label>
@@ -10,7 +10,7 @@
 </div>
 <div class="form-group">
     <label>Fares</label>
-    <UIHelper:domainSelect class="form-control" domain="${Fares}" name="fares" value="${busTicket?.fares ? fares?.fares?.id : null}"/>
+    <UIHelper:domainSelect class="form-control" domain="${Route}" name="fares" value="${busTicket?.fares ? fares?.fares?.id : null}"/>
 </div>
 
 <div class="form-group">

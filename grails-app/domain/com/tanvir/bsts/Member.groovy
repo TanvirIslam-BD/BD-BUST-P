@@ -17,10 +17,15 @@ class Member implements MultiTenant<Member> {
 
     String address
 
+
+    Counter counter
+
     Date dateCreated
     Date lastUpdated
 
-    static hasMany = [coach: Coach]
+    static belongsTo = [
+            counter: Counter
+    ]
 
     static constraints = {
         email(email: true, nullable: false, unique: true, blank: false)
@@ -29,6 +34,7 @@ class Member implements MultiTenant<Member> {
         lastName(nullable: true)
         identityHash(nullable: true)
         identityHashLastUpdate(nullable: true)
+        counter(nullable: true)
     }
 
     def beforeInsert (){
@@ -42,7 +48,6 @@ class Member implements MultiTenant<Member> {
 
     static mapping = {
         version(false)
-        coach(cascade: 'all-delete-orphan')
     }
 
 }

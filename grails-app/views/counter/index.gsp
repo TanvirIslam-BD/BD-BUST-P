@@ -42,6 +42,8 @@
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SL</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">SEQUENCE</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Code</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">City</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">STATUS</th>
                         <th class="text-secondary opacity-7"></th>
@@ -51,10 +53,12 @@
                     <g:if test="${counters}">
                         <g:each in="${counters}" var="counter">
                             <tr>
-                                <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${counter?.id} </span></td>
-                                <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${counter?.sequence} </span></td>
-                                <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${counter?.name}</span></td>
-                                <td class="text-center text-sm"><span class="text-xs font-weight-bold">  ${GlobalConfig.COUNTER_TYPE[counter?.type]}</span></td>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold">${counter?.id} </span></td>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold">${counter?.sequence} </span></td>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold">${counter?.name}</span></td>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold">${counter?.code}</span></td>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold">${counter?.city.name}</span></td>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold">${GlobalConfig.COUNTER_TYPE[counter?.type]}</span></td>
                                 <td class="text-center text-sm"><span class="badge badge-sm  ${(counter?.status == "ACTIVE") ?  "bg-gradient-success" :  "bg-gradient-secondary"}">${counter?.status}</span></td>
                                 <td class="text-center">
                                     <div class="btn-group">

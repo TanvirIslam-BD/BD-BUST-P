@@ -10,20 +10,28 @@ class Counter implements MultiTenant<Counter> {
     String name = ""
 
     String status
+    String code
 
     String type = GlobalConfig.COUNTER_TYPE.AGENT
 
-    Collection<Fares> fares = []
+    Collection<Route> routes = []
+    City city
 
     Date dateCreated
     Date lastUpdated
 
-    static hasMany = [fares: Fares]
+    static hasMany = [routes: Route]
 
-    static mappedBy = [fares: "counters"]
+    static belongsTo = City
+
+    static mappedBy = [routes: "counters"]
 
     static constraints = {
 
+    }
+
+    static mapping = {
+        version(false)
     }
 
 }

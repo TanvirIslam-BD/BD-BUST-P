@@ -1,7 +1,7 @@
 <meta name="layout" content="main"/>
 <div class="card">
     <div class="card-header">
-        Add Routes
+        ADD FARE
     </div>
     <div class="card-body">
         <g:form controller="fares" action="save" enctype="multipart/form-data">

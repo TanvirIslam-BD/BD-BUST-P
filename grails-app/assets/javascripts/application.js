@@ -14,3 +14,30 @@
 //= require OBTS.ajax
 //= require OBTS.init
 //= require_self
+
+
+
+function createModal(url, page, modalPrefix) {
+    var modalContent = 'myModalContent';
+    var modalName = "myModal";
+    if (typeof (modalPrefix) != 'undefined') {
+        modalName = modalPrefix + 'Modal';
+        modalContent = modalPrefix + 'ModalContent';
+    }
+    if (typeof (page) == 'undefined') {
+        page = 1;
+    }
+    $.ajax({
+        url: url,
+        type: 'GET',
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            $('#' + modalContent).html(data);
+            $('#' + modalName).modal('show');
+            $('#page').val(page);
+        },
+        error: function (data) {
+
+        }
+    });
+}

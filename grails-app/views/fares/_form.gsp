@@ -1,17 +1,32 @@
-<%@ page import="com.tanvir.bsts.Counter; com.tanvir.bsts.SeatMap" %>
+<%@ page import="com.tanvir.bsts.Route; com.tanvir.bsts.City; com.tanvir.bsts.Counter; com.tanvir.bsts.SeatMap" %>
 
 <div class="form-group">
-    <label>Name</label>
-    <g:textField name="name" class="form-control" value="${fares?.name}" placeholder="Please Enter Routes Name"/>
-</div>
-<div class="form-group">
-    <label>From Stoppage</label>
-    <UIHelper:domainSelect class="form-control" domain="${Counter}" name="fromStoppage" value="${fares?.fromStoppage ? fares?.fromStoppage?.id : null}"/>
+    <label>Route</label>
+    <UIHelper:domainSelect class="form-control" domain="${Route}" name="route" value="${fares?.route ? route?.route?.id : null}"/>
 </div>
 
 <div class="form-group">
-    <label>To Stoppage </label>
-    <UIHelper:domainSelect class="form-control" domain="${Counter}" name="toStoppage" value="${fares?.toStoppage ? fares?.toStoppage?.id : null}"/>
+    <label>District From</label>
+    <UIHelper:domainSelect class="form-control" domain="${City}" name="districtFrom" value="${fares?.districtFrom ? route?.districtFrom?.id : null}"/>
+</div>
+<div class="form-group">
+    <label>District To</label>
+    <UIHelper:domainSelect class="form-control" domain="${City}" name="districtTo" value="${fares?.districtTo ? route?.districtTo?.id : null}"/>
+</div>
+
+<div class="form-group">
+    <label>Start Stoppage</label>
+    <UIHelper:domainSelect class="form-control" domain="${Counter}" name="fromStoppage" value="${fares?.fromStoppage ? route?.fromStoppage?.id : null}"/>
+</div>
+
+<div class="form-group">
+    <label>End Stoppage</label>
+    <UIHelper:domainSelect class="form-control" domain="${Counter}" name="toStoppage" value="${fares?.toStoppage ? route?.toStoppage?.id : null}"/>
+</div>
+
+<div class="form-group">
+    <label>Status</label>
+    <UIHelper:status value="${fares?.status}"/>
 </div>
 
 <div class="form-group">
@@ -19,10 +34,6 @@
     <UIHelper:seatClass name="seatClass" value="${fares?.seatClass}"/>
 </div>
 
-<div class="form-group">
-    <label>Status</label>
-    <UIHelper:status value="${fares?.status}"/>
-</div>
 
 <div class="form-group">
     <label>Fare Amount</label>

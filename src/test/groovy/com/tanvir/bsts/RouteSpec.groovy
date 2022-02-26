@@ -1,9 +1,9 @@
 package com.tanvir.bsts
 
-import grails.testing.services.ServiceUnitTest
+import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
 
-class FaresServiceSpec extends Specification implements ServiceUnitTest<FaresService>{
+class RouteSpec extends Specification implements DomainUnitTest<Route> {
 
     def setup() {
     }

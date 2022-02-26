@@ -1,4 +1,4 @@
-<%@ page import="com.tanvir.bsts.Coach; com.tanvir.bsts.Fares" %>
+<%@ page import="com.tanvir.bsts.Coach; com.tanvir.bsts.Route" %>
 
 <div class="form-group">
     <label for="example-time-input" class="form-control-label">Boarding Time</label>
@@ -6,7 +6,7 @@
 </div>
 <div class="form-group">
     <label>Routes</label>
-    <UIHelper:domainSelect class="form-control" domain="${Fares}" name="fares" value="${busTicketTemplate?.fares ? busTicketTemplate?.fares?.id : null}"/>
+    <UIHelper:domainSelect class="form-control" domain="${Route}" name="route" value="${busTicketTemplate?.route ? busTicketTemplate?.route?.id : null}"/>
 </div>
 
 <div class="form-group">
