@@ -38,7 +38,7 @@ class RouteService {
 
     def list(GrailsParameterMap params) {
         params.max = params.max ?: GlobalConfig.itemsPerPage()
-        List<Route> faresList = Route.createCriteria().list(params) {
+        List<Route> routeList = Route.createCriteria().list(params) {
             if (params?.colName && params?.colValue) {
                 like(params.colName, "%" + params.colValue + "%")
             }
@@ -46,7 +46,7 @@ class RouteService {
                 order("id", "desc")
             }
         }
-        return [list: faresList, count: faresList.totalCount]
+        return [list: routeList, count: routeList.totalCount]
     }
 
 
