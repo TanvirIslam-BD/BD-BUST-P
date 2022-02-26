@@ -2,7 +2,7 @@ package com.tanvir.bsts
 
 import grails.gorm.MultiTenant
 
-class Route implements MultiTenant<Route> {
+class Route  {
 
     Integer id
 

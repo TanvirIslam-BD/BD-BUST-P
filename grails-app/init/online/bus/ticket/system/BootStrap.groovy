@@ -13,10 +13,11 @@ class BootStrap {
 
         Collection<PersistentEntity> entities = grailsApplication.mappingContext.persistentEntities
 
-//        initializeDomain(entities)
-        Tenants.eachTenant{ String tenant ->
-            initializeDomain(entities)
-        }
+        initializeDomain(entities)
+
+//        Tenants.eachTenant{ String tenant ->
+//            initializeDomain(entities)
+//        }
     }
 
 
