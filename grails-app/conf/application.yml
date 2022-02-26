@@ -8,9 +8,9 @@ grails:
             # Whether to translate GORM events into Reactor events
             # Disabled by default for performance reasons
             events: false
-        multiTenancy:
-            mode: DATABASE
-            tenantResolverClass: org.grails.datastore.mapping.multitenancy.web.SubDomainTenantResolver
+        #multiTenancy:
+            #mode: DATABASE
+            #tenantResolverClass: org.grails.datastore.mapping.multitenancy.web.SubDomainTenantResolver
 info:
     app:
         name: '@info.app.name@'

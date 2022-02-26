@@ -1,9 +1,5 @@
 package com.tanvir.bsts
 
-import grails.gorm.multitenancy.CurrentTenant
-
-
-@CurrentTenant
 class AuthenticationService {
 
     private static final String AUTHORIZED = "AUTHORIZED"

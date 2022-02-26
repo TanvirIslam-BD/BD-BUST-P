@@ -1,8 +1,6 @@
 package com.tanvir.bsts
 
-import grails.gorm.MultiTenant
-
-class BusTicket implements MultiTenant<BusTicket> {
+class BusTicket {
 
     Integer id
 

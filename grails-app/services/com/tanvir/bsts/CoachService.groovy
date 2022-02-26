@@ -1,11 +1,10 @@
 package com.tanvir.bsts
 
-import grails.gorm.multitenancy.CurrentTenant
 import grails.web.servlet.mvc.GrailsParameterMap
 import javax.servlet.http.HttpServletRequest
 import javax.transaction.Transactional
 
-@CurrentTenant
+
 class CoachService {
 
     AuthenticationService authenticationService

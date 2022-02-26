@@ -1,8 +1,7 @@
 package com.tanvir.bsts
 
-import grails.gorm.MultiTenant
 
-class Fares implements MultiTenant<Fares> {
+class Fares {
 
     Integer id
 

@@ -1,8 +1,6 @@
 package com.tanvir.bsts
 
-import grails.gorm.MultiTenant
-
-class Member implements MultiTenant<Member> {
+class Member {
 
     Integer id
     String firstName

@@ -1,8 +1,6 @@
 package com.tanvir.bsts
 
-import grails.gorm.MultiTenant
-
-class SeatMap implements MultiTenant<SeatMap> {
+class SeatMap {
 
     Integer id
 
