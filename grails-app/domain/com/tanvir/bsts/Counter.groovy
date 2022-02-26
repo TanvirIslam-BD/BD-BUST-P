@@ -1,8 +1,7 @@
 package com.tanvir.bsts
 
-import grails.gorm.MultiTenant
 
-class Counter implements MultiTenant<Counter> {
+class Counter {
 
     Integer id
 

@@ -1,8 +1,6 @@
 package com.tanvir.bsts
 
-import grails.gorm.MultiTenant
-
-class Coach implements MultiTenant<Coach> {
+class Coach {
 
     Integer id
 
