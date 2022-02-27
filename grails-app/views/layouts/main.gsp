@@ -51,7 +51,7 @@
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
         <ul class="navbar-nav">
-            <g:set var="prodAppLocation" value="${grails.util.Environment.isDevelopmentMode() ? "/" : "/bus/"}" />
+            <g:set var="prodAppLocation" value="${grails.util.Environment.isDevelopmentMode() ? "/" : "/"}" />
             <li class="nav-item">
                 <a class="nav-link ${session.activeTab == "DASHBOARD" ? "active" : ""}" href="${prodAppLocation}busTicket">
                     <div data-color="success" class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
