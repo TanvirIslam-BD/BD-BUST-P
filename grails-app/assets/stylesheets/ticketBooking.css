@@ -137,3 +137,7 @@ p.total-paid-title.font_detail.fw-bold {
 }
 
 
+div#seatPlanModal div.seatCharts-container {
+    border-right: 1px dotted rgb(255 255 255);
+    padding-left: 25%;
+}

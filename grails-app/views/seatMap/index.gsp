@@ -56,7 +56,171 @@
                                 <td class="text-center text-sm"><span class="badge badge-sm  bg-gradient-success">ACTIVE</span></td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="View Design" controller="seatMap" action="details" class="btn btn-secondary" id="${seatMap.id}"><i class="fas fa-eye"></i></g:link>
+                                        <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="View Plan"  data-toggle="modal" data-target="#seatPlanModal" data-whatever="@getbootstrap"  id="${seatMap.id}" class="btn btn-secondary"><i class="fas fa-eye"></i></g:link>
+
+                                        <div class="modal fade" id="seatPlanModal" tabindex="-1" role="dialog" aria-labelledby="seatPlanModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <asset:stylesheet src="jquery.seat-charts.css"/>
+                                                    <asset:stylesheet src="booking.css"/>
+                                                    <asset:stylesheet src="ticketBooking.css"/>
+                                                    <asset:stylesheet src="seat.css"/>
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Seat Plan - ${seatMap?.name}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                            <div class="seat-design-map-ui">
+                                                                <g:if test="${seatMap}">
+                                                                    <div id="seat-map" class="seat-panel"  extraseatinlastrow="${seatMap.extraSeatInLastRow}" rows="${seatMap.seatRows}" columns="${seatMap.seatColumns}" >
+
+                                                                    </div>
+                                                                </g:if>
+                                                            </div>
+                                                        <asset:javascript src="jquery.seat-charts.js"/>
+                                                        <script>
+                                                            $(document).ready(function() {
+                                                                var seatMap = $('#seat-map');
+                                                                var rows = parseInt(seatMap.attr("rows"));
+                                                                var columns = parseInt(seatMap.attr("columns"));
+                                                                var price = parseFloat(seatMap.attr("price"));
+                                                                var extraSeatInLastRow = seatMap.attr("extraseatinlastrow");
+
+                                                                var rowsCharacters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+                                                                var threeColumnsDesignV1 = ['A_AA','B_BB','C_CC','D_DD','E_EE','F_FF','G_GG','H_HH','I_II','J_JJ','K_KK','L_LL','M_MM','N_NN','O_OO','P_PP','Q_QQ','R_RR','S_SS','T_TT','U_UU','V_VV','W_WW','X_XX','Y_YY','Z_ZZ']
+                                                                var fourColumnsDesignV1 = ['AA_AA','BB_BB','CC_CC','DD_DD','EE_EE','FF_FF','GG_GG','HH_HH','II_II','JJ_JJ','KK_KK','LL_LL','MM_MM','NN_NN','OO_OO','PP_PP','QQ_QQ','RR_RR','SS_SS','TT_TT','UU_UU','VV_VV','WW_WW','XX_XX','YY_YY','ZZ_ZZ']
+
+                                                                var seatDesign = []
+                                                                var lastRow = rows - 1
+                                                                var lastRowChar = rowsCharacters[lastRow]
+                                                                if(columns == 3){
+                                                                    seatDesign = threeColumnsDesignV1.slice(0, rows)
+                                                                }else if(columns == 4){
+                                                                    seatDesign = fourColumnsDesignV1.slice(0, rows)
+                                                                }
+                                                                if((extraSeatInLastRow == "true")){
+                                                                    seatDesign[lastRow] = seatDesign[lastRow].replaceAll("_", lastRowChar)
+                                                                }
+
+                                                                seatMap.seatCharts({
+
+                                                                    map: seatDesign,
+
+                                                                    seats: {
+                                                                        A: {
+                                                                            price   : price,
+                                                                        },
+                                                                        B: {
+                                                                            price   : price,
+                                                                        }  ,
+                                                                        C: {
+                                                                            price   : price,
+                                                                        },
+                                                                        D: {
+                                                                            price   : price,
+                                                                        },
+                                                                        E: {
+                                                                            price   : price,
+                                                                        },
+                                                                        F: {
+                                                                            price   : price,
+                                                                        }  ,
+                                                                        G: {
+                                                                            price   : price,
+                                                                        },
+                                                                        H: {
+                                                                            price   : price,
+                                                                        }  ,
+                                                                        I: {
+                                                                            price   : price,
+                                                                        },
+                                                                        J: {
+                                                                            price   : price,
+                                                                        }  ,
+                                                                        K: {
+                                                                            price   : price,
+                                                                        },
+                                                                        L: {
+                                                                            price   : price,
+                                                                        },
+                                                                        M: {
+                                                                            price   : price,
+                                                                        },
+                                                                        N: {
+                                                                            price   : price,
+                                                                        }  ,
+                                                                        O: {
+                                                                            price   : price,
+                                                                        },
+                                                                        P: {
+                                                                            price   : price,
+                                                                        },
+                                                                        Q: {
+                                                                            price   : price,
+                                                                        },
+                                                                        R: {
+                                                                            price   : price,
+                                                                        },
+                                                                        S: {
+                                                                            price   : price,
+                                                                        }  ,
+                                                                        T: {
+                                                                            price   : price,
+                                                                        },
+                                                                        U: {
+                                                                            price   : price,
+                                                                        },
+                                                                        V: {
+                                                                            price   : price,
+                                                                        },
+                                                                        W: {
+                                                                            price   : price,
+                                                                        },
+                                                                        X: {
+                                                                            price   : price,
+                                                                        }  ,
+                                                                        Y: {
+                                                                            price   : price,
+                                                                        },
+                                                                        Z: {
+                                                                            price   : price,
+                                                                        }
+                                                                    },
+                                                                    naming : {
+                                                                        top : true,
+                                                                        left : true,
+                                                                        getLabel : function (character, row, column) {
+                                                                            if((extraSeatInLastRow == "true") && (character == lastRowChar)){
+                                                                                return character + column;
+                                                                            }
+                                                                            if(columns == 3 && column == 3){
+                                                                                column = column - 1
+                                                                            }else if(columns == 4 && column == 4){
+                                                                                column = column - 1
+                                                                            }
+                                                                            return character + column;
+                                                                        },
+                                                                    },
+                                                                    legend : {
+                                                                        node : $('#legend'),
+                                                                        items : [
+                                                                            [ 'f', 'available', 'Available' ],
+                                                                            [ 'f', 'readytobook', 'Selected' ],
+                                                                            [ 'f', 'unavailable', 'Booked']
+                                                                        ]
+                                                                    },
+                                                                    click: function () {}
+                                                                });
+
+                                                            });
+                                                        </script>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Edit" controller="seatMap" action="edit" class="btn btn-secondary" id="${seatMap.id}"><i class="fas fa-edit"></i></g:link>
                                         <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Delete" controller="seatMap" action="delete" id="${seatMap.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
                                     </div>
