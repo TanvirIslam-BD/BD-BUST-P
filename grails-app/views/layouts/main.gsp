@@ -22,7 +22,7 @@
 
 
     <asset:javascript src="application.js"/>
-    <asset:javascript src="BSTS.js"/>
+    <asset:javascript src="bsts.js"/>
 
 
     <script type="text/javascript">

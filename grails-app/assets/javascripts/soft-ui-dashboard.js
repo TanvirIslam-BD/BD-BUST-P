@@ -80,7 +80,7 @@ if (document.querySelector('.fixed-plugin')) {
   }
 
   if (navbar) {
-    if (navbar.getAttribute('navbar-scroll') == 'true') {
+    if (navbar.getAttribute('navbar-scroll') == 'true' && buttonNavbarFixed) {
       buttonNavbarFixed.setAttribute("checked", "true");
     }
   }
