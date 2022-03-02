@@ -98,29 +98,11 @@
                                 <UIHelper:gender value="${busTicket}"/>
                             </div>
                             <div class="form-group col-md-4">
-                                <label>Age</label>
-                                <input name="age" class="form-control form_width font_detail" type="text">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label class="required">Passport</label>
-                                <input name="passport" class="form-control form_width font_detail" type="text">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label>Address</label>
-                                <input name="address" class="form-control form_width font_detail" type="text">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label class="required">Nationality</label>
-                                <input name="nationality" class="form-control form_width font_detail" type="text" value="BANGLADESHI">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
                                 <label >Discount</label>
                                 <input name="discount" class="form-control booked-seat-discount-on-total form_width font_detail" type="number" value="0">
                             </div>
+                        </div>
+                        <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label >Total Paid</label>
                                 <input name="totalPaid" class="total-paid-amount form-control form_width fw-bold font_detail" style="pointer-events: none;

@@ -119,9 +119,9 @@ $(document).ready(function() {
                     if((extraSeatInLastRow == "true") && (character == lastRowChar)){
                         return character + column;
                     }
-                    if(columns == 3 && column == 3){
+                    if(columns == 3 && column >= 3){
                         column = column - 1
-                    }else if(columns == 4 && column == 4){
+                    }else if(columns == 4 && column >= 4){
                         column = column - 1
                     }
                     return character + column;
