@@ -6,7 +6,7 @@
         <div class="card-header pb-0">
             <div class="row">
                 <div class="col-lg-6 col-7">
-                    <h6>TICKET TEMPLATES</h6>
+                    <h6>TICKET SCHEDULE</h6>
                     <p class="text-sm mb-0">
                         <i class="fa fa-check text-info" aria-hidden="true"></i>
                         Operate this section with the corresponding UI
@@ -40,6 +40,9 @@
                     <tr>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">BOARDING TIME</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">COACH NO.</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ROUTE</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">START DATE</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">END DATE</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">STARTING COUNTER</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">END COUNTER</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">REGISTRATION NUMBER</th>
@@ -53,6 +56,9 @@
                             <tr>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><span class="time-ticket-badge"><UIHelper:parseTimeInFormat time="${ticket?.boardingTime}"/></span></span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.coach?.coachNumber}</span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.route?.name}</span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.scheduleStartDateStr}</span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.scheduleEndDateStr}</span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.route?.fromStoppage?.name}</span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.route?.toStoppage?.name}</span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.coach?.registrationNumber}</span></td>

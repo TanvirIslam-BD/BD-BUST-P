@@ -6,54 +6,40 @@ class PurchaseTicket {
 
     String name
     String sex
-    String email
     String mobile
-    String age
     String passport
     Double discount
 
     Counter fromCounter
     Counter toCounter
 
-    Counter referencedCounter
-
-    String address
-    String nationality
-
     Double totalPaid
-
     String seatBooked = ""
-
     String seatBookedForDisplay = ""
-
     Integer totalBookedSeat = 0
-
     String coachNo = "00"
 
     String routeName
-
-    Date scheduledDate
+    String scheduledDate
     String departureTime
 
     Member saleBy
+    Long busTicketTemplateId
 
     Date dateCreated
     Date lastUpdated
 
-
-    static belongsTo = [BusTicket, Counter, Member]
-
+    static belongsTo = [
+            fromCounter: Counter,
+            toCounter: Counter,
+            saleBy: Member,
+    ]
 
     static constraints = {
         name(blank: false, size: 1..100, maxSize: 100)
-        email(nullable: true)
         sex(nullable: true, maxSize: 100)
-        address(nullable: true)
-        referencedCounter(nullable: true)
         discount(nullable: true)
-        nationality(nullable: true)
         passport(nullable: true)
-        age(nullable: true)
         mobile(nullable: true)
         totalPaid(nullable: true)
         seatBooked(nullable: true)
@@ -61,6 +47,8 @@ class PurchaseTicket {
         departureTime(nullable: true)
         coachNo(nullable: true)
         seatBookedForDisplay(nullable: true)
+        busTicketTemplateId(nullable: true)
+        toCounter(nullable: true)
     }
 
     def beforeValidate() {

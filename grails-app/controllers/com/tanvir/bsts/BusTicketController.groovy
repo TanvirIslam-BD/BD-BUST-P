@@ -8,7 +8,7 @@ class BusTicketController {
 
     def index() {
         def response = busTicketService.list(params)
-        session.activeTab = "DASHBOARD"
+        session.activeTab = "DAILY TRIP"
         [busTickets: response.list, total:response.count]
     }
 

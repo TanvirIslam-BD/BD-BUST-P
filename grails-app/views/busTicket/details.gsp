@@ -1,6 +1,7 @@
 <%@ page import="com.tanvir.bsts.Counter" %>
-%{--Include Main Layout--}%
+
 <meta name="layout" content="main"/>
+
 <asset:stylesheet src="jquery.seat-charts.css"/>
 <asset:stylesheet src="booking.css"/>
 <asset:stylesheet src="ticketBooking.css"/>
@@ -10,7 +11,7 @@
 <div class="row">
     <div class="card">
         <div class="card-header">
-            Ticket Booking - <span class="route-title-header">${busTicket.route.name}</span> :<span class="boardingtime-title-header"> <UIHelper:parseTimeInFormat time="${busTicket.boardingTime}"/> </span>
+            <span class="route-title-header">${busTicket.route.name}</span> <span class="boardingtime-title-header"> <UIHelper:parseTimeInFormat time="${busTicket.boardingTime}"/> </span>
         </div>
         <div class="card-body seat-booking-panel-with-seat-plan-design seat-container">
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 seat-design-map-ui">
@@ -28,7 +29,7 @@
                 </g:if>
             </div>
             <div class="booking-details col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                <h6>Booking Details</h6>
+                <h6>BOOKING DETAILS</h6>
                 <div class="row">
                     <div id="table-div" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive">
                         <table class="table table-bordered" id="cartTable">

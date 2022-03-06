@@ -60,7 +60,7 @@
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${g.message(code: ticket?.sex)} </span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.routeName} </span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.coachNo}</span></td>
-                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> <UIHelper:parseDateInFormat date="${ticket?.scheduledDate}"/></span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.scheduledDate}</span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><UIHelper:parseTimeInFormat time="${ticket?.departureTime}"/> </span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.totalBookedSeat}</span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.seatBookedForDisplay.replaceAll("\\]","").replaceAll("\\[","")}</span></td>

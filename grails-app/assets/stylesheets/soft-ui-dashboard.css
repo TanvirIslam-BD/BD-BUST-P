@@ -2684,7 +2684,7 @@ progress {
   background-clip: padding-box;
   border: 1px solid #d2d6da;
   appearance: none;
-  border-radius: 0.5rem;
+  border-radius: 0.2rem;
   transition: box-shadow 0.15s ease, border-color 0.15s ease;
 }
 
@@ -3532,7 +3532,7 @@ textarea.form-control.is-invalid {
   border: 1px solid transparent;
   padding: 0.75rem 1.5rem;
   font-size: 0.75rem;
-  border-radius: 0.5rem;
+  border-radius: 0.2rem;
   transition: all 0.15s ease-in;
 }
 
@@ -3696,8 +3696,8 @@ fieldset:disabled .btn {
 
 .btn-info {
   color: #000;
-  background-color: #17c1e8;
-  border-color: #17c1e8;
+  background-color: #8bc34a;
+  border-color: #8bc34a;
 }
 
 .btn-info:hover {
@@ -4355,7 +4355,7 @@ fieldset:disabled .btn {
 .btn-group-sm>.btn {
   padding: 0.5rem 2rem;
   font-size: 0.75rem;
-  border-radius: 0.5rem;
+  border-radius: 0.2rem;
 }
 
 .fade {
@@ -5785,7 +5785,7 @@ fieldset:disabled .btn {
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
-  border-radius: 0.45rem;
+  border-radius: 0.25rem;
 }
 
 .badge:empty {
@@ -9430,7 +9430,7 @@ fieldset:disabled .btn {
 
 .py-4 {
   padding-top: 1.5rem !important;
-  padding-bottom: 1.5rem !important;
+  padding-bottom: 12.5rem !important;
 }
 
 .py-5 {
@@ -19034,8 +19034,8 @@ fieldset:disabled .btn {
 
 .btn-info:hover,
 .btn.bg-gradient-info:hover {
-  background-color: #17c1e8;
-  border-color: #17c1e8;
+  background-color: #74ae32;
+  border-color: #8bc34a;
 }
 
 .btn-info .btn.bg-outline-info,
@@ -20077,7 +20077,7 @@ label,
 }
 
 .bg-gradient-primary {
-  background-image: linear-gradient(310deg, #2152ff 0%, #21d4fd 100%);
+  background-image: linear-gradient(310deg,#141727,#3a416f);
 }
 
 .bg-gradient-secondary {
@@ -20521,7 +20521,7 @@ hr.horizontal.gray-light {
 }
 
 .z-index-sticky {
-  z-index: 1020;
+  z-index: 900;
 }
 
 .waves {
@@ -21486,7 +21486,7 @@ hr.horizontal.gray-light {
 }
 
 .sidenav[data-color="success"] .navbar-nav>.nav-item>.nav-link.active .icon {
-  background-image: linear-gradient(310deg, #17c1e8 0%, #17c1e8 100%);
+  background-image: linear-gradient(310deg,#344767,#344767);
 }
 
 .sidenav[data-color="info"] .navbar-nav>.nav-item>.nav-link.active .icon {
@@ -24999,7 +24999,7 @@ a.btn.btn-secondary.seat-ticket-book-button:hover {
   padding-left: 15px;
   padding-right: 15px;
 }
-tbody tr:hover {
+.common-list-table-view-ui tbody tr:hover {
   background: #dcefff;
 }
 
@@ -25061,5 +25061,18 @@ ul#active-chat-user-list {
 }
 
 .fixed-plugin .menu-info p {
+  font-size: 12px;
+}
+li.breadcrumb-item.text-sm.text-dark.active {
+  font-weight: 600;
+}
+
+.action-button-ticket-search-ui button {
+  height: 40px;
+}
+.booking-details  .row.reservation-form {
+  margin-top: 10px;
+}
+.action-button-ticket-search-ui :before {
   font-size: 12px;
 }

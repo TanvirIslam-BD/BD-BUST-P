@@ -73,12 +73,12 @@ class MemberController {
 
 
     def update() {
-        def response = memberService.getById(params.id)
-        if (!response){
+        Member member = memberService.getById(params.id)
+        if (!member){
             flash.message = AppUtil.infoMessage(g.message(code: "invalid.entity"), false)
             redirect(controller: "member", action: "index")
         }else{
-            response = memberService.update(response, params)
+            def response = memberService.update(member, params)
             if (!response.isSuccess){
                 flash.redirectParams = response.model
                 flash.message = AppUtil.infoMessage(g.message(code: "unable.to.update"), false)

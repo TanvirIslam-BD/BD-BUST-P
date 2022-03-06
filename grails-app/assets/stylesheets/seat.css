@@ -11,12 +11,12 @@ div.seatCharts-row { height: 35px; display: flex; justify-content: center; align
 .booking-details h3 { margin: 5px 5px 0px 0px; font-size: 14px; }
 div.seatCharts-cell { color: rgb(24, 44, 78); height: 30px; width: 40px; line-height: 30px; }
 div.seatCharts-seat { color: rgb(255, 255, 255); cursor: pointer; }
-div.seatCharts-seat.available {background-color: #3eb142;}
+div.seatCharts-seat.available {background-color: #344767;}
 .vip-seat, div.seatCharts-seat.vip-seat, div.seatCharts-seat.seatCharts-cell.available.vip, div.seatCharts-seat.seatCharts-cell.available.vip-seat { background-color: rgb(119, 88, 136) !important; }
 .available-resale, div.seatCharts-seat.available-resale, div.seatCharts-seat.seatCharts-cell.available.resale, div.seatCharts-seat.seatCharts-cell.available.available-resale { background-color: rgb(118, 87, 9); }
 div.seatCharts-seat.available.first-class { background-color: rgb(58, 120, 195); }
 div.seatCharts-seat.focused { background-color: rgb(247, 141, 6); }
-div.seatCharts-seat.selected {background-color: rgb(61 67 69);}
+div.seatCharts-seat.selected {background-color: #2196f3;}
 div.seatCharts-seat.booked { background-color: rgb(50, 205, 50); cursor: not-allowed; }
 div.seatCharts-seat.counter-book.seller-book.booked { background-color: rgb(144, 232, 144); cursor: not-allowed; }
 div.seatCharts-seat.counter-book.booked { background-color: rgb(24, 103, 24); cursor: not-allowed; }

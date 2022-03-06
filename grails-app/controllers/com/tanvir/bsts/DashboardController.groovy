@@ -5,6 +5,8 @@ class DashboardController {
     CoachService coachService
 
     def index() {
-        redirect(controller: "busTicket", action: "index")
+        def response = []
+        session.activeTab = "DASHBOARD"
+        [busTickets: response.list, total:response.count]
     }
 }

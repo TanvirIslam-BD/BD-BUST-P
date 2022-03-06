@@ -22,7 +22,7 @@ li.seatCharts-legendItem {
     /* display: grid; */
 }
 div.seatCharts-seat {
-    background-color: #1b1c1c;
+    background-color: #2196f3;
     /* color: white; */
     /* -webkit-border-radius: 5px; */
     -moz-border-radius: 5px;
@@ -45,6 +45,10 @@ p.total-paid-title.font_detail.fw-bold {
     color: #008605;
 }
 @media only screen and (max-width: 600px) {
+
+    div.seatCharts-container {
+        border-right: none !important
+    }
 
     .card-body.seat-booking-panel-with-seat-plan-design {
         display: grid;
@@ -83,15 +87,6 @@ p.total-paid-title.font_detail.fw-bold {
 
 @media only screen and (min-width: 600px) {
 
-    .seatCharts-row div:nth-child(even) {
-        /* width: 33px; */
-    }
-
-    div .seatCharts-seat {
-        /* width: 40px; */
-        /* padding: 4px; */
-    }
-
     .seatCharts-cell.seatCharts-space {
         width: 39px !important;
     }
@@ -127,17 +122,96 @@ p.total-paid-title.font_detail.fw-bold {
 }
 
 #table-div thead tr {
-    background: #607d8b0f;
-    border-top: 1px solid #dee2e6;
+    background-color: #337ab7;
+    border-color: #2e6da4;
 }
 
 #table-div table thead th {
     padding: 5px;
     font-size: 14px;
+    color: #fff;
 }
 
 
 div#seatPlanModal div.seatCharts-container {
     border-right: 1px dotted rgb(255 255 255);
     padding-left: 25%;
+}
+
+
+.input-group-addon:last-child {
+    border-left: 0;
+}
+.input-group .form-control:last-child, .input-group-addon:last-child, .input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group > .btn, .input-group-btn:last-child > .dropdown-toggle, .input-group-btn:first-child > .btn:not(:first-child), .input-group-btn:first-child > .btn-group:not(:first-child) > .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.input-group-addon {
+    padding: 10px 13px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.input-group-addon, .input-group-btn {
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.input-group-addon, .input-group-btn, .input-group .form-control {
+    display: table-cell;
+}
+
+.advance-ticket-book-ui-header {
+    box-shadow: 0 0 1px #adaaaa;
+}
+
+.action-button-ticket-search-ui {
+    padding-top: 1.5rem;
+    /* padding-right: 8%; */
+}
+.advance-ticket-book-ui-header label.control-label {
+    color: #3eb142;
+}
+
+#advance-ticket-book-ui-body .empty-state {
+    text-align: center;
+}
+
+#advance-ticket-book-ui-body {
+    justify-content: center;
+}
+
+@media only screen and (max-width: 1150px) {
+
+    form#SearchScheduleFrom.advance-ticket-book-ui-header .row {
+        display: contents;
+    }
+
+}
+.advance-ticket-book-ui-header .row {
+    padding-right: 1%;
+}
+
+span.boardingtime-title-header {
+    background: #007ab5;
+    padding: 6px;
+    padding-left: 14px;
+    padding-right: 14px;
+    border-radius: 4px;
+    display: inline-block;
+    color: #fff;
+}
+
+span.route-title-header {
+    background: #007ab5;
+    padding: 6px;
+    padding-left: 14px;
+    padding-right: 14px;
+    border-radius: 4px;
+    display: inline-block;
+    color: #fff;
 }

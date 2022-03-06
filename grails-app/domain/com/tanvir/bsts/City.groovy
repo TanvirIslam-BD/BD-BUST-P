@@ -1,8 +1,6 @@
 package com.tanvir.bsts
 
-import grails.gorm.MultiTenant
-
-class City implements MultiTenant<City> {
+class City {
 
 
     Integer id

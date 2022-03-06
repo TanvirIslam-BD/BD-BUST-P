@@ -6,7 +6,7 @@ class BusTicketTemplateController {
 
     def index() {
         def response = busTicketService.listOfTicketTemplates(params)
-        session.activeTab = "TICKET TEMPLATES"
+        session.activeTab = "TICKET SCHEDULE"
         [busTicketTemplates: response.list, total:response.count]
     }
 

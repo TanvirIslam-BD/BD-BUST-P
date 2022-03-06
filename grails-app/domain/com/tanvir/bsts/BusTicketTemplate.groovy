@@ -10,10 +10,15 @@ class BusTicketTemplate {
 
     Coach coach
 
+    String scheduleStartDateStr
+    String scheduleEndDateStr
+
     static belongsTo = [route: Route, coach: Coach]
 
     static constraints = {
         route(nullable: true)
         coach(nullable: true)
+        scheduleStartDateStr(nullable: true)
+        scheduleEndDateStr(nullable: true)
     }
 }
