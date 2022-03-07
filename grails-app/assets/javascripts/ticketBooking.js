@@ -132,12 +132,15 @@ $(document).ready(function() {
                 items : [
                     [ 'f', 'available', 'Available' ],
                     [ 'f', 'readytobook', 'Selected' ],
-                    [ 'f', 'unavailable', 'Booked'],
-                    [ 'f', 'female-booked', 'Female Booked']
+                    [ 'f', 'unavailable', 'Sold'],
+                    [ 'f', 'booked', 'Booked'],
+                    [ 'f', 'female-sold', 'Female Sold']
                 ]
             },
             click: function () {
+
                 if (this.status() == 'available') {
+                    $('#customer-phoneNumber').focus();
                     $('<li class="selected-book-seats-item"> <b>'+this.settings.label+'</b><a href="#" class="cancel-cart-item">[cancel]</a></li>')
                         .attr('id', 'cart-item-'+this.settings.id)
                         .attr('seatno', this.settings.id)
@@ -150,6 +153,7 @@ $(document).ready(function() {
                     $('.total-amount-to-paid-to-calc').val(totalPaidAmount);
                     var totalPaidableAmount = totalPaidAmount - $(".booked-seat-discount-on-total").val()
                     $totalPaidAmountInput.val(totalPaidableAmount);
+                    $totalPaidAmountInput.trigger("change");
                     $(".booked-seat-map-numbers").append('<input type="hidden" name="seatBooked" value="'+this.settings.id+'">')
                     $(".booked-seat-map-numbers").append('<input type="hidden" name="seatBookedForDisplay" value="'+ $("#"+this.settings.id).text() +'">')
 
@@ -161,9 +165,10 @@ $(document).ready(function() {
                     $total.text(recalculateTotal(sc)-this.data().price);
                     var totalPaidAmount = recalculateTotal(sc) - this.data().price
                     $('.total-amount-to-paid-to-calc').val(totalPaidAmount);
+
                     var totalPaidableAmount = totalPaidAmount - $(".booked-seat-discount-on-total").val()
                     $totalPaidAmountInput.val(totalPaidableAmount);
-
+                    $totalPaidAmountInput.trigger("change");
                     $('#cart-item-'+this.settings.id).remove();
                     $(".booked-seat-map-numbers").find('input[value="'+this.settings.id+'"]').remove();
                     $(".booked-seat-map-numbers").find('input[value="'+$("#"+this.settings.id).text()+'"]').remove();
@@ -188,13 +193,21 @@ $(document).ready(function() {
         var totalPaidAmount = $('.total-amount-to-paid-to-calc').val();
         var totalPaidableAmount = totalPaidAmount - discountInput.val()
         $totalPaidAmountInput.val(totalPaidableAmount);
+        $totalPaidAmountInput.trigger("change");
     })
 
     //let's pretend some seats have already been booked
     // sc.get($("#seat-map").attr("bookedseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").split(",")).status('unavailable');
-    sc.get($("#seat-map").attr("bookedseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('unavailable');
+    var paymentType = $("#seat-map").attr("paymenttype");
 
-    sc.get($("#seat-map").attr("femalebookedseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('female-booked');
+
+    sc.get($("#seat-map").attr("soldseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('unavailable');
+
+    sc.get($("#seat-map").attr("femalesoldseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('female-sold');
+
+    sc.get($("#seat-map").attr("bookedseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('booked');
+
+
 
     BSTS.ajax.call({
         url: BSTS.baseURL + "busTicket/bookedSeatDataList",
@@ -272,6 +285,51 @@ $(document).ready(function() {
 
 
     $("#toStoppage").trigger("change")
+
+
+    $("#totalPaidAmount").change(function () {
+        let totalAmount = $(this).val();
+        $('#receivedFromCustomer').val(totalAmount);
+        $("#DueAmount").val(0);
+        $(".book-confirm-button").addClass("disabled");
+        $(".sell-confirm").removeClass("disabled");
+
+    });
+
+
+    $("#unknownUserCheckBox").change(function () {
+        let isChecked = $(this).is(':checked');
+        if (isChecked) {
+            $('#customer-name').addClass('disabled');
+            $('#customer-gender').addClass('disabled');
+            $('#customer-phoneNumber').addClass('disabled');
+
+            $('#customer-name').val('UNKNOWN');
+            $('#customer-phoneNumber').val('01000000000');
+        } else {
+            $('#customer-name').removeClass('disabled');
+            $('#customer-gender').removeClass('disabled');
+            $('#customer-phoneNumber').val('');
+            $('#customer-name').val('');
+            $('#customer-phoneNumber').removeClass('disabled');
+        }
+    });
+
+
+    $("#ReceivedFromCustomer").change(function () {
+        var receivedAmount = parseFloat($(this).val())
+        var totalAmount = parseFloat($("#totalPaidAmount").val())
+        if (receivedAmount < totalAmount) {
+            $("#DueAmount").val(totalAmount - receivedAmount);
+            $(".book-confirm-button").removeClass("disabled");
+            $(".sell-confirm").addClass("disabled");
+        } else {
+            $("#DueAmount").val(0);
+            $(".book-confirm-button").addClass("disabled");
+            $(".sell-confirm").removeClass("disabled");
+        }
+    });
+
 
 });
 

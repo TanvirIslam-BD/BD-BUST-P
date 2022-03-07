@@ -315,3 +315,13 @@ div#search-area input.form-control {
 .advance-ticket-book-ui-header .row {
     padding-right: 1%;
 }
+.swal-footer {
+    display: flex;
+    z-index: 1;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 1.25em auto 0;
+}

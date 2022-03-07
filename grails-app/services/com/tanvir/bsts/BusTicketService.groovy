@@ -35,11 +35,24 @@ class BusTicketService {
         return femaleBookedSeats
     }
 
-    def getFemaleBookedSeatsAdvance(BusTicketTemplate busTicket, String date) {
+    def getFemaleSoldSeatsAdvance(BusTicketTemplate busTicket, String date) {
         def femaleBookedSeats = []
         if(busTicket){
             femaleBookedSeats = PurchaseTicket.findAllByBusTicketTemplateIdAndScheduledDate(busTicket.id, date).collect{
                 if(it.sex == "female"){
+                    return it
+                }
+            }
+        }
+        return femaleBookedSeats
+    }
+
+
+    def getBookedSeatsAdvance(BusTicketTemplate busTicket, String date) {
+        def femaleBookedSeats = []
+        if(busTicket){
+            femaleBookedSeats = PurchaseTicket.findAllByBusTicketTemplateIdAndScheduledDate(busTicket.id, date).collect{
+                if(it.paymentType == "book"){
                     return it
                 }
             }

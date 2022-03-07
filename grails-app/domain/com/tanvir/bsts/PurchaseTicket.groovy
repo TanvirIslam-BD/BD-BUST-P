@@ -29,6 +29,11 @@ class PurchaseTicket {
     Date dateCreated
     Date lastUpdated
 
+
+    String paymentType = "book"
+    Double receivedFromCustomer = 0.0
+    Double dueAmount = 0.0
+
     static belongsTo = [
             fromCounter: Counter,
             toCounter: Counter,

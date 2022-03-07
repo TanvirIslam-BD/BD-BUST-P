@@ -15,13 +15,14 @@ class BusTicketAdvanceController {
    def bookingPanel() {
        def response = busTicketService.getAdvancedTicket(params.id)
        def purchaseTickets = busTicketService.getPurchaseTicketsAdvance(response, params.date)
-       def femaleBookedSeats = busTicketService.getFemaleBookedSeatsAdvance(response, params.date)
+       def femaleSoldSeats = busTicketService.getFemaleSoldSeatsAdvance(response, params.date)
+       def bookedSeats = busTicketService.getBookedSeatsAdvance(response, params.date)
        def routeCounters = busTicketService.getRouteCountersAdvance(response)
        def routeCountersFrom = busTicketService.getRouteCountersFromAdvance(response)
        def routeCountersTo = busTicketService.getRouteCountersToAdvance(response)
-       [       date: params.date,
-               busTicket: response, routeCountersFrom: routeCountersFrom,routeCountersTo: routeCountersTo,
-               purchaseTickets: purchaseTickets, femaleBookedSeats: femaleBookedSeats, routeCounters: routeCounters
+       [       date: params.date, bookedSeats :bookedSeats, busTicket: response,
+               routeCountersFrom: routeCountersFrom, routeCountersTo: routeCountersTo,
+               purchaseTickets: purchaseTickets, femaleSoldSeats: femaleSoldSeats, routeCounters: routeCounters
        ]
     }
 

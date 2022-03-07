@@ -12,9 +12,13 @@
         <g:if test="${busTicket?.coach?.seatMap}">
             <div class="row" id="seat-design">
                 <div ticketid="${busTicket?.id}" id="seat-map" class="seat-panel seatCharts-container"
-                     femalebookedseats="${femaleBookedSeats?.seatBooked?.toString()}" extraseatinlastrow="${busTicket?.coach?.seatMap?.extraSeatInLastRow}"
-                     bookedseats="${purchaseTickets?.seatBooked?.toString()}" price="${100}"
-                     rows="${busTicket?.coach?.seatMap?.seatRows}" columns="${busTicket?.coach?.seatMap?.seatColumns}">
+                     femalesoldseats="${femaleSoldSeats?.seatBooked?.toString()}"
+                     extraseatinlastrow="${busTicket?.coach?.seatMap?.extraSeatInLastRow}"
+                     soldseats="${purchaseTickets?.seatBooked?.toString()}"
+                     bookedseats="${bookedSeats?.seatBooked?.toString()}"
+                     price="${100}"
+                     rows="${busTicket?.coach?.seatMap?.seatRows}"
+                     columns="${busTicket?.coach?.seatMap?.seatColumns}">
 
                 </div>
             </div>
@@ -76,19 +80,31 @@
                             </g:each>
                         </select>
                     </div>
+
+
                     <div class="form-group col-md-4">
                         <label class="required">Passenger Mobile</label>
-                        <input name="mobile" type="text" class="form-control font_detail" aria-label="Passenger Mobile">
+                        <input id="customer-phoneNumber" name="mobile" type="text" class="form-control font_detail" aria-label="Passenger Mobile">
                     </div>
+
                 </div>
                 <div class="form-row">
+
                     <div class="form-group col-md-4">
                         <label class="required">Name</label>
-                        <input name="name" class="form-control form_width font_detail" type="text">
+                        <div class="input-group" id="user-group">
+                            <input id="customer-name" name="name" class="form-control form_width font_detail" type="text">
+                            <span class="input-group-addon">
+                                <label style="cursor: pointer">
+                                    <input type="checkbox" id="unknownUserCheckBox">
+                                    UNKNOWN
+                                </label>
+                            </span>
+                        </div>
                     </div>
                     <div class="form-group col-md-4">
                         <label class="required">Gender</label>
-                        <UIHelper:gender value="${busTicket}"/>
+                        <UIHelper:gender id="customer-gender" value="${busTicket}"/>
                     </div>
                     <div class="form-group col-md-4">
                         <label >Discount</label>
@@ -98,25 +114,25 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label >Total Paid</label>
-                        <input name="totalPaid" class="total-paid-amount form-control form_width fw-bold font_detail" style="pointer-events: none;
+                        <input name="totalPaid" id="totalPaidAmount" class="total-paid-amount form-control form_width fw-bold font_detail" style="pointer-events: none;
                         background-color: #E9ECEF;" type="number">
                     </div>
                     <div class="form-group col-md-3">
                         <label class="control-required" for="ReceivedFromCustomer">Received</label>
-                        <input class="form-control input-sm text-box single-line" data-val="true" data-val-number="The field Received must be a number." data-val-required="The Received field is required." id="ReceivedFromCustomer" name="ReceivedFromCustomer" onkeypress="onlyNonNegativeNumeric(event)" type="text" value="0.00">
+                        <input class="form-control input-sm text-box single-line" data-val="true" data-val-number="The field Received must be a number." data-val-required="The Received field is required." id="ReceivedFromCustomer" name="receivedFromCustomer" onkeypress="onlyNonNegativeNumeric(event)" type="text" value="0.00">
                     </div>
                     <div class="form-group col-md-3">
                         <label class="control-required" for="DueAmount">Due</label>
-                        <input class="form-control input-sm text-box single-line valid" data-val="true" data-val-number="The field Due must be a number." data-val-required="The Due field is required." id="DueAmount" name="DueAmount" onkeypress="onlyNonNegativeNumeric(event)" readonly="true" tabindex="-1" type="text" value="0.00" aria-describedby="DueAmount-error" aria-invalid="false">
+                        <input class="form-control input-sm text-box single-line valid" data-val="true" data-val-number="The field Due must be a number." data-val-required="The Due field is required." id="DueAmount" name="dueAmount" onkeypress="onlyNonNegativeNumeric(event)" readonly="true" tabindex="-1" type="text" value="0.00" aria-describedby="DueAmount-error" aria-invalid="false">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="btn-group-wrap">
                         <div class="btn-group">
-                            <button type="button"  class="btn btn-primary book-confirm-button">Book</button>
+                            <button type="button"  class="disabled btn btn-primary book-confirm-button">Book</button>
                         </div>
                         <div class="btn-group">
-                            <button type="button"  class="btn btn-primary sell-confirm">Sell</button>
+                            <button type="button"  class="disabled btn btn-primary sell-confirm">Sell</button>
                         </div>
                     </div>
                 </div>
@@ -137,8 +153,8 @@
 <script>
 
     $('.book-confirm-button').on('click',function(e) {
-        console.log("book-confirm-button");
         var formData = serializeObject($('#ticketForm'))
+        formData.paymentType =  "book"
         $.ajax({
             url: 'busTicketAdvance/saveBookingTicket',
             method: 'GET',
@@ -148,9 +164,44 @@
             success: function (data) {
                 var bookingPanel = data;
                 $("#advance-ticket-book-ui-body").html(bookingPanel);
+                swal({
+                    html: true,
+                    content: {
+                        element: 'p',
+                        attributes: {
+                            innerHTML: `<div class="swal2-html-container" style="display: block;">Ticket has booked successfully!!!</div>`
+                        }
+                    },
+                    icon:"success"
+                });
             }
         });
+    });
 
+    $('.sell-confirm').on('click',function(e) {
+        var formData = serializeObject($('#ticketForm'))
+        formData.paymentType =  "sell"
+        $.ajax({
+            url: 'busTicketAdvance/saveBookingTicket',
+            method: 'GET',
+            dataType: 'html',
+            async: false,
+            data: formData,
+            success: function (data) {
+                var bookingPanel = data;
+                $("#advance-ticket-book-ui-body").html(bookingPanel);
+                swal({
+                    html: true,
+                    content: {
+                        element: 'p',
+                        attributes: {
+                            innerHTML: `<div class="swal2-html-container" style="display: block;">Ticket has sold successfully!!!</div>`
+                        }
+                    },
+                    icon:"success"
+                });
+            }
+        });
     });
 
 

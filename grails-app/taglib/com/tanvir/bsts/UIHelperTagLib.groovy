@@ -125,10 +125,11 @@ class UIHelperTagLib {
     def gender = { attrs, body ->
         String name = attrs.name ?: "sex"
         String value = attrs.value ?: ""
+        String id = attrs.id ?: "customer-gender"
         def select = [:]
         select.male = "Male"
         select.female = "Female"
-        out << g.select(from: select, name: name, optionKey: "key", optionValue: "value", value: value, class:"form-control")
+        out << g.select(from: select, name: name, optionKey: "key", optionValue: "value", value: value, class:"form-control", id: id)
     }
 
 
