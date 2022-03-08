@@ -325,3 +325,13 @@ div#search-area input.form-control {
     width: 100%;
     margin: 1.25em auto 0;
 }
+span#ticket-date-schedule {
+    padding-left: 10px;
+}
+span.boardingtime-title-header {
+    margin-left: 1px;
+}
+.card-header.booking-details-daily-trip {
+    justify-content: center;
+    display: flex;
+}

@@ -119,7 +119,7 @@
                     </div>
                     <div class="form-group col-md-3">
                         <label class="control-required" for="ReceivedFromCustomer">Received</label>
-                        <input class="form-control input-sm text-box single-line" data-val="true" data-val-number="The field Received must be a number." data-val-required="The Received field is required." id="ReceivedFromCustomer" name="receivedFromCustomer" onkeypress="onlyNonNegativeNumeric(event)" type="text" value="0.00">
+                        <input class="form-control input-sm text-box single-line" data-val="true" data-val-number="The field Received must be a number." data-val-required="The Received field is required." id="receivedFromCustomer" name="receivedFromCustomer" onkeypress="onlyNonNegativeNumeric(event)" type="text" value="0.00">
                     </div>
                     <div class="form-group col-md-3">
                         <label class="control-required" for="DueAmount">Due</label>
@@ -204,7 +204,6 @@
         });
     });
 
-
     function serializeObject(form) {
         var o = {}
         var a = (form.is("form") ? form : form.find(":input")).serializeArray()
@@ -220,6 +219,5 @@
         })
         return o
     }
-
 
 </script>

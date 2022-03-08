@@ -138,7 +138,6 @@ $(document).ready(function() {
                 ]
             },
             click: function () {
-
                 if (this.status() == 'available') {
                     $('#customer-phoneNumber').focus();
                     $('<li class="selected-book-seats-item"> <b>'+this.settings.label+'</b><a href="#" class="cancel-cart-item">[cancel]</a></li>')
@@ -147,22 +146,21 @@ $(document).ready(function() {
                         .data('seatId', this.settings.id)
                         .appendTo($cart);
 
-                    $counter.text(sc.find('selected').length+1);
-                    $total.text(recalculateTotal(sc)+this.data().price + " TK");
-                    var totalPaidAmount = recalculateTotal(sc)+this.data().price
+                    $counter.text(sc.find('selected').length + 1);
+                    $total.text(recalculateTotal(sc) + this.data().price + " TK");
+                    var totalPaidAmount = recalculateTotal(sc) + this.data().price
                     $('.total-amount-to-paid-to-calc').val(totalPaidAmount);
                     var totalPaidableAmount = totalPaidAmount - $(".booked-seat-discount-on-total").val()
                     $totalPaidAmountInput.val(totalPaidableAmount);
                     $totalPaidAmountInput.trigger("change");
                     $(".booked-seat-map-numbers").append('<input type="hidden" name="seatBooked" value="'+this.settings.id+'">')
                     $(".booked-seat-map-numbers").append('<input type="hidden" name="seatBookedForDisplay" value="'+ $("#"+this.settings.id).text() +'">')
-
                     return 'selected';
+
                 } else if (this.status() == 'selected') {
 
                     $counter.text(sc.find('selected').length-1);
-
-                    $total.text(recalculateTotal(sc)-this.data().price);
+                    $total.text(recalculateTotal(sc) - this.data().price);
                     var totalPaidAmount = recalculateTotal(sc) - this.data().price
                     $('.total-amount-to-paid-to-calc').val(totalPaidAmount);
 
@@ -170,11 +168,12 @@ $(document).ready(function() {
                     $totalPaidAmountInput.val(totalPaidableAmount);
                     $totalPaidAmountInput.trigger("change");
                     $('#cart-item-'+this.settings.id).remove();
+
                     $(".booked-seat-map-numbers").find('input[value="'+this.settings.id+'"]').remove();
                     $(".booked-seat-map-numbers").find('input[value="'+$("#"+this.settings.id).text()+'"]').remove();
                     return 'available';
-                } else if (this.status() == 'unavailable') {
 
+                } else if (this.status() == 'unavailable') {
                     return 'unavailable';
                 } else {
                     return this.style();
@@ -196,17 +195,12 @@ $(document).ready(function() {
         $totalPaidAmountInput.trigger("change");
     })
 
-    //let's pretend some seats have already been booked
-    // sc.get($("#seat-map").attr("bookedseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").split(",")).status('unavailable');
-    var paymentType = $("#seat-map").attr("paymenttype");
-
 
     sc.get($("#seat-map").attr("soldseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('unavailable');
 
     sc.get($("#seat-map").attr("femalesoldseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('female-sold');
 
     sc.get($("#seat-map").attr("bookedseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('booked');
-
 
 
     BSTS.ajax.call({
@@ -268,7 +262,6 @@ $(document).ready(function() {
     });
 
 
-
     $(".fromToStoppage").on('change', function (e) {
 
         $(".card-body.seat-booking-panel-with-seat-plan-design").append(" <div class=\"overlay show\">\n" +
@@ -296,7 +289,6 @@ $(document).ready(function() {
 
     });
 
-
     $("#unknownUserCheckBox").change(function () {
         let isChecked = $(this).is(':checked');
         if (isChecked) {
@@ -315,8 +307,7 @@ $(document).ready(function() {
         }
     });
 
-
-    $("#ReceivedFromCustomer").change(function () {
+    $("#receivedFromCustomer").change(function () {
         var receivedAmount = parseFloat($(this).val())
         var totalAmount = parseFloat($("#totalPaidAmount").val())
         if (receivedAmount < totalAmount) {
@@ -329,7 +320,6 @@ $(document).ready(function() {
             $(".sell-confirm").removeClass("disabled");
         }
     });
-
 
 });
 
@@ -360,7 +350,6 @@ function changeStoppage(routeId, from, to, busSeatMap, rowsCharacters) {
     });
 
 }
-
 
 function renderTemplate(templateName, templateData, templateDir = "/Templates/Shared") {
     if (!renderTemplate.template_cache) {
@@ -419,7 +408,6 @@ function previewPopover(options) {
         })
     }
 };
-
 
 function recalculateTotal(sc) {
     var total = 0;

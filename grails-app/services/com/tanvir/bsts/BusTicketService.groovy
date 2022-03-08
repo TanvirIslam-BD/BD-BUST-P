@@ -342,7 +342,7 @@ class BusTicketService {
 
     def list(GrailsParameterMap params) {
         params.max = params.max ?: GlobalConfig.itemsPerPage()
-        List<BusTicket> busTicketList = BusTicket.createCriteria().list(params) {
+        List<BusTicketTemplate> busTicketList = BusTicketTemplate.createCriteria().list(params) {
             if (params?.colName && params?.colValue) {
                 like(params.colName, "%" + params.colValue + "%")
             }

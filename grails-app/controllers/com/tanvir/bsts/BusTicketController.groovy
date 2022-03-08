@@ -1,6 +1,10 @@
 package com.tanvir.bsts
 
 import grails.converters.JSON
+import grails.databinding.SimpleDataBinder
+
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 
 class BusTicketController {
 
@@ -8,22 +12,27 @@ class BusTicketController {
 
     def index() {
         def response = busTicketService.list(params)
+        Date date = Calendar.getInstance().getTime()
+        DateFormat dateFormat = new SimpleDateFormat("MMM dd, YYYY")
+        String currentDate =  dateFormat.format(date)
         session.activeTab = "DAILY TRIP"
-        [busTickets: response.list, total:response.count]
+        [currentDate: currentDate, busTickets: response.list, total:response.count]
     }
 
     def details() {
-        def response = busTicketService.get(params.id)
-        def femaleBookedSeats = busTicketService.getFemaleBookedSeats(response)
-        def routeCounters = busTicketService.getRouteCounters(response)
-        def routeCountersFrom = busTicketService.getRouteCountersFrom(response)
-        def routeCountersTo = busTicketService.getRouteCountersTo(response)
+        def response = busTicketService.getAdvancedTicket(params.id)
+        def purchaseTickets = busTicketService.getPurchaseTicketsAdvance(response, params.date)
+        def femaleSoldSeats = busTicketService.getFemaleSoldSeatsAdvance(response, params.date)
+        def bookedSeats = busTicketService.getBookedSeatsAdvance(response, params.date)
+        def routeCounters = busTicketService.getRouteCountersAdvance(response)
+        def routeCountersFrom = busTicketService.getRouteCountersFromAdvance(response)
+        def routeCountersTo = busTicketService.getRouteCountersToAdvance(response)
         if (!response){
             redirect(controller: "busTicket", action: "index")
         }else{
-            [
-             busTicket: response,routeCountersFrom: routeCountersFrom,routeCountersTo: routeCountersTo,
-             femaleBookedSeats: femaleBookedSeats, routeCounters: routeCounters
+            [       date: params.date, bookedSeats :bookedSeats, busTicket: response,
+                    routeCountersFrom: routeCountersFrom, routeCountersTo: routeCountersTo,
+                    purchaseTickets: purchaseTickets, femaleSoldSeats: femaleSoldSeats, routeCounters: routeCounters
             ]
         }
     }

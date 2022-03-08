@@ -65,7 +65,6 @@
         </div>
         <div id="advance-ticket-book-ui-body" class="card-body seat-booking-panel-with-seat-plan-design seat-container advance-ticket-book-ui-body">
 
-%{--            <g:include controller="busTicketAdvance" action="bookingPanel" params="${[id: 4]}"/>--}%
 
         </div>
     </div>

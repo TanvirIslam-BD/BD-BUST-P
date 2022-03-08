@@ -26,9 +26,6 @@
                     </div>
 
                     <div class="form-group">
-                        <g:if test="${UIHelper.memberType() == GlobalConfig.USER_TYPE.ADMINISTRATOR}">
-                            <g:link controller="busTicket" action="generateTickets" class="btn bg-gradient-warning btn-sm pull-end">Generate Tickets</g:link>
-                        </g:if>
                         <g:link controller="busTicket" action="index" class="btn bg-gradient-info btn-sm pull-end"><g:message code="reload"/></g:link>
                     </div>
 
@@ -56,7 +53,7 @@
                     <g:if test="${busTickets}">
                         <g:each in="${busTickets}" var="ticket">
                             <tr>
-                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><span class="time-ticket-badge"><UIHelper:parseTimeInFormat time="${ticket?.boardingTime}"/></span> <UIHelper:parseDateInFormat date="${ticket?.boardingDate}"/></span></td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><span class="time-ticket-badge"><UIHelper:parseTimeInFormat time="${ticket?.boardingTime}"/></span><span id="ticket-date-schedule">${currentDate}</span> </span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.coach?.coachNumber} </span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.route?.name} </span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.route?.fromStoppage?.name} </span></td>
@@ -67,12 +64,8 @@
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> <UIHelper:getAvailableSeatsCount ticketId="${ticket?.id}"/> </span></td>
                                 <td>
                                     <div class="btn-group">
-                                        <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Book Seat" controller="busTicket" action="details" class="btn btn-secondary seat-ticket-book-button" id="${ticket.id}"><i class="fa fa-ticket"></i></g:link>
+                                        <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Book Seat" controller="busTicket" action="details" class="btn btn-secondary seat-ticket-book-button" id="?id=${ticket.id}&date=${currentDate}" date="${currentDate}"><i class="fa fa-ticket"></i></g:link>
                                     </div>
-                                    %{--                            <div class="btn-group">--}%
-                                    %{--                                <g:link controller="busTicket" action="edit" class="btn btn-secondary" id="${ticket.id}"><i class="fas fa-edit"></i></g:link>--}%
-                                    %{--                                <g:link controller="busTicket" action="delete" id="${ticket.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>--}%
-                                    %{--                            </div>--}%
                                 </td>
                             </tr>
                         </g:each>
@@ -89,5 +82,3 @@
         </div>
     </div>
 </div>
-
-

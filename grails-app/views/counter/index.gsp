@@ -57,7 +57,7 @@
                                 <td class="text-center text-sm"><span class="text-xs font-weight-bold">${counter?.sequence} </span></td>
                                 <td class="text-center text-sm"><span class="text-xs font-weight-bold">${counter?.name}</span></td>
                                 <td class="text-center text-sm"><span class="text-xs font-weight-bold">${counter?.code}</span></td>
-                                <td class="text-center text-sm"><span class="text-xs font-weight-bold">${counter?.city.name}</span></td>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold">${counter?.city ? counter?.city?.name : "Unknown"}</span></td>
                                 <td class="text-center text-sm"><span class="text-xs font-weight-bold">${GlobalConfig.COUNTER_TYPE[counter?.type]}</span></td>
                                 <td class="text-center text-sm"><span class="badge badge-sm  ${(counter?.status == "ACTIVE") ?  "bg-gradient-success" :  "bg-gradient-secondary"}">${counter?.status}</span></td>
                                 <td class="text-center">
