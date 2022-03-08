@@ -30,9 +30,11 @@ class BusTicketController {
         if (!response){
             redirect(controller: "busTicket", action: "index")
         }else{
-            [       date: params.date, bookedSeats :bookedSeats, busTicket: response,
+            [
+                    date: params.date, bookedSeats :bookedSeats, busTicket: response,
                     routeCountersFrom: routeCountersFrom, routeCountersTo: routeCountersTo,
                     purchaseTickets: purchaseTickets, femaleSoldSeats: femaleSoldSeats, routeCounters: routeCounters
+
             ]
         }
     }
@@ -43,8 +45,8 @@ class BusTicketController {
     }
 
     def bookedSeatDataList() {
-        BusTicket busTicket = busTicketService.get(params.id)
-        def response = busTicketService.getBookedSeatsData(busTicket)
+        BusTicketTemplate busTicket = busTicketService.get(params.id)
+        def response = busTicketService.getBookedSeatsData(busTicket, params.date)
         render([bookedSeatDataList: response] as JSON)
     }
 

@@ -2,6 +2,7 @@ var firstSeatLabel = 1;
 $(document).ready(function() {
     var seatMap = $('#seat-map');
     var ticketId = seatMap.attr("ticketid");
+    var date = seatMap.attr("date");
     var rows = parseInt(seatMap.attr("rows"));
     var columns = parseInt(seatMap.attr("columns"));
     var price = parseFloat(seatMap.attr("price"));
@@ -205,11 +206,16 @@ $(document).ready(function() {
 
     BSTS.ajax.call({
         url: BSTS.baseURL + "busTicket/bookedSeatDataList",
-        data: {id: ticketId},
+        data: {id: ticketId, date: date},
         success: function (resp) {
+
+            console.log("bookedSeatDataList")
+
             var reservedTickets = resp.bookedSeatDataList
             $.each(reservedTickets,function() {
+
                 var ticket = this
+
                 var seatNo =  ticket.seatNo;
                 var seatDiv = $(`#${seatNo}`)
                 var seatName = seatDiv.text()
@@ -257,6 +263,7 @@ $(document).ready(function() {
                     container:"body",
                     placement: "auto",
                 });
+
             });
         }
     });
@@ -276,9 +283,7 @@ $(document).ready(function() {
         changeStoppage(routeId, from, to, sc, rowsCharacters);
     })
 
-
     $("#toStoppage").trigger("change")
-
 
     $("#totalPaidAmount").change(function () {
         let totalAmount = $(this).val();

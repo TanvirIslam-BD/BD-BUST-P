@@ -16,7 +16,7 @@ class BusTicketService {
     com.tanvir.bsts.UIHelperTagLib uiHelperTagLib
 
     def get(Serializable id) {
-        return BusTicket.get(id)
+        return BusTicketTemplate.get(id)
     }
 
     def getAdvancedTicket(Serializable id) {
@@ -78,10 +78,10 @@ class BusTicketService {
         return bookedSeats
     }
 
-    def getBookedSeatsData(BusTicket busTicket) {
+    def getBookedSeatsData(BusTicketTemplate busTicket, def date) {
         def bookedSeatsData = [:]
         if(busTicket){
-             busTicket.purchaseTickets.each{ticket ->
+            PurchaseTicket.findAllByBusTicketTemplateIdAndScheduledDate(busTicket.id, date).each{ticket ->
                def seatList = ticket.seatBooked.replaceAll("\\[","").replaceAll("\\]","").replaceAll(" ","").split(",")
                  seatList.each {seat ->
                      bookedSeatsData[seat] = [

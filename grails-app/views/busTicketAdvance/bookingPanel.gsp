@@ -1,5 +1,7 @@
 <%@ page import="com.tanvir.bsts.Counter" %>
 
+
+<asset:javascript src="jquery.seat-charts.js"/>
 <asset:javascript src="ticketBooking.js"/>
 
 <g:if test="${busTicket}">
@@ -17,6 +19,7 @@
                      soldseats="${purchaseTickets?.seatBooked?.toString()}"
                      bookedseats="${bookedSeats?.seatBooked?.toString()}"
                      price="${100}"
+                     date="${date}"
                      rows="${busTicket?.coach?.seatMap?.seatRows}"
                      columns="${busTicket?.coach?.seatMap?.seatColumns}">
 
@@ -117,16 +120,16 @@
                         <input name="totalPaid" id="totalPaidAmount" class="total-paid-amount form-control form_width fw-bold font_detail" style="pointer-events: none;
                         background-color: #E9ECEF;" type="number">
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                         <label class="control-required" for="ReceivedFromCustomer">Received</label>
                         <input class="form-control input-sm text-box single-line" data-val="true" data-val-number="The field Received must be a number." data-val-required="The Received field is required." id="receivedFromCustomer" name="receivedFromCustomer" onkeypress="onlyNonNegativeNumeric(event)" type="text" value="0.00">
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                         <label class="control-required" for="DueAmount">Due</label>
                         <input class="form-control input-sm text-box single-line valid" data-val="true" data-val-number="The field Due must be a number." data-val-required="The Due field is required." id="DueAmount" name="dueAmount" onkeypress="onlyNonNegativeNumeric(event)" readonly="true" tabindex="-1" type="text" value="0.00" aria-describedby="DueAmount-error" aria-invalid="false">
                     </div>
                 </div>
-                <div class="form-row">
+                <div class="form-row book-sell-button-row">
                     <div class="btn-group-wrap">
                         <div class="btn-group">
                             <button type="button"  class="disabled btn btn-primary book-confirm-button">Book</button>
@@ -138,12 +141,10 @@
                 </div>
             </form>
         </div>
-        <div class="row">
+        <div class="row booking-legend-row">
             <div id="legend" style="padding: 15px 0 0 80px; pointer-events: none;" class="seatCharts-legend"></div>
         </div>
     </div>
-
-    <asset:javascript src="jquery.seat-charts.js"/>
 </g:if>
 
 <g:else>
@@ -156,7 +157,7 @@
         var formData = serializeObject($('#ticketForm'))
         formData.paymentType =  "book"
         $.ajax({
-            url: 'busTicketAdvance/saveBookingTicket',
+            url: BSTS.baseURL + 'busTicketAdvance/saveBookingTicket',
             method: 'GET',
             dataType: 'html',
             async: false,
@@ -169,7 +170,7 @@
                     content: {
                         element: 'p',
                         attributes: {
-                            innerHTML: `<div class="swal2-html-container" style="display: block;">Ticket has booked successfully!!!</div>`
+                            innerHTML: `<div class="swal2-html-container" style="display: block;">Ticket has been booked successfully!!!</div>`
                         }
                     },
                     icon:"success"
@@ -182,7 +183,7 @@
         var formData = serializeObject($('#ticketForm'))
         formData.paymentType =  "sell"
         $.ajax({
-            url: 'busTicketAdvance/saveBookingTicket',
+            url: BSTS.baseURL + 'busTicketAdvance/saveBookingTicket',
             method: 'GET',
             dataType: 'html',
             async: false,
@@ -195,7 +196,7 @@
                     content: {
                         element: 'p',
                         attributes: {
-                            innerHTML: `<div class="swal2-html-container" style="display: block;">Ticket has sold successfully!!!</div>`
+                            innerHTML: `<div class="swal2-html-container" style="display: block;">Ticket has been sold successfully!!!</div>`
                         }
                     },
                     icon:"success"

@@ -171,8 +171,8 @@ class UIHelperTagLib {
     def getBookedSeatsCount = { attrs, body ->
         def ticketId = attrs.ticketId ?: ""
         if(ticketId){
-            BusTicket busTicket = BusTicket.get(ticketId)
-            def bookedCount = busTicket.purchaseTickets.sum {it.totalBookedSeat}
+            BusTicketTemplate busTicket = BusTicketTemplate.get(ticketId)
+            def bookedCount = PurchaseTicket.findAllByBusTicketTemplateId(busTicket.id).sum {it.totalBookedSeat}
             if(bookedCount){
                 out << bookedCount
             }else {
@@ -184,9 +184,9 @@ class UIHelperTagLib {
     def getAvailableSeatsCount = { attrs, body ->
         def ticketId = attrs.ticketId ?: ""
         if(ticketId){
-            BusTicket busTicket = BusTicket.get(ticketId)
+            BusTicketTemplate busTicket = BusTicketTemplate.get(ticketId)
             def totalSeat = busTicket.coach.seatCapacity
-            def bookedCount = busTicket.purchaseTickets.sum {it.totalBookedSeat}
+            def bookedCount =  PurchaseTicket.findAllByBusTicketTemplateId(busTicket.id).sum {it.totalBookedSeat}
             if(bookedCount){
                 out << totalSeat - bookedCount
             }else {

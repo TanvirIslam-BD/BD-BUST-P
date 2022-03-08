@@ -18,8 +18,10 @@ ul.seatCharts-legendList {
 }
 
 li.seatCharts-legendItem {
-    margin-left: 29px;
-    /* display: grid; */
+    margin-left: 33px;
+    display: grid;
+    text-align: center;
+    justify-content: center;
 }
 div.seatCharts-seat {
     background-color: #2196f3;
@@ -197,7 +199,7 @@ div#seatPlanModal div.seatCharts-container {
 }
 
 span.boardingtime-title-header {
-    background: #007ab5;
+    background: #5ed694;
     padding: 6px;
     padding-left: 14px;
     padding-right: 14px;
@@ -207,11 +209,23 @@ span.boardingtime-title-header {
 }
 
 span.route-title-header {
-    background: #007ab5;
+    background: #74b3de;
     padding: 6px;
     padding-left: 14px;
     padding-right: 14px;
     border-radius: 4px;
     display: inline-block;
     color: #fff;
+}
+.form-row.book-sell-button-row {
+    display: flex;
+    justify-content: center;
+}
+.row.booking-legend-row {
+    justify-content: center;
+}
+
+.row.booking-legend-row div#legend {
+    display: flex;
+    justify-content: center;
 }
