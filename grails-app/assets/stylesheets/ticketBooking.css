@@ -229,3 +229,7 @@ span.route-title-header {
     display: flex;
     justify-content: center;
 }
+button.ticket-render-button-popover.btn.btn-primary.btn-sm {
+    height: 31px;
+    margin-bottom: 0;
+}

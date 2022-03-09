@@ -217,6 +217,7 @@ $(document).ready(function() {
                 var ticket = this
 
                 var seatNo =  ticket.seatNo;
+                var ticketNo =  ticket.ticketNo;
                 var seatDiv = $(`#${seatNo}`)
                 var seatName = seatDiv.text()
                 var name = ticket.passengerName;
@@ -254,6 +255,11 @@ $(document).ready(function() {
                         '<td class="poup-td">Sale By</td>' +
                         '<td class="poup-td">'+ saleby +'</td>' +
                         '</tr>' +
+                        '<tr>' +
+                        '<td class="poup-td">Ticket No</td>' +
+                        '<td class="poup-td"><button onclick="renderTicketDetails('+ ticketNo +')" ticketno="'+ticketNo+'" type="button" ' +
+                        'class="ticket-render-button-popover btn btn-primary btn-sm">#'+ ticketNo +'</button></td>' +
+                        '</tr>' +
                         '</tbody>' +
                         '</table>' +
                         '</div>' +
@@ -267,6 +273,7 @@ $(document).ready(function() {
             });
         }
     });
+
 
 
     $(".fromToStoppage").on('change', function (e) {
@@ -413,6 +420,10 @@ function previewPopover(options) {
         })
     }
 };
+
+function renderTicketDetails(ticketNo){
+    console.log("render Ticket No:" + ticketNo);
+}
 
 function recalculateTotal(sc) {
     var total = 0;

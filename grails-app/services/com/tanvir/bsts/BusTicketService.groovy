@@ -86,6 +86,7 @@ class BusTicketService {
                  seatList.each {seat ->
                      bookedSeatsData[seat] = [
                              seatNo: seat,
+                             ticketNo: ticket.id,
                              passengerName: ticket.name,
                              mobile: ticket.mobile,
                              pickFrom: ticket.fromCounter.name,
