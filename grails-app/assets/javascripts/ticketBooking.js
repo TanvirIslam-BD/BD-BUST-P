@@ -182,7 +182,6 @@ $(document).ready(function() {
             }
         });
 
-
     $('#selected-seats').on('click', '.cancel-cart-item', function () {
         //let's just trigger Click event on the appropriate seat, so we don't have to repeat the logic here
         sc.get($(this).parents('li:first').data('seatId')).click();
@@ -196,19 +195,35 @@ $(document).ready(function() {
         $totalPaidAmountInput.trigger("change");
     })
 
+    var seatMap = $("#seat-map");
 
-    sc.get($("#seat-map").attr("soldseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('unavailable');
+    sc.get(seatMap.attr("soldseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('unavailable');
 
-    sc.get($("#seat-map").attr("femalesoldseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('female-sold');
+    sc.get(seatMap.attr("femalesoldseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('female-sold');
 
-    sc.get($("#seat-map").attr("bookedseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('booked');
+    sc.get(seatMap.attr("bookedseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('booked');
+
+    var selectedSeats = seatMap.attr("selectedseats");
+
+    if(selectedSeats){
+        sc.get(selectedSeats.replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('selected');
+        sc.find('selected').each(function (seatId) {
+
+            $('<li class="selected-book-seats-item"> <b>'+this.settings.label+'</b><a href="#" class="cancel-cart-item">[cancel]</a></li>')
+                .attr('id', 'cart-item-'+this.settings.id)
+                .attr('seatno', this.settings.id)
+                .data('seatId', this.settings.id)
+                .appendTo($cart);
+
+
+        });
+    }
 
 
     BSTS.ajax.call({
         url: BSTS.baseURL + "busTicket/bookedSeatDataList",
         data: {id: ticketId, date: date},
         success: function (resp) {
-
             console.log("bookedSeatDataList")
 
             var reservedTickets = resp.bookedSeatDataList
@@ -273,8 +288,6 @@ $(document).ready(function() {
             });
         }
     });
-
-
 
     $(".fromToStoppage").on('change', function (e) {
 
@@ -423,6 +436,17 @@ function previewPopover(options) {
 
 function renderTicketDetails(ticketNo){
     console.log("render Ticket No:" + ticketNo);
+    $.ajax({
+        url: 'busTicketAdvance/bookingPanel',
+        method: 'GET',
+        dataType: 'html',
+        async: false,
+        data:{id: $('#ScheduleId').val(), date: $("#dtp_Date [name=Date]").val(), ticketNo: ticketNo},
+        success: function (data) {
+            var bookingPanel = data;
+            $("#advance-ticket-book-ui-body").html(bookingPanel);
+        }
+    });
 }
 
 function recalculateTotal(sc) {

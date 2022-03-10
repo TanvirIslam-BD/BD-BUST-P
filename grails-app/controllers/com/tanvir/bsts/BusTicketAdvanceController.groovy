@@ -20,7 +20,8 @@ class BusTicketAdvanceController {
        def routeCounters = busTicketService.getRouteCountersAdvance(response)
        def routeCountersFrom = busTicketService.getRouteCountersFromAdvance(response)
        def routeCountersTo = busTicketService.getRouteCountersToAdvance(response)
-       [       date: params.date, bookedSeats :bookedSeats, busTicket: response,
+       def selectedSeat = busTicketService.getTicketSeat(params.ticketNo)
+       [       date: params.date, bookedSeats: bookedSeats, busTicket: response, selectedSeat: selectedSeat,
                routeCountersFrom: routeCountersFrom, routeCountersTo: routeCountersTo,
                purchaseTickets: purchaseTickets, femaleSoldSeats: femaleSoldSeats, routeCounters: routeCounters
        ]

@@ -14,6 +14,7 @@
         <g:if test="${busTicket?.coach?.seatMap}">
             <div class="row" id="seat-design">
                 <div ticketid="${busTicket?.id}" id="seat-map" class="seat-panel seatCharts-container"
+                     selectedseats="${selectedSeat?.seatBooked}"
                      femalesoldseats="${femaleSoldSeats?.seatBooked?.toString()}"
                      extraseatinlastrow="${busTicket?.coach?.seatMap?.extraSeatInLastRow}"
                      soldseats="${purchaseTickets?.seatBooked?.toString()}"
@@ -68,7 +69,7 @@
                         <select id="fromStoppage"  name="fromCounter" class="form-control fromToStoppage input-sm valid">
                             <g:each in="${routeCountersFrom}" status="i" var="counter">
                                 <g:if test="${counter}">
-                                    <option value="${counter?.id}">${counter?.name}</option>
+                                    <option ${selectedSeat?.fromCounter?.id == counter?.id ? "selected" : ""}  value="${counter?.id}">${counter?.name}</option>
                                 </g:if>
                             </g:each>
                         </select>
@@ -78,16 +79,15 @@
                         <select id="toStoppage" name="toCounter" class="form-control fromToStoppage input-sm valid">
                             <g:each in="${routeCountersTo}" status="i" var="counter">
                                 <g:if test="${counter}">
-                                    <option value="${counter?.id}">${counter?.name}</option>
+                                    <option ${selectedSeat?.toCounter?.id == counter?.id ? "selected" : ""} value="${counter?.id}">${counter?.name}</option>
                                 </g:if>
                             </g:each>
                         </select>
                     </div>
 
-
                     <div class="form-group col-md-4">
                         <label class="required">Passenger Mobile</label>
-                        <input id="customer-phoneNumber" name="mobile" type="text" class="form-control font_detail" aria-label="Passenger Mobile">
+                        <input id="customer-phoneNumber" value="${selectedSeat?.mobile}" name="mobile" type="text" class="form-control font_detail" aria-label="Passenger Mobile">
                     </div>
 
                 </div>
@@ -96,7 +96,7 @@
                     <div class="form-group col-md-4">
                         <label class="required">Name</label>
                         <div class="input-group" id="user-group">
-                            <input id="customer-name" name="name" class="form-control form_width font_detail" type="text">
+                            <input value="${selectedSeat.name}"  id="customer-name" name="name" class="form-control form_width font_detail" type="text">
                             <span class="input-group-addon">
                                 <label style="cursor: pointer">
                                     <input type="checkbox" id="unknownUserCheckBox">
@@ -111,33 +111,49 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label >Discount</label>
-                        <input name="discount" class="form-control booked-seat-discount-on-total form_width font_detail" type="number" value="0">
+                        <input value="${selectedSeat.discount}" name="discount" class="form-control booked-seat-discount-on-total form_width font_detail" type="number" value="0">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label >Total Paid</label>
-                        <input name="totalPaid" id="totalPaidAmount" class="total-paid-amount form-control form_width fw-bold font_detail" style="pointer-events: none;
+                        <input value="${selectedSeat.totalPaid}" name="totalPaid" id="totalPaidAmount" class="total-paid-amount form-control form_width fw-bold font_detail" style="pointer-events: none;
                         background-color: #E9ECEF;" type="number">
                     </div>
                     <div class="form-group col-md-4">
                         <label class="control-required" for="ReceivedFromCustomer">Received</label>
-                        <input class="form-control input-sm text-box single-line" data-val="true" data-val-number="The field Received must be a number." data-val-required="The Received field is required." id="receivedFromCustomer" name="receivedFromCustomer" onkeypress="onlyNonNegativeNumeric(event)" type="text" value="0.00">
+                        <input  value="${selectedSeat.receivedFromCustomer}" class="form-control input-sm text-box single-line" data-val="true" data-val-number="The field Received must be a number." data-val-required="The Received field is required." id="receivedFromCustomer" name="receivedFromCustomer" onkeypress="onlyNonNegativeNumeric(event)" type="text" value="0.00">
                     </div>
                     <div class="form-group col-md-4">
                         <label class="control-required" for="DueAmount">Due</label>
-                        <input class="form-control input-sm text-box single-line valid" data-val="true" data-val-number="The field Due must be a number." data-val-required="The Due field is required." id="DueAmount" name="dueAmount" onkeypress="onlyNonNegativeNumeric(event)" readonly="true" tabindex="-1" type="text" value="0.00" aria-describedby="DueAmount-error" aria-invalid="false">
+                        <input value="${selectedSeat.dueAmount}" class="form-control input-sm text-box single-line valid" data-val="true" data-val-number="The field Due must be a number." data-val-required="The Due field is required." id="DueAmount" name="dueAmount" onkeypress="onlyNonNegativeNumeric(event)" readonly="true" tabindex="-1" type="text" value="0.00" aria-describedby="DueAmount-error" aria-invalid="false">
                     </div>
+
+                     <g:if test="${selectedSeat?.id}">
+                        <div class="form-group col-md-4">
+                            <label for="ReturnAmount">Return</label>
+                            <input class="form-control input-sm text-box single-line valid" data-val="true" data-val-number="The field Ret. Amount must be a number." data-val-required="The Ret. Amount field is required." id="ReturnAmount" name="ReturnAmount" onkeypress="onlyNonNegativeNumeric(event)" type="text" value="0.00" aria-describedby="ReturnAmount-error" aria-invalid="false">
+                        </div>
+                    </g:if>
                 </div>
                 <div class="form-row book-sell-button-row">
-                    <div class="btn-group-wrap">
-                        <div class="btn-group">
-                            <button type="button"  class="disabled btn btn-primary book-confirm-button">Book</button>
+                    <g:if test="${selectedSeat?.id}">
+                        <div class="btn-group-wrap">
+                            <div class="btn-group">
+                                <button type="button" class="disabled btn btn-primary book-confirm-button">RETURN</button>
+                            </div>
                         </div>
-                        <div class="btn-group">
-                            <button type="button"  class="disabled btn btn-primary sell-confirm">Sell</button>
+                    </g:if>
+                    <g:else>
+                        <div class="btn-group-wrap">
+                            <div class="btn-group">
+                                <button type="button" class="disabled btn btn-primary book-confirm-button">BOOK</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="disabled btn btn-primary sell-confirm">SELL</button>
+                            </div>
                         </div>
-                    </div>
+                    </g:else>
                 </div>
             </form>
         </div>

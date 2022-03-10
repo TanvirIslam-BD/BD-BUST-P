@@ -203,6 +203,15 @@ class BusTicketService {
         return routeCounters
     }
 
+
+    PurchaseTicket getTicketSeat(def ticketNo) {
+        def purchaseTicket = [:]
+        if(ticketNo){
+            purchaseTicket = PurchaseTicket.get(ticketNo)
+        }
+        return purchaseTicket
+    }
+
     def getTicketTemplate(Serializable id) {
         return BusTicketTemplate.get(id)
     }
