@@ -442,6 +442,7 @@
 <asset:javascript src="spin.js"/>
 <asset:javascript src="remote-idle-app.js"/>
 <asset:javascript src="sweetalert.js"/>
+<asset:javascript src="jquery.validate.js"/>
 
 <script>
     var win = navigator.platform.indexOf('Win') > -1;

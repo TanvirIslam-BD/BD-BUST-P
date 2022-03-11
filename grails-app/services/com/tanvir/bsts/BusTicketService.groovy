@@ -60,6 +60,18 @@ class BusTicketService {
         return femaleBookedSeats
     }
 
+    def getFemaleBookedSeats(BusTicketTemplate busTicket, String date) {
+        def femaleBookedSeats = []
+        if(busTicket){
+            femaleBookedSeats = PurchaseTicket.findAllByBusTicketTemplateIdAndScheduledDate(busTicket.id, date).collect{
+                if(it.paymentType == "book" && it.sex == "female"){
+                    return it
+                }
+            }
+        }
+        return femaleBookedSeats
+    }
+
 
     def getPurchaseTicketsAdvance(BusTicketTemplate busTicket, String date) {
         def bookedSeats = []
@@ -82,17 +94,20 @@ class BusTicketService {
         def bookedSeatsData = [:]
         if(busTicket){
             PurchaseTicket.findAllByBusTicketTemplateIdAndScheduledDate(busTicket.id, date).each{ticket ->
-               def seatList = ticket.seatBooked.replaceAll("\\[","").replaceAll("\\]","").replaceAll(" ","").split(",")
-                 seatList.each {seat ->
-                     bookedSeatsData[seat] = [
-                             seatNo: seat,
-                             ticketNo: ticket.id,
-                             passengerName: ticket.name,
-                             mobile: ticket.mobile,
-                             pickFrom: ticket.fromCounter.name,
-                             saleBy: ticket?.saleBy?.firstName +" "+ ticket?.saleBy?.lastName
-                     ]
-                 }
+                if(ticket.seatBooked){
+                    def seatList = ticket.seatBooked.replaceAll("\\[","").replaceAll("\\]","").replaceAll(" ","").split(",")
+                    seatList.each {seat ->
+                        bookedSeatsData[seat] = [
+                                seatNo: seat,
+                                ticketNo: ticket.id,
+                                passengerName: ticket.name,
+                                gender: ticket.sex,
+                                mobile: ticket.mobile,
+                                pickFrom: ticket.fromCounter.name,
+                                saleBy: ticket?.saleBy?.firstName +" "+ ticket?.saleBy?.lastName
+                        ]
+                    }
+                }
             }
         }
         return bookedSeatsData
@@ -318,14 +333,29 @@ class BusTicketService {
 
 
     def saveBookingTicketAdvance(GrailsParameterMap params, HttpServletRequest request) {
-        def totalBookedSeat = params["seatBooked[]"].size()
-        params.seatBooked = params["seatBooked[]"].toString()
-        params.seatBookedForDisplay = params."seatBookedForDisplay[]".toString()
+        def totalBookedSeat = params["seatBooked[]"]?.size() ?: params["seatBooked"]?.size()
+        params.seatBooked = params["seatBooked[]"]?.toString() ?: params["seatBooked"]?.toString()
+        params.seatBookedForDisplay = params["seatBookedForDisplay[]"]?.toString() ?: params["seatBookedForDisplay"]?.toString()
         BusTicketTemplate busTicket = BusTicketTemplate.get(params.busTicketId)
         PurchaseTicket purchaseTicket = new PurchaseTicket(params)
         purchaseTicket.totalBookedSeat = totalBookedSeat
         purchaseTicket.saleBy = authenticationService.getMember()
         purchaseTicket.busTicketTemplateId = busTicket.id
+        def response = AppUtil.saveResponse(false, purchaseTicket)
+        if (purchaseTicket.validate()) {
+            purchaseTicket.save()
+            if (!purchaseTicket.hasErrors()){
+                response.isSuccess = true
+            }
+        }
+        return response
+    }
+
+    def returnBookedTicket(GrailsParameterMap params, HttpServletRequest request) {
+        PurchaseTicket purchaseTicket = PurchaseTicket.get(params.returnedTicketId)
+        purchaseTicket.isReturned = true
+        purchaseTicket.seatBooked = ""
+        purchaseTicket.returnedAmount = params.returnedAmount.toDouble()
         def response = AppUtil.saveResponse(false, purchaseTicket)
         if (purchaseTicket.validate()) {
             purchaseTicket.save()

@@ -69,5 +69,14 @@ div.seatCharts-row {
 
 
 .total-flare-title.orange-bold-text {
-	font-size: 15px;
+	font-size: 14px;
+}
+span#selected-seats-count {
+	font-weight: 600;
+}
+.seatCharts-seat.seatCharts-cell.booked-female:after {
+	content: "\1F64E";
+}
+.seatCharts-seat.seatCharts-cell.booked:after {
+	content: "\1F935";
 }

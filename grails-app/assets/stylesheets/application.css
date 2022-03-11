@@ -335,3 +335,13 @@ span.boardingtime-title-header {
     justify-content: center;
     display: flex;
 }
+label.error {
+    color: #ff0000;
+    font-weight: 500;
+    left: 2px;
+    top: 37px;
+    display: none !important;
+}
+input.error {
+    border: 1px solid #ff5722;
+}

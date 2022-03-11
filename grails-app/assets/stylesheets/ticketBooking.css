@@ -13,15 +13,18 @@
 }
 
 ul.seatCharts-legendList {
-    display: flex;
-    text-align: center;
+    /* display: flex; */
+    /* text-align: center; */
 }
 
 li.seatCharts-legendItem {
-    margin-left: 33px;
-    display: grid;
-    text-align: center;
-    justify-content: center;
+    margin: 10px 5px;
+    line-height: 2;
+    display: inline-block;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    padding-right: 4px;
+    box-shadow: 1px 2px 3px 0px rgb(176 176 176 / 75%);
 }
 div.seatCharts-seat {
     background-color: #2196f3;
@@ -43,13 +46,14 @@ p.total-paid-title.font_detail.fw-bold {
     font-weight: 500;
 }
 .total-flare-title {
-    font-weight: 500;
-    color: #008605;
+    color: #1062a2;
+    font-family: 'Open Sans';
+    font-weight: 600;
 }
 @media only screen and (max-width: 600px) {
 
     div.seatCharts-container {
-        border-right: none !important
+        /* border-right: none !important */
     }
 
     .card-body.seat-booking-panel-with-seat-plan-design {
@@ -232,4 +236,57 @@ span.route-title-header {
 button.ticket-render-button-popover.btn.btn-primary.btn-sm {
     height: 31px;
     margin-bottom: 0;
+}
+a.cancel-cart-item {
+    background: #f44336;
+    color: #fff;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 0 3px 3px 0;
+    padding-bottom: 6px;
+    padding-top: 6px;
+}
+
+.selected-book-seats-item {height: 30px;margin-top: 7px;list-style-type: "\1F68C";}
+
+span#selected-seats {
+    margin-top: 6px;
+}
+
+a.cancel-cart-item:hover {
+    background: #353535;
+}
+
+.selected-book-seats-item b {padding: 5px;background: #fff;border: 1px dotted #4caf50;border-radius: 3px 0 0 3px;}
+
+.female-sold, div.seatCharts-seat.female-sold::after {
+    content: "\1F64E";
+}
+
+div.seatCharts-seat.unavailable::after {
+    content: "\1F935";
+}
+img.seat-front-view {
+    width: 275px;
+    margin-bottom: 0px;
+}
+tr#selected-seats-details-row {
+    background: #fff;
+    height: 29px;
+}
+
+tr.selected-book-seats-item td {
+    width: 50%;
+}
+
+.ticket-details-popover .popover-title.male::after {
+    content: "\1F935";
+}
+
+.ticket-details-popover .popover-title.female::after {
+    content: "\1F64E";
+}
+
+.seatCharts-seat.seatCharts-cell.booked-female {
+    background: #8bc34a;
 }

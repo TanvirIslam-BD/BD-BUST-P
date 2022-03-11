@@ -21,10 +21,11 @@ $(document).ready(function() {
         seatDesign = fourColumnsDesignV1.slice(0, rows)
     }
     if((extraSeatInLastRow == "true")){
+        console.log("extraSeatInLastRow")
         seatDesign[lastRow] = seatDesign[lastRow].replaceAll("_", lastRowChar)
     }
 
-    var $cart = $('#selected-seats'),
+    var $cart = $('#cartTable'),
         $counter = $('#counter'),
         $total = $('#total'),
         $totalPaidAmountInput = $('.total-paid-amount'),
@@ -132,23 +133,31 @@ $(document).ready(function() {
                 node : $('#legend'),
                 items : [
                     [ 'f', 'available', 'Available' ],
+                    [ 'f', 'unavailable', 'Sold(M)'],
+                    [ 'f', 'female-sold', 'Sold(F)'],
+                    [ 'f', 'booked-female', 'Booked(F)'],
+                    [ 'f', 'booked', 'Booked(M)'],
                     [ 'f', 'readytobook', 'Selected' ],
-                    [ 'f', 'unavailable', 'Sold'],
-                    [ 'f', 'booked', 'Booked'],
-                    [ 'f', 'female-sold', 'Female Sold']
                 ]
             },
             click: function () {
                 if (this.status() == 'available') {
                     $('#customer-phoneNumber').focus();
-                    $('<li class="selected-book-seats-item"> <b>'+this.settings.label+'</b><a href="#" class="cancel-cart-item">[cancel]</a></li>')
+                    $('<tr class="selected-book-seats-item">' +
+                        '<td class="border-1 text-center font_detail"> <b>Seat# '+this.settings.label+'</b><a href="#" class="cancel-cart-item">cancel</a></td>' +
+                        '<td class="border-1 text-center font_detail">'+ this.data().price + '</td>' +
+                        '</tr>')
                         .attr('id', 'cart-item-'+this.settings.id)
                         .attr('seatno', this.settings.id)
                         .data('seatId', this.settings.id)
-                        .appendTo($cart);
+                        .insertBefore($("#selected-seats-details-row"));
+
+
 
                     $counter.text(sc.find('selected').length + 1);
-                    $total.text(recalculateTotal(sc) + this.data().price + " TK");
+                    var totalTextDisplay = "TOTAL: "
+                    var totalPrice = recalculateTotal(sc) + this.data().price
+                    $total.text(totalTextDisplay +""+ totalPrice + " TK");
                     var totalPaidAmount = recalculateTotal(sc) + this.data().price
                     $('.total-amount-to-paid-to-calc').val(totalPaidAmount);
                     var totalPaidableAmount = totalPaidAmount - $(".booked-seat-discount-on-total").val()
@@ -161,7 +170,9 @@ $(document).ready(function() {
                 } else if (this.status() == 'selected') {
 
                     $counter.text(sc.find('selected').length-1);
-                    $total.text(recalculateTotal(sc) - this.data().price);
+                    var totalTextDisplay = "TOTAL: "
+                    var totalPrice = recalculateTotal(sc) - this.data().price
+                    $total.text(totalTextDisplay + totalPrice + " TK");
                     var totalPaidAmount = recalculateTotal(sc) - this.data().price
                     $('.total-amount-to-paid-to-calc').val(totalPaidAmount);
 
@@ -182,9 +193,9 @@ $(document).ready(function() {
             }
         });
 
-    $('#selected-seats').on('click', '.cancel-cart-item', function () {
+    $('#cartTable').on('click', '.cancel-cart-item', function () {
         //let's just trigger Click event on the appropriate seat, so we don't have to repeat the logic here
-        sc.get($(this).parents('li:first').data('seatId')).click();
+        sc.get($(this).parents(".selected-book-seats-item").data("seatId")).click();
     });
 
     var discountInput = $(".booked-seat-discount-on-total")
@@ -195,30 +206,40 @@ $(document).ready(function() {
         $totalPaidAmountInput.trigger("change");
     })
 
-    var seatMap = $("#seat-map");
+    console.log("seatMap replace start")
 
+    var seatMap = $("#seat-map");
+    console.log("soldseats")
     sc.get(seatMap.attr("soldseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('unavailable');
 
+    console.log("femalesoldseats")
     sc.get(seatMap.attr("femalesoldseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('female-sold');
 
+    console.log("bookedseats")
     sc.get(seatMap.attr("bookedseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('booked');
 
+    console.log("femalebookedseats")
+    sc.get(seatMap.attr("femalebookedseats").replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('booked-female');
+
+    console.log("selectedseats")
     var selectedSeats = seatMap.attr("selectedseats");
 
     if(selectedSeats){
         sc.get(selectedSeats.replaceAll("[[", "").replaceAll("]]", "").replaceAll("]", "").replaceAll("[", "").replaceAll(" ", "").split(",")).status('selected');
         sc.find('selected').each(function (seatId) {
 
-            $('<li class="selected-book-seats-item"> <b>'+this.settings.label+'</b><a href="#" class="cancel-cart-item">[cancel]</a></li>')
+            $('<tr class="selected-book-seats-item">' +
+                '<td class="border-1 text-center font_detail"> <b>Seat# '+this.settings.label+'</b><a href="#" class="cancel-cart-item">cancel</a></td>' +
+                '<td class="border-1 text-center font_detail">'+ this.data().price + '</td>' +
+                '</tr>')
                 .attr('id', 'cart-item-'+this.settings.id)
                 .attr('seatno', this.settings.id)
                 .data('seatId', this.settings.id)
-                .appendTo($cart);
+                .insertBefore($("#selected-seats-details-row"));
 
 
         });
     }
-
 
     BSTS.ajax.call({
         url: BSTS.baseURL + "busTicket/bookedSeatDataList",
@@ -228,14 +249,17 @@ $(document).ready(function() {
 
             var reservedTickets = resp.bookedSeatDataList
             $.each(reservedTickets,function() {
-
+                console.log("reservedTickets")
                 var ticket = this
 
                 var seatNo =  ticket.seatNo;
                 var ticketNo =  ticket.ticketNo;
+
+                console.log("seatNo:"+seatNo)
                 var seatDiv = $(`#${seatNo}`)
                 var seatName = seatDiv.text()
                 var name = ticket.passengerName;
+                var gender = ticket.gender;
                 var mobile = ticket.mobile;
                 var pickfrom = ticket.pickFrom;
                 var saleby =  ticket.saleBy;
@@ -245,11 +269,13 @@ $(document).ready(function() {
                 seatDiv.attr("pickfrom", pickfrom);
                 seatDiv.attr("saleby", saleby);
 
+                console.log("saleby")
+
                 previewPopover({
                     control: seatNo,
-                    html: $('<div class="popover-panel-wrapper-tol">' +
+                    html: $('<div class="popover-panel-wrapper-tol ticket-details-popover">' +
                         '<div class="arrow" style="left: 50%;"></div>' +
-                        '<h6 class="popover-title"><strong>'+ name +'</strong></h6>' +
+                        '<h6 class="popover-title '+ gender +'"><strong>'+ name +'</strong></h6>' +
                         '<div class="popover-content">' +
                         '<div class="table-responsive">' +
                         '<table class="table table-bordered">' +
@@ -271,9 +297,9 @@ $(document).ready(function() {
                         '<td class="poup-td">'+ saleby +'</td>' +
                         '</tr>' +
                         '<tr>' +
-                        '<td class="poup-td">Ticket No</td>' +
+                        '<td class="poup-td">Ticket No#</td>' +
                         '<td class="poup-td"><button onclick="renderTicketDetails('+ ticketNo +')" ticketno="'+ticketNo+'" type="button" ' +
-                        'class="ticket-render-button-popover btn btn-primary btn-sm">#'+ ticketNo +'</button></td>' +
+                        'class="ticket-render-button-popover btn btn-primary btn-sm">'+ ticketNo +'</button></td>' +
                         '</tr>' +
                         '</tbody>' +
                         '</table>' +
@@ -315,12 +341,12 @@ $(document).ready(function() {
     });
 
     $("#unknownUserCheckBox").change(function () {
+        console.log("unknownUserCheckBox");
         let isChecked = $(this).is(':checked');
         if (isChecked) {
             $('#customer-name').addClass('disabled');
             $('#customer-gender').addClass('disabled');
             $('#customer-phoneNumber').addClass('disabled');
-
             $('#customer-name').val('UNKNOWN');
             $('#customer-phoneNumber').val('01000000000');
         } else {
@@ -436,12 +462,13 @@ function previewPopover(options) {
 
 function renderTicketDetails(ticketNo){
     console.log("render Ticket No:" + ticketNo);
+    var templateScheduleDate = $("#dtp_Date [name=Date]").length ? $("#dtp_Date [name=Date]").val() : $("#templateScheduleDate").val()
     $.ajax({
-        url: 'busTicketAdvance/bookingPanel',
+        url: BSTS.baseURL + 'busTicketAdvance/bookingPanel',
         method: 'GET',
         dataType: 'html',
         async: false,
-        data:{id: $('#ScheduleId').val(), date: $("#dtp_Date [name=Date]").val(), ticketNo: ticketNo},
+        data:{id: $('#templateSeatId').val(), date: templateScheduleDate, ticketNo: ticketNo},
         success: function (data) {
             var bookingPanel = data;
             $("#advance-ticket-book-ui-body").html(bookingPanel);

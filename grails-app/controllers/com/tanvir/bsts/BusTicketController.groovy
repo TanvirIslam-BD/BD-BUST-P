@@ -24,17 +24,18 @@ class BusTicketController {
         def purchaseTickets = busTicketService.getPurchaseTicketsAdvance(response, params.date)
         def femaleSoldSeats = busTicketService.getFemaleSoldSeatsAdvance(response, params.date)
         def bookedSeats = busTicketService.getBookedSeatsAdvance(response, params.date)
+        def femaleBookedSeats = busTicketService.getFemaleBookedSeats(response, params.date)
         def routeCounters = busTicketService.getRouteCountersAdvance(response)
         def routeCountersFrom = busTicketService.getRouteCountersFromAdvance(response)
         def routeCountersTo = busTicketService.getRouteCountersToAdvance(response)
+        def selectedSeat = busTicketService.getTicketSeat(params.ticketNo)
+
         if (!response){
             redirect(controller: "busTicket", action: "index")
         }else{
-            [
-                    date: params.date, bookedSeats :bookedSeats, busTicket: response,
-                    routeCountersFrom: routeCountersFrom, routeCountersTo: routeCountersTo,
-                    purchaseTickets: purchaseTickets, femaleSoldSeats: femaleSoldSeats, routeCounters: routeCounters
-
+            [       date: params.date, bookedSeats: bookedSeats, busTicket: response, selectedSeat: selectedSeat,
+                    routeCountersFrom: routeCountersFrom, routeCountersTo: routeCountersTo, femaleBookedSeats: femaleBookedSeats,
+                    purchaseTickets: purchaseTickets, femaleSoldSeats: femaleSoldSeats, routeCounters: routeCounters, returnedTicketId: params.ticketNo,
             ]
         }
     }

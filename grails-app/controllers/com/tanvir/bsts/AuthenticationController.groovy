@@ -7,13 +7,13 @@ class AuthenticationController {
 
     def login() {
         if (authenticationService.isAuthenticated()) {
-            redirect(controller: "busTicket", action: "index")
+            redirect(uri: "/busTicketAdvance")
         }
     }
 
     def doLogin() {
         if (authenticationService.doLogin(params.email, params.password)) {
-            redirect(controller: "busTicket", action: "index")
+            redirect(uri: "/busTicketAdvance")
         } else {
             flash.message = AppUtil.infoMessage("Email Address or Password not Valid.", false)
             redirect(controller: "authentication", action: "login")
@@ -35,7 +35,7 @@ class AuthenticationController {
         def response = memberService.save(params)
         if (response.isSuccess) {
             authenticationService.setMemberAuthorization(response.model)
-            redirect(controller: "busTicket", action: "index")
+            redirect(uri: "/busTicketAdvance")
         } else {
             flash.redirectParams = response.model
             redirect(controller: "authentication", action: "registration")

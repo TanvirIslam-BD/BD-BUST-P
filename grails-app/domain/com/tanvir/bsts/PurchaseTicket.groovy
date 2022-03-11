@@ -30,9 +30,14 @@ class PurchaseTicket {
     Date lastUpdated
 
 
+    boolean isReturned = false
+    Double returnedAmount = 0.0
+
+
     String paymentType = "book"
     Double receivedFromCustomer = 0.0
     Double dueAmount = 0.0
+
 
     static belongsTo = [
             fromCounter: Counter,
@@ -54,6 +59,7 @@ class PurchaseTicket {
         seatBookedForDisplay(nullable: true)
         busTicketTemplateId(nullable: true)
         toCounter(nullable: true)
+        isReturned(nullable: true)
     }
 
     def beforeValidate() {

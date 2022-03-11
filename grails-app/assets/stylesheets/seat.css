@@ -6,11 +6,11 @@ a { color: rgb(183, 26, 76); }
 .wrapper { width: 100%; background-color: rgb(255, 255, 255) !important; }
 .seat-container {/* margin: 0px auto; */text-align: left;}
 div.seatCharts-row { height: 35px; display: flex; justify-content: center; align-items: center; }
-.booking-details {float: left;text-align: left;font-size: 12px;height: 100%;position: relative;overflow-x: hidden;overflow-y: auto;}
+.booking-details {float: left;text-align: left;font-size: 12px;height: 100%;position: relative;overflow-x: hidden;overflow-y: auto;border-left: 1px dotted #2196f34f;}
 .booking-details h2 { margin: 5px 0px 20px; font-size: 17px; font-weight: bold; }
 .booking-details h3 { margin: 5px 5px 0px 0px; font-size: 14px; }
 div.seatCharts-cell { color: rgb(24, 44, 78); height: 30px; width: 40px; line-height: 30px; }
-div.seatCharts-seat { color: rgb(255, 255, 255); cursor: pointer; }
+div.seatCharts-seat {color: #ffffff;cursor: pointer;box-shadow: -2px -1px 3px 1px #ffffffa8;}
 div.seatCharts-seat.available {background-color: #344767;}
 .vip-seat, div.seatCharts-seat.vip-seat, div.seatCharts-seat.seatCharts-cell.available.vip, div.seatCharts-seat.seatCharts-cell.available.vip-seat { background-color: rgb(119, 88, 136) !important; }
 .available-resale, div.seatCharts-seat.available-resale, div.seatCharts-seat.seatCharts-cell.available.resale, div.seatCharts-seat.seatCharts-cell.available.available-resale { background-color: rgb(118, 87, 9); }
@@ -32,19 +32,19 @@ div.seatCharts-seat.female-sold.counter-sell { background-color: rgb(160, 6, 121
 div.seatCharts-seat.female-sold.counter-sell.seller-sell { background-color: rgb(243, 131, 214) !important; }
 .disabled-seat, div.seatCharts-seat.disabled-seat, div.seatCharts-seat.seatCharts-cell.disabled-seat { cursor: not-allowed; pointer-events: none; background-color: rgb(243, 243, 243) !important; }
 .holding, div.seatCharts-seat.holding { pointer-events: none; background-color: rgb(169, 167, 167) !important; }
-.bus-steering-wheel {padding-left: 23px;margin-left: 54%;}
+.bus-steering-wheel {padding-left: 0px;display: flex;justify-content: center;}
 @media (min-width: 992px) {
     .btn-sale-group { }
 }
 @media (max-width: 768px) {
-    .bus-steering-wheel { padding-left: 35px; }
+    .bus-steering-wheel {padding-left: 0px;}
 }
-div.seatCharts-container { border-right: 1px dotted rgb(173, 173, 173); padding: 20px; margin: auto; }
+div.seatCharts-container {border-right: 1px dotted rgb(173, 173, 173);padding: 20px;margin: auto;border: 2px solid #efefef;padding-top: 1px;width: 275px;border-top: 0;border-radius: 0px 0px 5px 5px;margin-bottom: 20px;background: #fdfefe;}
 div.seatCharts-legend { padding-left: 0px; position: relative; }
 ul.seatCharts-legendList { padding-left: 0px; }
 span.seatCharts-legendDescription { margin-left: 5px; line-height: 30px; }
 .btn-checkout { margin: 10px 0px; font-size: 14px; }
-#selected-seats {max-height: 90px;overflow: auto scroll;display: block;min-height: 90px;}
+#selected-seats {display: block;min-height: 90px;}
 #cartTable { width: 100%; }
 #table-div { }
 .fa-steering-wheel { height: 35px !important; width: 35px !important; }

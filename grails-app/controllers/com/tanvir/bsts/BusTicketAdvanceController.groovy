@@ -17,13 +17,14 @@ class BusTicketAdvanceController {
        def purchaseTickets = busTicketService.getPurchaseTicketsAdvance(response, params.date)
        def femaleSoldSeats = busTicketService.getFemaleSoldSeatsAdvance(response, params.date)
        def bookedSeats = busTicketService.getBookedSeatsAdvance(response, params.date)
+       def femaleBookedSeats = busTicketService.getFemaleBookedSeats(response, params.date)
        def routeCounters = busTicketService.getRouteCountersAdvance(response)
        def routeCountersFrom = busTicketService.getRouteCountersFromAdvance(response)
        def routeCountersTo = busTicketService.getRouteCountersToAdvance(response)
        def selectedSeat = busTicketService.getTicketSeat(params.ticketNo)
        [       date: params.date, bookedSeats: bookedSeats, busTicket: response, selectedSeat: selectedSeat,
-               routeCountersFrom: routeCountersFrom, routeCountersTo: routeCountersTo,
-               purchaseTickets: purchaseTickets, femaleSoldSeats: femaleSoldSeats, routeCounters: routeCounters
+               routeCountersFrom: routeCountersFrom, routeCountersTo: routeCountersTo, femaleBookedSeats: femaleBookedSeats,
+               purchaseTickets: purchaseTickets, femaleSoldSeats: femaleSoldSeats, routeCounters: routeCounters, returnedTicketId: params.ticketNo,
        ]
     }
 
@@ -44,6 +45,18 @@ class BusTicketAdvanceController {
         } else {
             flash.redirectParams = response.model
             flash.message = AppUtil.infoMessage("Unable to Book")
+            redirect(controller: "busTicketAdvance", action: "bookingPanel", params: [id: params.id, date: params.date])
+        }
+    }
+
+    def returnBookedTicket() {
+        def response = busTicketService.returnBookedTicket(params, request)
+        if (response.isSuccess) {
+            flash.message = AppUtil.infoMessage("Successfully Returned")
+            redirect(controller: "busTicketAdvance", action: "bookingPanel", params: [id: params.busTicketId, date: params.scheduledDate])
+        } else {
+            flash.redirectParams = response.model
+            flash.message = AppUtil.infoMessage("Unable to Returned")
             redirect(controller: "busTicketAdvance", action: "bookingPanel", params: [id: params.id, date: params.date])
         }
     }
