@@ -38,15 +38,17 @@
                     <thead>
                     <tr>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SL.</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">CUSTOMER NAME</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">PHONE NUMBER</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">GENDER</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ROUTE</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">COACH NO</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SCHEDULED DATE</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">DEPARTURE TIME</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NO. OF SEAT</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SEAT NUMBER</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">CUSTOMER NAME</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">STATUS</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">PHONE NUMBER</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">GENDER</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ROUTE</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">COACH NO</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">SCHEDULED DATE</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">DEPARTURE TIME</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">NO. OF SEAT</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">SEAT NUMBER</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">REVENUE</th>
 %{--                        <th class="text-secondary opacity-7"></th>--}%
                     </tr>
                     </thead>
@@ -55,24 +57,26 @@
                         <g:each in="${purchasedTickets}" var="ticket">
                             <tr>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><span class="time-ticket-badge">${ticket?.id}</td>
-                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.name} </span></td>
-                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.mobile} </span></td>
-                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${g.message(code: ticket?.sex)} </span></td>
-                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.routeName} </span></td>
-                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.coachNo}</span></td>
-                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.scheduledDate}</span></td>
-                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"><UIHelper:parseTimeInFormat time="${ticket?.departureTime}"/> </span></td>
-                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.totalBookedSeat}</span></td>
-                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.seatBookedForDisplay.replaceAll("\\]","").replaceAll("\\[","")}</span></td>
-                                %{--                        <td>--}%
-                                %{--                            <div class="btn-group">--}%
-                                %{--                                <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Book Seat" controller="busTicket" action="details" class="btn btn-secondary seat-ticket-book-button" id="${ticket.id}"><i class="fa fa-ticket"></i></g:link>--}%
-                                %{--                            </div>--}%
-                                %{--                            <div class="btn-group">--}%
-                                %{--                                <g:link controller="busTicket" action="edit" class="btn btn-secondary" id="${ticket.id}"><i class="fas fa-edit"></i></g:link>--}%
-                                %{--                                <g:link controller="busTicket" action="delete" id="${ticket.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>--}%
-                                %{--                            </div>--}%
-                                %{--                        </td>--}%
+                                <td class="align-middle  text-sm"><span class="text-xs font-weight-bold"> ${ticket?.name} </span></td>
+                                <td class="align-middle text-sm">
+                                    <span class="text-xs font-weight-bold">
+                                        <div class="d-flex align-items-center">
+                                            <button class="btn btn-icon-only btn-rounded ${ticket?.isReturned ? 'btn-outline-danger' : (ticket?.paymentType == "book" ? 'btn-outline-dark' : ' btn-outline-success')} mb-0 me-2 btn-sm d-flex align-items-center justify-content-center">
+                                                <i class="fas ${ticket?.isReturned ? 'fa-undo' : (ticket?.paymentType == "book" ? 'fa-cheese' : 'fa-check')}" aria-hidden="true"></i>
+                                            </button>
+                                            <span>${ticket?.isReturned ? 'RETURNED' : (ticket?.paymentType == "book" ? 'BOOKED' : 'SOLD')}</span>
+                                        </div>
+                                   </span>
+                                </td>
+                                <td class="align-middle text-sm"><span class="text-xs font-weight-bold"> ${ticket?.mobile} </span></td>
+                                <td class="align-middle  text-sm"><span class="text-xs font-weight-bold"> ${g.message(code: ticket?.sex)} </span></td>
+                                <td class="align-middle text-sm"><span class="text-xs font-weight-bold"> ${ticket?.routeName} </span></td>
+                                <td class="align-middle text-sm"><span class="text-xs font-weight-bold"> ${ticket?.coachNo}</span></td>
+                                <td class="align-middle text-sm"><span class="text-xs font-weight-bold"> ${ticket?.scheduledDate}</span></td>
+                                <td class="align-middle text-sm"><span class="text-xs font-weight-bold"><UIHelper:parseTimeInFormat time="${ticket?.departureTime}"/> </span></td>
+                                <td class="align-middle text-sm"><span class="text-xs font-weight-bold"> ${ticket?.totalBookedSeat}</span></td>
+                                <td class="align-middle text-sm"><span class="text-xs font-weight-bold"> ${ticket?.seatBookedForDisplay.replaceAll("\\]","").replaceAll("\\[","")}</span></td>
+                                <td class="align-middle text-sm"><span class="text-xs font-weight-bold"> ${ticket?.receivedFromCustomer}</span></td>
                             </tr>
                         </g:each>
                     </g:if>

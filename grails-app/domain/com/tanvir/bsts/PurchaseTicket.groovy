@@ -64,14 +64,14 @@ class PurchaseTicket {
 
     def beforeValidate() {
         if(!this.dateCreated) {
-            this.dateCreated = new Date()
+            this.dateCreated = new Date().gmt()
         }
         if(!this.lastUpdated) {
-            this.lastUpdated = new Date()
+            this.lastUpdated = new Date().gmt()
         }
     }
 
     def beforeUpdate() {
-        this.lastUpdated = new Date()
+        this.lastUpdated = new Date().gmt()
     }
 }

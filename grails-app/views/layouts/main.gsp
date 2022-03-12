@@ -41,7 +41,8 @@
 
 <body class="g-sidenav-show  bg-gray-100">
 
-<aside data-color="success" class="bg-white sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-2 fixed-start ms-3 " id="sidenav-main">
+<aside data-color="success" class="bg-white sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-2 fixed-start ms-3"
+       id="sidenav-main">
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0" href="/" target="_blank">
@@ -92,9 +93,8 @@
                     <span class="nav-link-text ms-1">BOOK/SELL</span>
                 </a>
             </li>
-
             <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#ticketing" class="nav-link" aria-controls="pagesExamples" role="button" aria-expanded="false">
+                <a data-bs-toggle="collapse" href="#ticketing" class="nav-link" aria-controls="ticketing" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>TICKETING</title>
@@ -112,7 +112,7 @@
                     </div>
                     <span class="nav-link-text ms-1">TICKETING</span>
                 </a>
-                <div class="collapse show" id="ticketing" style="">
+                <div class="collapse ${(session.activeTab == "DAILY TRIP" || session.activeTab == "BOOKED TICKETS") ? 'show' : ''}" id="ticketing">
                     <ul class="nav ms-4 ps-3">
                         <li class="nav-item">
                             <a class="nav-link ${session.activeTab == "DAILY TRIP" ? "active" : ""}" href="/busTicket">
@@ -127,10 +127,8 @@
                     </ul>
                 </div>
             </li>
-
-
             <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#tripSetting" class="nav-link" aria-controls="pagesExamples" role="button" aria-expanded="false">
+                <a data-bs-toggle="collapse" href="#tripSetting" class="nav-link" aria-controls="tripSetting" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>TRIP SETTING</title>
@@ -148,7 +146,7 @@
                     </div>
                     <span class="nav-link-text ms-1">TRIP SETTING</span>
                 </a>
-                <div class="collapse show" id="tripSetting" style="">
+                <div class="collapse ${(session.activeTab == "TICKET SCHEDULE"  || session.activeTab == "Ticket Fare") ? 'show' : ''}" id="tripSetting">
                     <ul class="nav ms-4 ps-3">
                         <li class="nav-item">
                             <a class="nav-link ${session.activeTab == "TICKET SCHEDULE" ? "active" : ""}" href="/busTicketTemplate">
@@ -163,11 +161,8 @@
                     </ul>
                 </div>
             </li>
-
-
-
             <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#terminal" class="nav-link" aria-controls="pagesExamples" role="button" aria-expanded="false">
+                <a data-bs-toggle="collapse" href="#terminal" class="nav-link" aria-controls="terminal" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>TERMINAL</title>
@@ -185,7 +180,7 @@
                     </div>
                     <span class="nav-link-text ms-1">TERMINAL</span>
                 </a>
-                <div class="collapse show" id="terminal" style="">
+                <div class="collapse ${(session.activeTab == "ROUTES"  || session.activeTab == "Counters") ? 'show' : ''}" id="terminal">
                     <ul class="nav ms-4 ps-3">
                         <li class="nav-item">
                             <a class="nav-link  ${session.activeTab == "ROUTES" ? "active" : ""}" href="/route">
@@ -200,10 +195,8 @@
                     </ul>
                 </div>
             </li>
-
-
             <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#transport" class="nav-link" aria-controls="pagesExamples" role="button" aria-expanded="true">
+                <a data-bs-toggle="collapse" href="#transport" class="nav-link" aria-controls="transport" role="button" aria-expanded="true">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>TRANSPORT</title>
@@ -221,7 +214,7 @@
                     </div>
                     <span class="nav-link-text ms-1">TRANSPORT</span>
                 </a>
-                <div class="collapse show" id="transport" style="">
+                <div class="collapse  ${(session.activeTab == "Coaches"  || session.activeTab == "Seat Plans") ? 'show' : ''}" id="transport">
                     <ul class="nav ms-4 ps-3">
                         <li class="nav-item">
                             <a class="nav-link ${session.activeTab == "Coaches" ? "active" : ""}" href="/coach">
@@ -236,8 +229,6 @@
                     </ul>
                 </div>
             </li>
-
-
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
             </li>
@@ -306,7 +297,6 @@
             </li>
 
         </ul>
-
         <div class="sidenav-footer mx-3 mt-3 pt-3">
             <div class="card card-background shadow-none card-background-mask-secondary" id="sidenavCard">
                 <div class="full-background"></div>

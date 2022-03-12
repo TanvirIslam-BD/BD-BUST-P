@@ -1,12 +1,20 @@
 package com.tanvir.bsts
 
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
+
 class DashboardController {
 
-    CoachService coachService
+    ReportService reportService
 
     def index() {
         def response = []
         session.activeTab = "DASHBOARD"
-        [busTickets: response.list, total:response.count]
+        def todayMoney = PurchaseTicket.findAllByPaymentType("sell")?.sum { it.receivedFromCustomer} ?: 0
+        def todayBooking = PurchaseTicket.findAllByPaymentType("book")?.sum { it.receivedFromCustomer} ?: 0
+        def sales = PurchaseTicket.findAllByPaymentType("sell")?.sum { it.receivedFromCustomer} ?: 0
+        def todayReturn = PurchaseTicket.findAllByIsReturned(true)?.sum { it.returnedAmount} ?: 0
+
+        [todayMoney: todayMoney, sales: sales, todayBooking: todayBooking,  todayReturn: todayReturn]
     }
 }

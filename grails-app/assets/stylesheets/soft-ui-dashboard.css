@@ -19376,7 +19376,7 @@ fieldset:disabled .btn {
 }
 
 .card {
-  box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 1px 1px 9px 1px rgb(0 0 0 / 5%);
 }
 
 .card .card-header {
@@ -25082,5 +25082,30 @@ li.breadcrumb-item.text-sm.text-dark.active {
   font-size: 12px;
 }
 nav#navbarBlur {
-  box-shadow: inset 1px 1px 0px 1px rgb(254 254 254 / 90%), 0px 1px 0px 0 rgb(0 0 0 / 5%) !important;
+  box-shadow: inset 1px 1px 0px 1px rgb(254 254 254 / 90%), 0px 1px 0px 0 rgb(0 0 0 / 8%) !important;
+}
+.common-list-table-view-ui.col-lg-13.mt-4 {
+  margin-top: 0.1rem !important;
+}
+
+.container-fluid.py-2 {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+.empty-state img {
+  height: 13rem;
+}
+.fa-times:before {
+  content: "\f00d";
+  color: #fff;
+  background: #3d3d3d;
+  padding: 5px;
+  padding-right: 7px;
+  padding-left: 7px;
+  border-radius: 50%;
+  font-size: 11px;
+}
+
+.row.report-dashlet-ui .report-dashlet-ui-item {
+  margin-top: 5px;
 }

@@ -15,7 +15,7 @@
 <asset:javascript src="remote-idle-app.js"/>
 
 
-<div class="row">
+<div class="common-list-table-view-ui col-lg-13 mt-4">
     <div class="card">
         <div class="card-header">
 
@@ -64,8 +64,7 @@
             </form>
         </div>
         <div id="advance-ticket-book-ui-body" class="card-body seat-booking-panel-with-seat-plan-design seat-container advance-ticket-book-ui-body">
-
-
+            <g:render template="noDataFound" />
         </div>
     </div>
 </div>
