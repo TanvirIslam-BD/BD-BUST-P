@@ -1,11 +1,6 @@
 package com.tanvir.bsts
 
-import java.sql.Timestamp
-import java.text.SimpleDateFormat
-
 class DashboardController {
-
-    ReportService reportService
 
     def index() {
         def response = []
