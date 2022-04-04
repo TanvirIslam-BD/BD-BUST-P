@@ -167,10 +167,10 @@
         <div id="fb-root"></div>
         <section class="section-90 section-md-111">
             <div class="shell">
-                <h2 class="text-bold">Our Advantages</h2>
+                <h2 class="text-bold">OUR ADVANTAGES</h2>
                 <hr class="divider bg-chathams-blue">
                 <div class="range range-xs-center offset-top-69">
-                    <div class="cell-xs-6 cell-sm-5 cell-md-3">
+                    <div class="advantage-item cell-xs-6 cell-sm-5 cell-md-3">
                         <!-- Box Icon-->
                         <div class="box-icon"><span class="icon icon-xlg icon-circle icon-outlined icon-chathams-primary-filled mdi mdi-wifi"></span>
                             <div class="offset-top-30">
@@ -181,7 +181,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="cell-xs-6 cell-sm-5 cell-md-3 offset-top-60 offset-xs-top-0">
+                    <div class="advantage-item cell-xs-6 cell-sm-5 cell-md-3 offset-top-60 offset-xs-top-0">
                         <!-- Box Icon-->
                         <div class="box-icon"><span class="icon icon-xlg icon-circle icon-outlined icon-chathams-primary-filled mdi mdi-taxi"></span>
                             <div class="offset-top-30">
@@ -192,7 +192,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="cell-xs-6 cell-sm-5 cell-md-3 offset-top-60 offset-md-top-0">
+                    <div class="advantage-item cell-xs-6 cell-sm-5 cell-md-3 offset-top-60 offset-md-top-0">
                         <!-- Box Icon-->
                         <div class="box-icon"><span class="icon icon-xlg icon-circle icon-outlined icon-chathams-primary-filled mdi mdi-seat-recline-extra"></span>
                             <div class="offset-top-30">
@@ -203,7 +203,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="cell-xs-6 cell-sm-5 cell-md-3 offset-top-60 offset-md-top-0">
+                    <div class="advantage-item cell-xs-6 cell-sm-5 cell-md-3 offset-top-60 offset-md-top-0">
                         <!-- Box Icon-->
                         <div class="box-icon"><span class="icon icon-xlg icon-circle icon-outlined icon-chathams-primary-filled mdi mdi-cash-multiple"></span>
                             <div class="offset-top-30">
@@ -317,7 +317,7 @@
                         <h2 class="text-bold text-center">DESTINATIONS</h2>
                         <hr class="divider bg-chathams-blue">
                         <div class="range range-xs-center offset-top-30 offset-md-top-60">
-                            <div class="cell-xs-10 cell-sm-4">
+                            <div class="cell-xs-10 cell-sm-4 destination-item">
                                 <div class="box-member box-member-type-2 box-member-modern box-member-caption-offset">
                                     <div class="box-member-img-wrap"><img src="/assets/pages/Dhaka.png" width="480" height="550" alt="" class="img-responsive"></div>
                                     <div class="box-member-wrap">
@@ -330,14 +330,13 @@
                                                     <div class="box-member-description offset-top-6">
                                                         <p></p>
                                                     </div>
-                                                    <div class="offset-top-20"><a href="#" class="btn btn-ripe-lemon">Learn More</a></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="cell-xs-10 cell-sm-4">
+                            <div class="cell-xs-10 cell-sm-4 destination-item">
                                 <div class="box-member box-member-type-2 box-member-modern box-member-caption-offset">
                                     <div class="box-member-img-wrap"><img src="/assets/pages/Khulna.png" width="480" height="550" alt="" class="img-responsive"></div>
                                     <div class="box-member-wrap">
@@ -350,14 +349,13 @@
                                                     <div class="box-member-description offset-top-6">
                                                         <p></p>
                                                     </div>
-                                                    <div class="offset-top-20"><a href="#" class="btn btn-ripe-lemon">Learn More</a></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="cell-xs-10 cell-sm-4">
+                            <div class="cell-xs-10 cell-sm-4 destination-item">
                                 <!-- Box Member Type 2-->
                                 <div class="box-member box-member-type-2 box-member-modern box-member-caption-offset">
                                     <div class="box-member-img-wrap"><img src="/assets/pages/Jessore.png" width="480" height="550" alt="" class="img-responsive"></div>
@@ -371,14 +369,13 @@
                                                     <div class="box-member-description offset-top-6">
                                                         <p></p>
                                                     </div>
-                                                    <div class="offset-top-20"><a href="#" class="btn btn-ripe-lemon">Learn More</a></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="cell-xs-10 cell-sm-4 offset-top-30">
+                            <div class="cell-xs-10 cell-sm-4  destination-item offset-top-30">
                                 <!-- Box Member Type 2-->
                                 <div class="box-member box-member-type-2 box-member-modern box-member-caption-offset">
                                     <div class="box-member-img-wrap"><img src="/assets/pages/Kolkata.png" width="480" height="550" alt="" class="img-responsive"></div>
@@ -392,14 +389,13 @@
                                                     <div class="box-member-description offset-top-6">
                                                         <p></p>
                                                     </div>
-                                                    <div class="offset-top-20"><a href="#" class="btn btn-ripe-lemon">Learn More</a></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="cell-xs-10 cell-sm-4 offset-top-30">
+                            <div class="cell-xs-10 cell-sm-4 destination-item destination-item-last offset-top-30">
                                 <!-- Box Member Type 2-->
                                 <div class="box-member box-member-type-2 box-member-modern box-member-caption-offset">
                                     <div class="box-member-img-wrap"><img src="/assets/pages/Benapole.png" width="480" height="550" alt="" class="img-responsive"></div>
@@ -413,7 +409,6 @@
                                                     <div class="box-member-description offset-top-6">
                                                         <p></p>
                                                     </div>
-                                                    <div class="offset-top-20"><a href="single-tour.html" class="btn btn-ripe-lemon">Learn More</a></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -489,14 +484,14 @@
         <div id="5"></div>
         <section class="section-90 section-md-111 text-left">
             <div class="shell">
-                <div class="range range-xs-center">
+                <div class="range range-xs-center ">
                     <div class="cell-xs-10 cell-md-8">
-                        <div class="inset-lg-right-40">
+                        <div class="inset-lg-right-40 get-in-touch-wrap">
                             <h2 class="text-bold text-center text-md-left">Get in Touch</h2>
                             <hr class="divider hr-sm-left-0 bg-chathams-blue">
                             <div class="offset-top-20 offset-md-top-30">
                                 <!-- RD Mailform-->
-                                <form data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php.htm" class="rd-mailform text-left">
+                                <form data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php.htm" class="get-in-touch-form rd-mailform text-left">
                                     <div class="range range-xs-center">
                                         <div class="cell-sm-6">
                                             <div class="form-group form-group-label-outside">
@@ -535,9 +530,9 @@
                             <div>
                                 <div class="fb-root fb-widget">
                                     <div class="fb-page-responsive">
-                                        <div data-href="https://www.facebook.com/TataMotorsBangladesh" data-tabs="timeline" data-height="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" class="fb-page">
+                                        <div data-href="https://www.facebook.com/BUS-USA-407655119391472" data-tabs="timeline" data-height="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" class="fb-page">
                                             <div class="fb-xfbml-parse-ignore">
-                                                <blockquote cite="javascript:if(confirm('https://www.facebook.com/TataMotorsBangladesh\n\nThis file was not retrieved because it was filtered out by your project settings.\n\nWould you like to open it from the server?'))window.location='https://www.facebook.com/TataMotorsBangladesh'"><a href="javascript:if(confirm('https://www.facebook.com/TataMotorsBangladesh\n\nThis file was not retrieved because it was filtered out by your project settings.\n\nWould you like to open it from the server?'))window.location='https://www.facebook.com/TataMotorsBangladesh'">TataMotorsBangladesh</a></blockquote>
+                                                <blockquote cite="javascript:if(confirm('https://www.facebook.com/BUS-USA-407655119391472\n\nThis file was not retrieved because it was filtered out by your project settings.\n\nWould you like to open it from the server?'))window.location='https://www.facebook.com/BUS-USA-407655119391472'"><a href="javascript:if(confirm('https://www.facebook.com/BUS-USA-407655119391472\n\nThis file was not retrieved because it was filtered out by your project settings.\n\nWould you like to open it from the server?'))window.location='https://www.facebook.com/BUS-USA-407655119391472'">BUS-USA-407655119391472</a></blockquote>
                                             </div>
                                         </div>
                                     </div>

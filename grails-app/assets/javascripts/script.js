@@ -1961,6 +1961,7 @@ $document.ready(function () {
             }, 0, function () {
                 $(window).trigger("resize");
             });
+            $("body").trigger("click")
         });
     }
 

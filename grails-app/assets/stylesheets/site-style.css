@@ -23778,7 +23778,9 @@ h1 .label-custom, h2 .label-custom, h3 .label-custom, h4 .label-custom, h5 .labe
         top: 10px;
         left: 50%;
         width: auto;
-        margin-top: 5px; } }
+        margin-top: 5px;
+    }
+}
 
 .rd-navbar-default.rd-navbar-transparent.rd-navbar-fixed .rd-navbar-panel, .rd-navbar-default.rd-navbar-dark.rd-navbar-fixed .rd-navbar-panel, .rd-navbar-top-panel.rd-navbar-dark.rd-navbar-fixed .rd-navbar-panel {
     background: #191919;
@@ -25962,22 +25964,16 @@ h1 .label-custom, h2 .label-custom, h3 .label-custom, h4 .label-custom, h5 .labe
 .rd-navbar-top-panel.rd-navbar-fixed .contact-info *:last-child .unit, .rd-navbar-top-panel.rd-navbar-fullwidth .contact-info *:last-child .unit {
     align-items: flex-start; }
 
-@media (min-width: 480px) and (max-width: 1199px) {
-    .rd-navbar-top-panel.rd-navbar-fixed .rd-navbar-brand, .rd-navbar-top-panel.rd-navbar-fullwidth .rd-navbar-brand {
-        margin-top: -4px; }
-    .rd-navbar-top-panel.rd-navbar-fixed .rd-navbar-brand a:before, .rd-navbar-top-panel.rd-navbar-fullwidth .rd-navbar-brand a:before {
-        content: 'Bus Express';
-        font-size: 28px;
-        font-weight: 700;
-        color: #fff; }
-    .rd-navbar-top-panel.rd-navbar-fixed .rd-navbar-brand img, .rd-navbar-top-panel.rd-navbar-fullwidth .rd-navbar-brand img {
-        display: none; } }
+
 
 .rd-navbar-top-panel.rd-navbar-sidebar-toggle.rd-navbar-fixed .rd-navbar-mobile-brand {
-    min-height: 60px; }
+    min-height: 60px;
+}
 @media (min-width: 480px) {
     .rd-navbar-top-panel.rd-navbar-sidebar-toggle.rd-navbar-fixed .rd-navbar-mobile-brand {
-        min-height: auto; } }
+        min-height: auto;
+    }
+}
 
 @media (max-width: 1199px) {
     .rd-navbar-top-panel.rd-navbar-sidebar-toggle.rd-navbar-fixed .rd-navbar-sidebar-panel-dub {
@@ -25998,7 +25994,8 @@ h1 .label-custom, h2 .label-custom, h3 .label-custom, h4 .label-custom, h5 .labe
         margin-top: 0; }
     .rd-navbar-top-panel.rd-navbar-sidebar-toggle.rd-navbar-fixed .rd-navbar-sidebar-panel-dub.active {
         opacity: 1;
-        visibility: visible; } }
+        visibility: visible; }
+}
 
 .rd-navbar-top-panel.rd-navbar-sidebar-toggle.rd-navbar-fixed .rd-navbar-nav {
     margin-top: 20px; }
@@ -31590,7 +31587,7 @@ a.pswp__share--download:hover {
     background-color: #f5f5f5;
     color: #393a3c; }
 .select2-container--bootstrap .select2-results__option--highlighted[aria-selected] {
-    background-color: #3256a4;
+    background-color: #089d49;
     color: #fff; }
 .select2-container--bootstrap .select2-results__option .select2-results__option {
     padding: 11px; }
@@ -32685,14 +32682,35 @@ a.pswp__share--download:hover {
     bottom: 20px;
 }
 
-
-
 button.btn.btn-xs.subscribe-button {
     background: #f00c;
     border-color: #ce1f0f;margin: 0;
 }
 
+section.section-12.text-md-left.footer-privacy-policy {
+    text-align: center;
+}
 
-section.section-12.text-md-left.footer-privacy-policy {text-align: center;}
-
-
+.destination-item {
+    width: 49%;
+    display: inline-grid;
+}
+.advantage-item {
+    width: 49%;
+    box-shadow: 1px 0px #f2f6ff;
+    display: inline-grid;
+}
+@media (min-width: 200px) and (max-width: 1199px) {
+    .rd-navbar-top-panel.rd-navbar-fixed .rd-navbar-brand, .rd-navbar-top-panel.rd-navbar-fullwidth .rd-navbar-brand {
+        margin-top: -4px;
+    }
+    .rd-navbar-top-panel.rd-navbar-fixed .rd-navbar-brand a:before, .rd-navbar-top-panel.rd-navbar-fullwidth .rd-navbar-brand a:before {
+        content: 'Bus Express';
+        font-size: 28px;
+        font-weight: 400;
+        color: #fff;
+    }
+    .rd-navbar-top-panel.rd-navbar-fixed .rd-navbar-brand img, .rd-navbar-top-panel.rd-navbar-fullwidth .rd-navbar-brand img {
+        display: none;
+    }
+}
