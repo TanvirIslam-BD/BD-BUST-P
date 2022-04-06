@@ -2,7 +2,7 @@
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
 <head>
     <!-- Site Title-->
-    <title>Bus Express</title>
+    <title>Green Dhaka Express</title>
     <meta charset="utf-8">
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -33,13 +33,13 @@
                         <!-- RD Navbar Toggle-->
                         <button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-nav-wrap" class="rd-navbar-toggle"><span></span></button>
                         <!-- Navbar Brand-->
-                        <div class="rd-navbar-brand"><a href="index.html"><img width='97' height='57' src='/assets/logo-light.png' alt=''/></a></div>
+                        <div class="rd-navbar-brand"><a href="index.html"><img height='57' src='/assets/logo-light.jpg' alt=''/></a></div>
                     </div>
                     <div class="rd-navbar-menu-wrap">
                         <div class="rd-navbar-nav-wrap">
                             <div class="rd-navbar-mobile-scroll">
                                 <!-- Navbar Brand Mobile-->
-                                <div class="rd-navbar-mobile-brand"><a href="index.html"><img width='97' height='57' src='/assets/logo-light.png' alt=''/></a></div>
+                                <div class="rd-navbar-mobile-brand"><a href="index.html"><img  height='57' src='/assets/logo-light.jpg' alt=''/></a></div>
                                 <ul class="rd-navbar-nav">
                                     <li><a href="#" data-custom-scroll-to="1">HOME</a></li>
                                     <li class="rd-navbar--has-dropdown" data-custom-scroll-to="2"><a href="#">DESTINATIONS</a></li>
@@ -54,16 +54,16 @@
                 </div>
             </nav>
         </div>
-        <!-- Swiper-->
+
         <div data-height="" data-min-height="200px" data-slide-effect="fade" data-simulate-touch="false" class="swiper-container swiper-slider context-dark text-lg-left">
             <div class="swiper-wrapper">
-                <div data-slide-bg="/assets/backgrounds/background-05-1920x1080.jpg" class="swiper-slide">
+                <div data-slide-bg="/assets/backgrounds/gallery-09-1170x780_original.jpg" class="swiper-slide">
                     <div class="swiper-slide-caption-wrap">
                         <div class="swiper-slide-caption">
                             <div class="shell">
                                 <div class="range range-xs-center range-lg-left section-sm-50 section-md-0">
                                     <div class="cell-xs-10 cell-lg-7 cell-xl-6">
-                                        <h2 data-caption-animate="fadeInDown" data-caption-delay="200" class="text-bold">BEST & MOST PROFESSIONAL TRAVEL OPTION IN BANGLADESH </h2>
+                                        <h2 data-caption-animate="fadeInDown" data-caption-delay="200" class="text-bold">GREEN DHAKA EXCLUSIVE IS THE BEST OPTION IN BANGLADESH </h2>
                                         <div data-caption-animate="fadeInUp" data-caption-delay="600" class="offset-top-20 offset-lg-top-49">
                                             <p class="h6 text-mercury">We have the widest range of luxury inter-city bus</p>
                                         </div>
@@ -74,7 +74,7 @@
                         </div>
                     </div>
                 </div>
-                <div data-slide-bg="/assets/backgrounds/Untitled-1.jpg" class="swiper-slide">
+                <div data-slide-bg="/assets/backgrounds/background-07-1920x900.jpg" class="swiper-slide">
                     <div class="swiper-slide-caption-wrap">
                         <div class="swiper-slide-caption">
                             <div class="shell">
@@ -525,21 +525,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="cell-xs-10 cell-md-4 offset-top-60 offset-md-top-0">
-                        <aside class="text-left">
-                            <div>
-                                <div class="fb-root fb-widget">
-                                    <div class="fb-page-responsive">
-                                        <div data-href="https://www.facebook.com/BUS-USA-407655119391472" data-tabs="timeline" data-height="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" class="fb-page">
-                                            <div class="fb-xfbml-parse-ignore">
-                                                <blockquote cite="javascript:if(confirm('https://www.facebook.com/BUS-USA-407655119391472\n\nThis file was not retrieved because it was filtered out by your project settings.\n\nWould you like to open it from the server?'))window.location='https://www.facebook.com/BUS-USA-407655119391472'"><a href="javascript:if(confirm('https://www.facebook.com/BUS-USA-407655119391472\n\nThis file was not retrieved because it was filtered out by your project settings.\n\nWould you like to open it from the server?'))window.location='https://www.facebook.com/BUS-USA-407655119391472'">BUS-USA-407655119391472</a></blockquote>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </aside>
-                    </div>
                 </div>
             </div>
         </section>
@@ -569,9 +554,9 @@
                 <div class="range range-xs-center text-md-left">
                     <div class="cell-xs-10 cell-sm-7 cell-md-4">
                         <!-- Footer brand-->
-                        <div class="footer-brand"><a href="index.html"><img width='97' height='57' src='/assets/logo-light.png' alt=''/></a></div>
+                        <div class="footer-brand"><a href="index.html"><img height='57' src='/assets/logo-light.jpg' alt=''/></a></div>
                         <div class="offset-top-30 inset-sm-right-20">
-                            <p class="text-silver">BusExpress is the leading go-to website for booking inter-city bus ticket online. Our booking system allows travelers to search and book bus tickets for over a hundred bus companies throughout the Bangladesh.</p>
+                            <p class="text-silver">GREEN DHAKA Exclusive the leading go-to website for booking inter-city bus ticket online. Our booking system allows travelers to search and book bus tickets for over a hundred bus companies throughout the Bangladesh.</p>
                         </div>
                     </div>
                     <div class="cell-xs-10 cell-sm-7 cell-md-4 offset-top-60 offset-md-top-0">
@@ -588,7 +573,7 @@
                                     <div class="reveal-inline-block"><a href="callto:#" class="unit unit-middle unit-horizontal unit-spacing-xs"><span class="unit-left"><span class="icon icon-xxs icon-primary icon-primary-filled icon-circle mdi mdi-phone"></span></span><span class="unit-body"><span class="text-silver">1-800-1234-567</span></span></a></div>
                                 </div>
                                 <div class="offset-top-10">
-                                    <div class="reveal-inline-block"><a href="mailto:#" class="unit unit-middle unit-horizontal unit-spacing-xs"><span class="unit-left"><span class="icon icon-xxs icon-primary icon-primary-filled icon-circle mdi mdi-email-outline"></span></span><span class="unit-body"><span class="text-silver">info@busexpress.org</span></span></a></div>
+                                    <div class="reveal-inline-block"><a href="mailto:#" class="unit unit-middle unit-horizontal unit-spacing-xs"><span class="unit-left"><span class="icon icon-xxs icon-primary icon-primary-filled icon-circle mdi mdi-email-outline"></span></span><span class="unit-body"><span class="text-silver">info@greendhakaexclusive</span></span></a></div>
                                 </div>
                                 <div class="offset-top-10">
                                     <div class="reveal-inline-block"><a href="index.htm#" class="unit unit-horizontal unit-spacing-xs"><span class="unit-left"><span class="icon icon-xxs icon-primary icon-primary-filled icon-circle mdi mdi-map-marker"></span></span><span class="unit-body"><span class="text-silver">113 Malibagh DIT Road, <br> CA 94117-1080 BANGLADESH</span></span></a></div>
@@ -604,7 +589,7 @@
                             <div class="text-subline bg-ripe-lemon"></div>
                         </div>
                         <div class="offset-top-25">
-                            <p class="text-silver">Enter your email address to get the latest BusExpress news, special events and student activities delivered right to your inbox.</p>
+                            <p class="text-silver">Enter your email address to get the latest GREEN DHAKA Exclusive news, special events and student activities delivered right to your inbox.</p>
                         </div>
                         <div class="offset-top-20">
                             <form data-form-output="form-subscribe-footer" data-form-type="subscribe" method="post" action="bat/rd-mailform.php.htm" class="rd-mailform rd-mailform-subscribe">
