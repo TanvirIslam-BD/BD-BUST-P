@@ -10,7 +10,7 @@ class MemberInterceptor {
             return true
         }
         flash.message = AppUtil.infoMessage("You are not Authorized for this Action.", false)
-        redirect(controller: "dashboard", action: "index")
+        redirect(uri: request.getHeader('referer'))
         return false
     }
 }

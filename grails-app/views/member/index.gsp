@@ -6,7 +6,7 @@
         <div class="card-header pb-0">
             <div class="row">
                 <div class="col-lg-6 col-7">
-                    <h6>Members</h6>
+                    <h6>Users</h6>
                     <p class="text-sm mb-0">
                         <i class="fa fa-check text-info" aria-hidden="true"></i>
                         Operate this section with the corresponding UI
@@ -72,6 +72,15 @@
                                     <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Delete" controller="member" action="delete" id="${info.id}" class="btn btn-secondary delete-confirmation"><i class="fas fa-trash"></i></g:link>
                                 </div>
                                 <div class="btn-group">
+                                    <span class="btn btn-info btn-edd" title="Permission" onclick="createModal('/member/userPermissions?userId=${info.id}', '1', 'my');">
+                                        <i class="fa fa-gears"></i>
+                                        <span class="btn-icon-text"></span>
+                                    </span>
+%{--                                    <span class="btn btn-info btn-edd" title="Access" onclick="createModal('/member/userAccess?userId=${info.id}', '1', 'my');">--}%
+%{--                                        <i class="fa fa-gear"></i>--}%
+%{--                                        <span class="btn-icon-text">--}%
+%{--                                        </span>--}%
+%{--                                    </span>--}%
                                     <g:link data-bs-toggle="tooltip" data-bs-placement="top"  title="Reset Password"   data-toggle="modal" data-target="#passResetModal" data-whatever="@getbootstrap"  id="${info.id}" class="btn btn-secondary"><i class="fa fa-user-secret"></i></g:link>
 
                                     <div class="modal fade" id="passResetModal" tabindex="-1" role="dialog" aria-labelledby="passResetModalLabel" aria-hidden="true">

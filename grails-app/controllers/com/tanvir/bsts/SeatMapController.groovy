@@ -6,9 +6,17 @@ class SeatMapController {
 
 
     def index() {
-        def response = seatMapService.list(params)
-        session.activeTab = "Seat Plans"
-        [seatMapList: response.list, total:response.count]
+        def permissionKey = "seatMapViewPermission"
+        boolean hasPermission = false
+        hasPermission = memberService.userPermissionCheck(permissionKey)
+        if(hasPermission){
+            def response = seatMapService.list(params)
+            session.activeTab = "Seat Plans"
+            [seatMapList: response.list, total:response.count]
+        }else {
+            flash.message = AppUtil.infoMessage("You are not Authorized for this Action.", false)
+            redirect(uri: request.getHeader('referer'))
+        }
     }
 
     def create() {

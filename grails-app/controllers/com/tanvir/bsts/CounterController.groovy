@@ -5,9 +5,17 @@ class CounterController {
     CounterService counterService
 
     def index() {
-        def response = counterService.list(params)
-        session.activeTab = "Counters"
-        [counters: response.list, total:response.count]
+        def permissionKey = "countersViewPermission"
+        boolean hasPermission = false
+        hasPermission = memberService.userPermissionCheck(permissionKey)
+        if(hasPermission){
+            def response = counterService.list(params)
+            session.activeTab = "Counters"
+            [counters: response.list, total:response.count]
+        }else {
+            flash.message = AppUtil.infoMessage("You are not Authorized for this Action.", false)
+            redirect(uri: request.getHeader('referer'))
+        }
     }
 
     def details(Integer id) {

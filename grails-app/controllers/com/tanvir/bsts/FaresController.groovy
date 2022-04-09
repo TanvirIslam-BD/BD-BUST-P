@@ -5,9 +5,18 @@ class FaresController {
     FaresService faresService
 
     def index() {
-        def response = faresService.list(params)
-        session.activeTab = "Ticket Fare"
-        [faresList: response.list, total:response.count]
+        def permissionKey = "ticketFaresViewPermission"
+        boolean hasPermission = false
+        hasPermission = memberService.userPermissionCheck(permissionKey)
+        if(hasPermission){
+            def response = faresService.list(params)
+            session.activeTab = "Ticket Fare"
+            [faresList: response.list, total:response.count]
+        }else {
+            flash.message = AppUtil.infoMessage("You are not Authorized for this Action.", false)
+            redirect(uri: request.getHeader('referer'))
+        }
+
     }
 
     def details(Integer id) {

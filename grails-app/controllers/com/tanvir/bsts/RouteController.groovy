@@ -5,9 +5,17 @@ class RouteController {
     RouteService routeService
 
     def index() {
-        def response = routeService.list(params)
-        session.activeTab = "ROUTES"
-        [routeList: response.list, total:response.count]
+        def permissionKey = "routesViewPermission"
+        boolean hasPermission = false
+        hasPermission = memberService.userPermissionCheck(permissionKey)
+        if(hasPermission){
+            def response = routeService.list(params)
+            session.activeTab = "ROUTES"
+            [routeList: response.list, total:response.count]
+        }else {
+            flash.message = AppUtil.infoMessage("You are not Authorized for this Action.", false)
+            redirect(uri: request.getHeader('referer'))
+        }
     }
 
     def details(Integer id) {

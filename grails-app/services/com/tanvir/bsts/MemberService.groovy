@@ -1,11 +1,15 @@
 package com.tanvir.bsts
 
 import grails.web.servlet.mvc.GrailsParameterMap
+import org.hsqldb.User
 
 import javax.transaction.Transactional
 
 @Transactional
 class MemberService {
+
+
+    AuthenticationService authenticationService
 
     def save(GrailsParameterMap params) {
         Member member = new Member(params)
@@ -17,6 +21,31 @@ class MemberService {
             }
         }
         return response
+    }
+
+    def saveUserPermission(GrailsParameterMap params) {
+        Long userId = params.userId.toLong()
+        params.permission.each{
+            UserPermission userPermission = UserPermission.findByPermissionKeyAndUserId(it.key, userId) ?:  new UserPermission()
+            userPermission.permissionKey = it.key
+            userPermission.permissionValue = it.value.toBoolean()
+            userPermission.userId = userId
+            userPermission.save()
+        }
+        return [isSuccess: true]
+    }
+
+    def userPermissions(GrailsParameterMap params) {
+        return UserPermission.findAllByUserId(params.userId)
+    }
+
+    boolean userPermissionCheck(def permissionKey) {
+        Member user = authenticationService.getMember()
+        if(user && user.memberType == GlobalConfig.USER_TYPE.ADMINISTRATOR){
+            return true
+        }
+        def userPermission = UserPermission.findByUserIdAndPermissionKey(user.id, permissionKey)
+        return userPermission ? userPermission?.permissionValue : false
     }
 
     def update(Member member, GrailsParameterMap params) {

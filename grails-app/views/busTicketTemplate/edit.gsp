@@ -2,9 +2,7 @@
 <meta name="layout" content="main"/>
 
 <div class="card">
-    <div class="card-header">
-        Ticket Template Update
-    </div>
+    <div class="card-header">Ticket Template Update</div>
     <div class="card-body">
         <g:form controller="busTicketTemplate" action="update">
             <g:hiddenField name="id" value="${busTicketTemplate.id}"/>

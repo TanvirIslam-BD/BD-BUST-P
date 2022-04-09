@@ -6,19 +6,32 @@ class BusTicketTemplate {
 
     String boardingTime
 
+    String tripNo
+
     Route route
+
+    SeatMap seatMap
 
     Coach coach
 
     String scheduleStartDateStr
     String scheduleEndDateStr
 
-    static belongsTo = [route: Route, coach: Coach]
+    Boolean isOnlineSale = false
+    String seatClass = "ac"
+
+    Collection<TicketCounterTime> ticketCounterTimes
+
+    static hasMany = [ticketCounterTimes: TicketCounterTime]
+
+    static belongsTo = [route: Route, coach: Coach, seatMap: SeatMap]
 
     static constraints = {
         route(nullable: true)
         coach(nullable: true)
         scheduleStartDateStr(nullable: true)
         scheduleEndDateStr(nullable: true)
+        tripNo(nullable: true)
     }
+
 }

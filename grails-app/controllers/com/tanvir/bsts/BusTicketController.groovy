@@ -41,8 +41,8 @@ class BusTicketController {
     }
 
     def fareByFromToStoppage(){
-        def seatFare = busTicketService.fareByFromToStoppage(params)
-        render([seatFare: seatFare] as JSON)
+        def seatFareData = busTicketService.fareByFromToStoppage(params)
+        render([seatFare: seatFareData.amount, commission: seatFareData.commission] as JSON)
     }
 
     def bookedSeatDataList() {

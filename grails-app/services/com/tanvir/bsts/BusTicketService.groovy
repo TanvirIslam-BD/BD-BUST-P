@@ -147,7 +147,7 @@ class BusTicketService {
                     ThirdValue: "TAN",
                     Value: "1"
             ]
-            scheduleItemTemplate.Text = uiHelperTagLib.parseTimeInFormat(time: it.boardingTime)
+            scheduleItemTemplate.Text = uiHelperTagLib.parseTimeInFormat(time: it.boardingTime) + " (${it.tripNo})"
             scheduleItemTemplate.Value = it.id
             scheduleItemTemplate.ThirdValue = date
             scheduleItemList.add(scheduleItemTemplate)
@@ -158,14 +158,16 @@ class BusTicketService {
 
     def fareByFromToStoppage(def params) {
         def amount = 0.0
+        def commission = 0.0
         Route route = Route.get(params.routeId)
         Counter from = Counter.get(params.from)
         Counter to = Counter.get(params.to)
         def seatFares =  Fares.findAllByRouteAndFromStoppageAndToStoppage(route, from, to)
         if(seatFares){
             amount = seatFares[0].amount
+            commission = seatFares[0].commissionAmount
         }
-        return amount
+        return [amount: amount, commission: commission]
     }
 
     def getRouteCountersFrom(BusTicket busTicket) {
@@ -184,10 +186,23 @@ class BusTicketService {
     def getRouteCountersFromAdvance(BusTicketTemplate busTicket) {
         def routeCounters = []
         if(busTicket){
+            Member member = authenticationService.getMember()
+            boolean isAdmin = false
+            def userCounterId = member.counterId
+            if (member && member.memberType == GlobalConfig.USER_TYPE.ADMINISTRATOR){
+                isAdmin = true
+            }
             routeCounters = busTicket.route.counters.collect{
-                if(it.city == busTicket.route.districtFrom){
-                    return it
+                if(isAdmin){
+                    if(it.city == busTicket.route.districtFrom){
+                        return it
+                    }
+                }else {
+                    if((it.city == busTicket.route.districtFrom) && (userCounterId == it.id)){
+                        return it
+                    }
                 }
+
             }
         }
         return routeCounters
@@ -246,6 +261,16 @@ class BusTicketService {
   def updateTicketTemplate(BusTicketTemplate busTicketTemplate, GrailsParameterMap params, HttpServletRequest request) {
       busTicketTemplate.properties = params
         def response = AppUtil.saveResponse(false, busTicketTemplate)
+        def scheduleStartTimes =  params.startTime
+        def scheduleCounter =  params.counter
+         scheduleStartTimes.eachWithIndex { time, index ->
+          TicketCounterTime ticketCounterTime = new TicketCounterTime()
+          ticketCounterTime.startTime = time
+          def counterId = Integer.parseInt(scheduleCounter[index])
+          ticketCounterTime.counter = Counter.get(counterId)
+          ticketCounterTime.save()
+          busTicketTemplate.addToTicketCounterTimes(ticketCounterTime)
+        }
         if (busTicketTemplate.validate()) {
             busTicketTemplate.save()
             if (!busTicketTemplate.hasErrors()){
@@ -339,6 +364,9 @@ class BusTicketService {
         BusTicketTemplate busTicket = BusTicketTemplate.get(params.busTicketId)
         PurchaseTicket purchaseTicket = new PurchaseTicket(params)
         purchaseTicket.totalBookedSeat = totalBookedSeat
+        purchaseTicket.discount = params.discount ? params.discount.toDouble() : 0.0
+        purchaseTicket.commission = params.commission ? params.commission.toDouble() : 0.0
+        purchaseTicket.receivedAmountAfterCommission = params.commission ? (purchaseTicket.receivedFromCustomer - params.commission.toDouble()) : purchaseTicket.receivedFromCustomer
         purchaseTicket.saleBy = authenticationService.getMember()
         purchaseTicket.busTicketTemplateId = busTicket.id
         def response = AppUtil.saveResponse(false, purchaseTicket)

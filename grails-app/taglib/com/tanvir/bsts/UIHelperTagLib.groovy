@@ -11,6 +11,7 @@ class UIHelperTagLib {
     static namespace = "UIHelper"
 
     AuthenticationService authenticationService
+    BusTicketService busTicketService
 
     MemberService memberService
 
@@ -181,6 +182,24 @@ class UIHelperTagLib {
         }
     }
 
+    def getTicketCounterStartTime = { attrs, body ->
+        def ticketId = attrs.ticketId
+        def counterId = attrs.counterId
+        if(ticketId && counterId){
+            BusTicketTemplate busTicket = busTicketService.getTicketTemplate(ticketId)
+            def ticketCounterStartTime = busTicket.ticketCounterTimes.collect {ticketCounterTime ->
+                if(ticketCounterTime.counter.id == counterId){
+                    return ticketCounterTime
+                }
+            }
+            if(ticketCounterStartTime){
+                out << ticketCounterStartTime.startTime[0]
+            }else {
+                out << busTicket.boardingTime
+            }
+        }
+    }
+
     def getAvailableSeatsCount = { attrs, body ->
         def ticketId = attrs.ticketId ?: ""
         if(ticketId){
@@ -193,6 +212,20 @@ class UIHelperTagLib {
                 out << totalSeat
             }
 
+        }
+    }
+
+
+    def getUserPermissionStatus = { attrs, body ->
+        def permissionKey = attrs?.permissionKey ?: ""
+        Long userId = attrs?.userId?.toLong() ?: ""
+        def permissionValue = false
+        if(permissionKey){
+            UserPermission userPermission = UserPermission.findByPermissionKeyAndUserId(permissionKey, userId)
+            if(userPermission){
+                permissionValue = userPermission.permissionValue
+                out << permissionValue.toString()
+            }
         }
     }
 

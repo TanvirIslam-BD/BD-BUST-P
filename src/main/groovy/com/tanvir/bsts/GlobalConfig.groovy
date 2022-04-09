@@ -4,7 +4,13 @@ class GlobalConfig {
 
     public static final def USER_TYPE = [
             ADMINISTRATOR: "ADMINISTRATOR",
-            REGULAR_MEMBER: "REGULAR",
+            CUSTOMER: "CUSTOMER",
+            OWNER: "OWNER",
+            AGENT: "AGENT",
+            MANAGER: "MANAGER",
+            DRIVER: "DRIVER",
+            SUPERVISOR: "SUPERVISOR",
+            OPERATOR: "OPERATOR",
     ]
 
     public static final def COUNTER_TYPE = [

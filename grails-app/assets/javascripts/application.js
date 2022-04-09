@@ -41,3 +41,45 @@ function createModal(url, page, modalPrefix) {
         }
     });
 }
+
+
+var saveRecord = (arg, fromId) => {
+    var $arg = $(arg);
+
+    var saveFormId = fromId
+    if (saveFormId !== undefined) {
+        var $form = $(`.${saveFormId}`);
+        jQuery.confirm({
+            title: 'Confirmation!',
+            content: 'Do you really want to save the information?',
+            buttons: {
+                confirm: {
+                    text: 'Yes',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        Spiner.show();
+                        var isValidate = true;
+                        if (isValidate) {
+                            $form.find("input[type=text]").each(function() {
+                                this.value = $.trim(this.value);
+                            });
+                            $form.ajaxFormSubmit();
+                        } else {
+                            $.each($form.validate().errorList,
+                                function(key, value) {
+                                    console.log("Elm " +value.element.id + ": "+value.message)
+                                });
+                            Spiner.hide();
+                        }
+                    }
+                },
+                cancel: {
+                    text: 'No'
+                }
+            }
+        });
+
+    }
+
+};
+

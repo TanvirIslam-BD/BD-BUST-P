@@ -29,7 +29,6 @@ $(document).ready(function() {
         $counter = $('#counter'),
         $total = $('#total'),
         $totalPaidAmountInput = $('.total-paid-amount'),
-
         sc = seatMap.seatCharts({
 
             map: seatDesign,
@@ -192,6 +191,8 @@ $(document).ready(function() {
                 }
             }
         });
+
+    console.log("##### Seat Charts ######");
 
     $('#cartTable').on('click', '.cancel-cart-item', function () {
         //let's just trigger Click event on the appropriate seat, so we don't have to repeat the logic here
@@ -382,6 +383,7 @@ function changeStoppage(routeId, from, to, busSeatMap, rowsCharacters) {
         data: {routeId: routeId, from: from, to: to},
         success: function (resp) {
             var seatFare = resp.seatFare
+            var commission = resp.commission
 
             $.each(rowsCharacters, function() {
                 busSeatMap.find(this).each(function () {
@@ -392,6 +394,8 @@ function changeStoppage(routeId, from, to, busSeatMap, rowsCharacters) {
             $('.price').html(seatFare);
             $('#Fare').val(seatFare);
             $('.price').attr('data-price', seatFare);
+
+            $('#commission').val(commission);
 
             $('#total').text(recalculateTotal(busSeatMap)).trigger('change');
 

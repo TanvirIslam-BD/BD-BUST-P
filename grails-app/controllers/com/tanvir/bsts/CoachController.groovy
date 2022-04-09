@@ -5,9 +5,17 @@ class CoachController {
     CoachService coachService
 
     def index() {
-        session.activeTab = "Coaches"
-        def response = coachService.list(params)
-        [coach: response.list, total:response.count]
+        def permissionKey = "coachViewPermission"
+        boolean hasPermission = false
+        hasPermission = memberService.userPermissionCheck(permissionKey)
+        if(hasPermission){
+            session.activeTab = "Coaches"
+            def response = coachService.list(params)
+            [coach: response.list, total:response.count]
+        }else {
+            flash.message = AppUtil.infoMessage("You are not Authorized for this Action.", false)
+            redirect(uri: request.getHeader('referer'))
+        }
     }
 
     def details(Integer id) {

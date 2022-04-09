@@ -37,11 +37,13 @@ class Member {
 
     def beforeInsert (){
         this.password = this.password.encodeAsMD5()
+        this.dateCreated = new Date()
     }
 
 
     def beforeUpdate(){
         this.password = this.password.encodeAsMD5()
+        this.lastUpdated = new Date()
     }
 
     static mapping = {

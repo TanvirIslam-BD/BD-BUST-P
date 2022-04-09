@@ -8,12 +8,14 @@ class PurchaseTicket {
     String sex
     String mobile
     String passport
-    Double discount
+    Double discount = 0.0
 
     Counter fromCounter
     Counter toCounter
 
-    Double totalPaid
+    Double totalPaid = 0.0
+    Double commission = 0.0
+
     String seatBooked = ""
     String seatBookedForDisplay = ""
     Integer totalBookedSeat = 0
@@ -36,6 +38,7 @@ class PurchaseTicket {
 
     String paymentType = "book"
     Double receivedFromCustomer = 0.0
+    Double receivedAmountAfterCommission = 0.0
     Double dueAmount = 0.0
 
 

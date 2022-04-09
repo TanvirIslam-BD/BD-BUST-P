@@ -3,11 +3,20 @@ package com.tanvir.bsts
 class BusTicketTemplateController {
 
     BusTicketService busTicketService
+    MemberService memberService
 
     def index() {
-        def response = busTicketService.listOfTicketTemplates(params)
-        session.activeTab = "TICKET SCHEDULE"
-        [busTicketTemplates: response.list, total:response.count]
+        def permissionKey = "ticketScheduleViewPermission"
+        boolean hasPermission = false
+        hasPermission = memberService.userPermissionCheck(permissionKey)
+        if(hasPermission){
+            def response = busTicketService.listOfTicketTemplates(params)
+            session.activeTab = "TICKET SCHEDULE"
+            [busTicketTemplates: response.list, total:response.count]
+        }else {
+            flash.message = AppUtil.infoMessage("You are not Authorized for this Action.", false)
+            redirect(uri: request.getHeader('referer'))
+        }
     }
 
     def details() {
@@ -44,7 +53,8 @@ class BusTicketTemplateController {
                 flash.message = AppUtil.infoMessage(g.message(code: "invalid.entity"), false)
                 redirect(controller: "busTicketTemplate", action: "index")
             } else {
-                [busTicketTemplate: response]
+                def countersFrom = busTicketService.getRouteCountersFromAdvance(response)
+                [busTicketTemplate: response, countersFrom: countersFrom]
             }
         }
     }

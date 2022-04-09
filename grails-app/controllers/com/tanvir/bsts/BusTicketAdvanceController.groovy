@@ -5,6 +5,8 @@ import grails.converters.JSON
 class BusTicketAdvanceController {
 
     BusTicketService busTicketService
+    PurchasedTicketsService purchasedTicketsService
+    MemberService memberService
 
     def index() {
         def response = busTicketService.list(params)
@@ -22,12 +24,12 @@ class BusTicketAdvanceController {
        def routeCountersFrom = busTicketService.getRouteCountersFromAdvance(response)
        def routeCountersTo = busTicketService.getRouteCountersToAdvance(response)
        def selectedSeat = busTicketService.getTicketSeat(params.ticketNo)
-       [       date: params.date, bookedSeats: bookedSeats, busTicket: response, selectedSeat: selectedSeat,
+       def toCity = response?.route?.districtTo
+       [       date: params.date,toCity: toCity, bookedSeats: bookedSeats, busTicket: response, selectedSeat: selectedSeat,
                routeCountersFrom: routeCountersFrom, routeCountersTo: routeCountersTo, femaleBookedSeats: femaleBookedSeats,
                purchaseTickets: purchaseTickets, femaleSoldSeats: femaleSoldSeats, routeCounters: routeCounters, returnedTicketId: params.ticketNo,
        ]
     }
-
 
     def loadTicketSchedules() {
        def routeId = params.routeId
@@ -36,29 +38,74 @@ class BusTicketAdvanceController {
        render(scheduleList as JSON)
     }
 
-
     def saveBookingTicket() {
-        def response = busTicketService.saveBookingTicketAdvance(params, request)
-        if (response.isSuccess) {
-            flash.message = AppUtil.infoMessage("Successfully Booked")
-            redirect(controller: "busTicketAdvance", action: "bookingPanel", params: [id: params.busTicketId, date: params.scheduledDate])
-        } else {
+        def permissionKey = "tickerBookingPermission"
+        boolean hasPermission = memberService.userPermissionCheck(permissionKey)
+        if(hasPermission){
+            def response = busTicketService.saveBookingTicketAdvance(params, request)
+            if (response.isSuccess) {
+                flash.message = AppUtil.infoMessage("Successfully Booked")
+                redirect(controller: "busTicketAdvance", action: "bookingPanel", params: [id: params.busTicketId, date: params.scheduledDate])
+            } else {
+                flash.redirectParams = response.model
+                flash.message = AppUtil.infoMessage("Unable to Book")
+                redirect(controller: "busTicketAdvance", action: "bookingPanel", params: [id: params.id, date: params.date])
+            }
+        }else {
             flash.redirectParams = response.model
-            flash.message = AppUtil.infoMessage("Unable to Book")
+            flash.message = AppUtil.infoMessage("Sorry! You don't have permission to book ticket")
             redirect(controller: "busTicketAdvance", action: "bookingPanel", params: [id: params.id, date: params.date])
         }
+
     }
 
     def returnBookedTicket() {
-        def response = busTicketService.returnBookedTicket(params, request)
-        if (response.isSuccess) {
-            flash.message = AppUtil.infoMessage("Successfully Returned")
-            redirect(controller: "busTicketAdvance", action: "bookingPanel", params: [id: params.busTicketId, date: params.scheduledDate])
-        } else {
+        def permissionKey = "ticketReturnPermission"
+        boolean hasPermission = memberService.userPermissionCheck(permissionKey)
+        if(hasPermission){
+            def response = busTicketService.returnBookedTicket(params, request)
+            if (response.isSuccess) {
+                flash.message = AppUtil.infoMessage("Successfully Returned")
+                redirect(controller: "busTicketAdvance", action: "bookingPanel", params: [id: params.busTicketId, date: params.scheduledDate])
+            } else {
+                flash.redirectParams = response.model
+                flash.message = AppUtil.infoMessage("Unable to Returned")
+                redirect(controller: "busTicketAdvance", action: "bookingPanel", params: [id: params.id, date: params.date])
+            }
+        }else {
             flash.redirectParams = response.model
-            flash.message = AppUtil.infoMessage("Unable to Returned")
+            flash.message = AppUtil.infoMessage("You don't have permission to returned")
             redirect(controller: "busTicketAdvance", action: "bookingPanel", params: [id: params.id, date: params.date])
         }
+
     }
+
+    def soldTicketsReport() {
+        def permissionKey = "ticketReportViewPermission"
+        boolean hasPermission = false
+        hasPermission = memberService.userPermissionCheck(permissionKey)
+        if(hasPermission){
+            def ticketId = params?.id?.toLong()
+            def busTicket = busTicketService.get(ticketId)
+            def response = purchasedTicketsService.soldList(params)
+            def soldList = response.list
+            def totalSeatSold = soldList.totalBookedSeat.sum()
+            def totalFare = soldList.totalPaid.sum()
+            def totalReceived = soldList.receivedAmountAfterCommission.sum()
+            def totalDiscount = soldList.discount.sum()
+            def totalCommission = soldList.commission.sum()
+            [       success: true,
+                    soldList: soldList, total: response.count, totalSeatSold: totalSeatSold,
+                    totalFare: totalFare, totalReceived: totalReceived, totalDiscount: totalDiscount,
+                    totalCommission: totalCommission, busTicket: busTicket, date: params.date
+            ]
+        }else{
+            [success: false, message: "You don't have permission to view the report"]
+        }
+    }
+
+
+
+
 
 }

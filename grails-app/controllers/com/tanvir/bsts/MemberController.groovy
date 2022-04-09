@@ -1,5 +1,7 @@
 package com.tanvir.bsts
 
+import grails.converters.JSON
+
 class MemberController {
 
     MemberService memberService
@@ -56,7 +58,6 @@ class MemberController {
         }
     }
 
-
     def edit(Integer id) {
         if (flash.redirectParams) {
             [member: flash.redirectParams]
@@ -70,7 +71,6 @@ class MemberController {
             }
         }
     }
-
 
     def update() {
         Member member = memberService.getById(params.id)
@@ -106,6 +106,22 @@ class MemberController {
         }
     }
 
+    def userPermissions(){
+        def permissions = memberService.userPermissions(params)
+        Member member = memberService.getById(params.userId)
+        String userName = member.firstName + " " +member.lastName
+        [permissions: permissions, userId: params.userId, userName: userName]
+    }
+
+    def userAccess(){
+        def permissions = memberService.userPermissions(params)
+        [permissions: permissions, userId: params.userId]
+    }
+
+    def saveUserPermission(){
+        def result = memberService.saveUserPermission(params)
+        render([success: result.isSuccess, message: "User Permission Updated"] as JSON)
+    }
 
 
 }

@@ -2054,16 +2054,9 @@ $.fn.extend(
                 dataType: 'json',
                 beforeSend: function () {
                     Spiner.show();
-                    //let token = getApiToken();
-                    //if (token) {
-                    //    xhr.setRequestHeader("Authorization", "Bearer " + token);
-                    //}
                 }
             };
-            let token = getApiToken();
-            if (token) {
-                formObj.headers['Authorization'] = "Bearer " + token;
-            }
+
             let $fileContent = $form.find("input[type=file]");
 
             if ($fileContent.length > 0) {
@@ -2080,8 +2073,8 @@ $.fn.extend(
                 formObj.contentType = false;
                 formObj.data = fd;
             } else {
-                let jsonData = JSON.parse(JSON.stringify($form.serializeArray()));// $form.formToJSON();
-                formObj.contentType = contentType;// 'application/json; charset=utf-8';//
+                let jsonData = JSON.parse(JSON.stringify($form.serializeArray()));
+                formObj.contentType = contentType;
                 if (contentType.includes("application/json")) {
                     formObj.headers['RequestVerificationToken'] = forgeryToken;
                     formObj.data = JSON.stringify(jsonData);
@@ -2093,40 +2086,17 @@ $.fn.extend(
 
             setTimeout(function () {
                 var $jqxhr = $.ajax(formObj).done(function (result) {
-
                     if (result == undefined) {
                         return;
                     }
+                    if (formType === "Modal") {
+                        $(modalContent).html(result);
+                        $(modalName).modal('show');
 
-                    if (result.loadUrl || result.openUrl || result.redirectUrl) {
-                        if (typeof (prefix) != 'undefined') {
-                            closeModal(prefix);
-                        }
-                        showMessage(result.message);
-                        if (result.loadUrl) {
-                            $('#' + result.position).load(result.loadUrl);
-                        }
-                        if (result.openUrl) {
-                            window.open(result.openUrl, '_blank').focus();
-                        }
-                        if (result.redirectUrl) {
-                            window.location.href = result.redirectUrl;
-                        }
-                    } else if (!(result.loadUrl || result.openUrl || result.redirectUrl) &&
-                        result.message &&
-                        typeof (prefix) != 'undefined') {
-                        closeModal(prefix);
-                        showMessage(result.message);
                     } else {
-                        if (formType === "Modal") {
-                            $(modalContent).html(result);
-                            $(modalName).modal('show');
-
-                        } else {
-                            $(loadDiv).html(result);
-                        }
+                        BSTS.messageBox.showMessage(true, result.message);
+                        $(modalName).modal('hide');
                     }
-
                     Spiner.hide();
                 });
                 $jqxhr.fail(function (jqXHR) {

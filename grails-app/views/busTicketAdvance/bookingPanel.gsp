@@ -73,7 +73,8 @@
                         <select id="fromStoppage"  name="fromCounter" class="form-control fromToStoppage input-sm valid">
                             <g:each in="${routeCountersFrom}" status="i" var="counter">
                                 <g:if test="${counter}">
-                                    <option ${selectedSeat?.fromCounter?.id == counter?.id ? "selected" : ""}  value="${counter?.id}">${counter?.name}</option>
+                                    <option ${selectedSeat?.fromCounter?.id == counter?.id ? "selected" : ""} value="${counter?.id}">
+                                        ${counter?.name}( ${UIHelper.parseTimeInFormat(time: UIHelper.getTicketCounterStartTime(ticketId: busTicket?.id, counterId: counter?.id))})</option>
                                 </g:if>
                             </g:each>
                         </select>
@@ -90,16 +91,21 @@
                     </div>
 
                     <div class="form-group col-md-4">
+                        <label>Vehicle</label>
+                        <label class="form-control vehicle-name-type input-sm" style="font-weight: normal; overflow:hidden">
+                            ${busTicket.coach.name}(${busTicket.coach.seatClass.toUpperCase()} Coach)
+                        </label>
+                    </div>
+
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
                         <label class="required">Passenger Mobile</label>
                         <input data-val-regex="The field PhoneNumber must match the regular expression '(^([+]{1}[8]{2}|0088)?(01){1}[5-9]{1}/d{8})$'."
                                data-val-regex-pattern="(^([+]{1}[8]{2}|0088)?(01){1}[5-9]{1}/d{8})$" data-val-required="The PhoneNumber field is required."
                                placeholder="Mobile No." required="required" type="tel"  id="customer-phoneNumber" value="${selectedSeat?.mobile}" name="mobile"
                                type="text" class="form-control font_detail" aria-label="Passenger Mobile">
                     </div>
-
-                </div>
-                <div class="form-row">
-
                     <div class="form-group col-md-4">
                         <label class="required">Name</label>
                         <div class="input-group" id="user-group">
@@ -113,11 +119,11 @@
                             </span>
                         </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-2">
                         <label class="required">Gender</label>
                         <UIHelper:gender id="customer-gender" value="${busTicket}"/>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-2">
                         <label >Discount</label>
                         <input onkeypress="onlyNonNegativeNumeric(event)" data-val="true" data-val-number="The field Discount must be a number." data-val-required="The Discount field is required."
                                value="${selectedSeat.discount}" name="discount" class="form-control booked-seat-discount-on-total form_width font_detail"
@@ -127,8 +133,8 @@
                 <div class="form-row">
                     <div class="form-group ${selectedSeat?.id ? "col-md-3" : "col-md-4"}">
                         <label >Total Paid</label>
-                        <input value="${selectedSeat.totalPaid}" name="totalPaid" id="totalPaidAmount" class="total-paid-amount form-control form_width fw-bold font_detail" style="pointer-events: none;
-                        background-color: #E9ECEF;" type="number">
+                        <input value="${selectedSeat.totalPaid}" name="totalPaid" id="totalPaidAmount" class="total-paid-amount form-control form_width fw-bold font_detail"
+                               style="pointer-events: none;background-color: #E9ECEF;" type="number">
                     </div>
                     <div class="form-group ${selectedSeat?.id ? "col-md-3" : "col-md-4"}">
                         <label class="control-required" for="ReceivedFromCustomer">Received</label>
@@ -141,7 +147,7 @@
                         <label class="control-required" for="DueAmount">Due</label>
                         <input value="${selectedSeat.dueAmount}" class="form-control input-sm text-box single-line valid" data-val="true" data-val-number="The field Due must be a number." data-val-required="The Due field is required." id="DueAmount" name="dueAmount" onkeypress="onlyNonNegativeNumeric(event)" readonly="true" tabindex="-1" type="text" value="0.00" aria-describedby="DueAmount-error" aria-invalid="false">
                     </div>
-
+                    <input value="0" name="commission" id="commission" class="commission-amount form-control form_width fw-bold font_detail" type="hidden">
                      <g:if test="${selectedSeat?.id}">
                         <div class="form-group ${selectedSeat?.id ? "col-md-3" : "col-md-4"}">
                             <label for="ReturnAmount">Return</label>

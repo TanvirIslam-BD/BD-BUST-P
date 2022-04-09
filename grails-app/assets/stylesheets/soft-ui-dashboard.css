@@ -6503,7 +6503,14 @@ fieldset:disabled .btn {
 
 .modal.show .modal-dialog {
   transform: none;
-}
+  width: 95% !important;
+  max-width: 95%!important;
+  height: auto;
+  overflow-y: auto !important;
+  margin: auto;max-height: 90% !important;
+  text-align: center;justify-content: center;}
+
+
 
 .modal.modal-static .modal-dialog {
   transform: scale(1.02);
@@ -6532,7 +6539,7 @@ fieldset:disabled .btn {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: fit-content;
   pointer-events: auto;
   background-color: #fff;
   background-clip: padding-box;
@@ -22871,10 +22878,6 @@ hr.horizontal.gray-light {
   vertical-align: middle;
 }
 
-.table tbody tr:last-child td {
-  border-width: 0;
-}
-
 .table> :not(:last-child)> :last-child>* {
   border-bottom-color: #e9ecef;
 }
@@ -25108,4 +25111,15 @@ nav#navbarBlur {
 
 .row.report-dashlet-ui .report-dashlet-ui-item {
   margin-top: 5px;
+}
+.col-md.action-button-ticket-search-ui.btn-group button {
+  margin-right: 10px;
+}
+
+@media (min-width: 768px){
+  .modal-dialog {
+    width: 600px;
+    margin: 30px auto;
+  }
+
 }

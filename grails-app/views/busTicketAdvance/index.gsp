@@ -59,6 +59,7 @@
                     <div class="col-md action-button-ticket-search-ui btn-group">
                         <button type="button" id="btnSearchSchedule" class="btn bg-gradient-info btn-sm pull-end" title="Search"><i class="fa fa-search fa-1x"></i></button>
                         <button type="button" class="btn bg-gradient-success btn-sm pull-end" id="btn-refresh-trip"><i class="fa fa-refresh"></i></button>
+                        <button type="button" class="btn bg-gradient-info" id="btn-trip-sale"><i class="fa fa-file-text"></i></button>
                     </div>
                 </div>
             </form>
@@ -150,6 +151,13 @@
     $('#ScheduleId').on('change',function() {
         if ($('#ScheduleId').val() !== null || $('#ScheduleId').val() !== '')
             $('#btnSearchSchedule').trigger('click');
+    });
+
+    $("#btn-trip-sale").on("click", function () {
+        let tripId = $('#ScheduleId').val();
+        if (tripId !== null || tripId !== '') {
+            createModal('busTicketAdvance/soldTicketsReport?id=' + $('#ScheduleId').val() + "&date=" + $("#dtp_Date [name=Date]").val(), '1', 'my');
+        }
     });
 
 </script>

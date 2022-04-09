@@ -14,6 +14,10 @@ class Fares {
     Counter toStoppage
 
     Double amount = 0.00
+    Double festivalFare = 0.00
+    Double commissionAmount = 0.00
+
+
 
     String seatClass = "AC"
 
