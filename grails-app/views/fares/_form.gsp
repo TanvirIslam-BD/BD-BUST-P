@@ -1,27 +1,27 @@
 <%@ page import="com.tanvir.bsts.Route; com.tanvir.bsts.City; com.tanvir.bsts.Counter; com.tanvir.bsts.SeatMap" %>
 
-
+<g:set var="route" value="${fares?.route}"/>
 <div class="row">
  <div class="col-md-6">
         <div class="form-group">
             <label>Route</label>
-            <UIHelper:domainSelect class="form-control" domain="${Route}" name="route" value="${fares?.route ? route?.route?.id : null}"/>
+            <UIHelper:domainSelect class="form-control" domain="${Route}" name="route" value="${route?.id}"/>
         </div>
         <div class="form-group">
             <label>District From</label>
-            <UIHelper:domainSelect class="form-control" domain="${City}" name="districtFrom" value="${fares?.districtFrom ? route?.districtFrom?.id : null}"/>
+            <UIHelper:domainSelect class="form-control" domain="${City}" name="districtFrom" value="${route?.districtFrom?.id}"/>
         </div>
         <div class="form-group">
             <label>District To</label>
-            <UIHelper:domainSelect class="form-control" domain="${City}" name="districtTo" value="${fares?.districtTo ? route?.districtTo?.id : null}"/>
+            <UIHelper:domainSelect class="form-control" domain="${City}" name="districtTo" value="${route?.districtTo?.id}"/>
         </div>
         <div class="form-group">
             <label>Start Stoppage</label>
-            <UIHelper:domainSelect class="form-control" domain="${Counter}" name="fromStoppage" value="${fares?.fromStoppage ? route?.fromStoppage?.id : null}"/>
+            <UIHelper:domainSelect class="form-control" domain="${Counter}" name="fromStoppage" value="${route?.fromStoppage?.id}"/>
         </div>
         <div class="form-group">
             <label>End Stoppage</label>
-            <UIHelper:domainSelect class="form-control" domain="${Counter}" name="toStoppage" value="${fares?.toStoppage ? route?.toStoppage?.id : null}"/>
+            <UIHelper:domainSelect class="form-control" domain="${Counter}" name="toStoppage" value="${route?.toStoppage?.id}"/>
         </div>
  </div>
 
