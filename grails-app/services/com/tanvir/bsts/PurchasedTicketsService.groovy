@@ -27,6 +27,7 @@ class PurchasedTicketsService {
             eq("busTicketTemplateId", ticketId)
             eq("scheduledDate", params.date)
             eq("paymentType", "sell")
+            eq("isReturned", false)
             if (params?.colName && params?.colValue) {
                 like(params.colName, "%" + params.colValue + "%")
             }

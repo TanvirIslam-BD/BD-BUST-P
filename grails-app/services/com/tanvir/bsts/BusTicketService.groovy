@@ -207,6 +207,17 @@ class BusTicketService {
         return routeCounters
     }
 
+    def getRouteCountersFromSchedule(BusTicketTemplate busTicket) {
+        def routeCounters = []
+        if(busTicket){
+            routeCounters = busTicket.route.counters.collect{
+                if(it.city == busTicket.route.districtFrom){
+                    return it
+                }
+            }
+        }
+        return routeCounters
+    }
 
     def getRouteCountersTo(BusTicket busTicket) {
         def routeCounters = []

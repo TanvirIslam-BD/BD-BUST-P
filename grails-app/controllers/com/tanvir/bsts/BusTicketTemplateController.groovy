@@ -53,7 +53,7 @@ class BusTicketTemplateController {
                 flash.message = AppUtil.infoMessage(g.message(code: "invalid.entity"), false)
                 redirect(controller: "busTicketTemplate", action: "index")
             } else {
-                def countersFrom = busTicketService.getRouteCountersFromAdvance(response)
+                def countersFrom = busTicketService.getRouteCountersFromSchedule(response)
                 [busTicketTemplate: response, countersFrom: countersFrom]
             }
         }

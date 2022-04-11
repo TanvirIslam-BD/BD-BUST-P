@@ -34,8 +34,8 @@
                                 <td>Sale</td>
                                 <td>${soldTicket.seatBookedForDisplay}</td>
                                 <td><UIHelper:parseTimeInFormat time="${soldTicket?.departureTime}"/> </td>
-                                <td>${soldTicket.saleBy.firstName} ${soldTicket.saleBy.lastName}</td>
-                                <td>${soldTicket.saleBy.counter.name}</td>
+                                <td>${soldTicket?.saleBy.firstName} ${soldTicket?.saleBy?.lastName}</td>
+                                <td>${soldTicket?.saleBy?.counter?.name}</td>
                                 <td class="align-right">${soldTicket.totalBookedSeat}</td>
                                 <td class="align-right">${soldTicket.totalPaid}</td>
                                 <td class="align-right">${soldTicket.discount}</td>
