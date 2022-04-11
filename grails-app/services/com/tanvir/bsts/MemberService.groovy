@@ -1,9 +1,7 @@
 package com.tanvir.bsts
 
+import grails.gorm.transactions.Transactional
 import grails.web.servlet.mvc.GrailsParameterMap
-import org.hsqldb.User
-
-import javax.transaction.Transactional
 
 @Transactional
 class MemberService {

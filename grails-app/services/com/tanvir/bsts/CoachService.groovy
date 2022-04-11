@@ -2,7 +2,7 @@ package com.tanvir.bsts
 
 import grails.web.servlet.mvc.GrailsParameterMap
 import javax.servlet.http.HttpServletRequest
-import javax.transaction.Transactional
+import grails.gorm.transactions.Transactional
 
 
 class CoachService {
