@@ -144,7 +144,7 @@ $(document).ready(function() {
                     $('#customer-phoneNumber').focus();
                     $('<tr class="selected-book-seats-item">' +
                         '<td class="border-1 text-center font_detail"> <b>Seat# '+this.settings.label+'</b><a href="#" class="cancel-cart-item">cancel</a></td>' +
-                        '<td class="border-1 text-center font_detail">'+ this.data().price + '</td>' +
+                        '<td class="selected-price-fare border-1 text-center font_detail">'+ this.data().price + '</td>' +
                         '</tr>')
                         .attr('id', 'cart-item-'+this.settings.id)
                         .attr('seatno', this.settings.id)
@@ -391,13 +391,21 @@ function changeStoppage(routeId, from, to, busSeatMap, rowsCharacters) {
                 });
              })
 
-            $('.price').html(seatFare);
+            $('.selected-price-fare').html(seatFare);
             $('#Fare').val(seatFare);
             $('.price').attr('data-price', seatFare);
 
             $('#commission').val(commission);
 
-            $('#total').text(recalculateTotal(busSeatMap)).trigger('change');
+            $('.booked-seat-discount-on-total').val(0);
+
+            var totalFare = recalculateTotal(busSeatMap)
+
+            $('#receivedFromCustomer').val(totalFare);
+
+            $('#total').text(totalFare).trigger('change');
+
+
 
             $(".card-body.seat-booking-panel-with-seat-plan-design").find(".overlay.show").remove()
 
