@@ -26,22 +26,22 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Sale Other Counter Ticket Permission</td>
-                    <td>
-                        <div>
-                            <g:set var="saleOtherCounterTicketPermission" value="${UIHelper.getUserPermissionStatus(permissionKey: "saleOtherCounterTicketPermission", userId: userId)}"/>
-                            <label class="control-label">
-                                <input ${saleOtherCounterTicketPermission == "true" ? 'checked="checked"' : ''}  data-val="true" data-val-required="The Value field is required." name="permission.saleOtherCounterTicketPermission" type="radio" value="true">
-                                <span class="radio-text">Yes</span>
-                            </label>
-                            <label class="control-label">
-                                <input ${saleOtherCounterTicketPermission == "false" ? 'checked="checked"' : ''} name="permission.saleOtherCounterTicketPermission" type="radio" value="false">
-                                <span class="radio-text">No</span>
-                            </label>
-                        </div>
-                    </td>
-                </tr>
+%{--                <tr>--}%
+%{--                    <td>Sale Other Counter Ticket Permission</td>--}%
+%{--                    <td>--}%
+%{--                        <div>--}%
+%{--                            <g:set var="saleOtherCounterTicketPermission" value="${UIHelper.getUserPermissionStatus(permissionKey: "saleOtherCounterTicketPermission", userId: userId)}"/>--}%
+%{--                            <label class="control-label">--}%
+%{--                                <input ${saleOtherCounterTicketPermission == "true" ? 'checked="checked"' : ''}  data-val="true" data-val-required="The Value field is required." name="permission.saleOtherCounterTicketPermission" type="radio" value="true">--}%
+%{--                                <span class="radio-text">Yes</span>--}%
+%{--                            </label>--}%
+%{--                            <label class="control-label">--}%
+%{--                                <input ${saleOtherCounterTicketPermission == "false" ? 'checked="checked"' : ''} name="permission.saleOtherCounterTicketPermission" type="radio" value="false">--}%
+%{--                                <span class="radio-text">No</span>--}%
+%{--                            </label>--}%
+%{--                        </div>--}%
+%{--                    </td>--}%
+%{--                </tr>--}%
                 <tr>
                     <td>Ticket Booking Permission</td>
                     <td>
