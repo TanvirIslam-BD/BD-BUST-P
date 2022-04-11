@@ -38,6 +38,16 @@ class BusTicketAdvanceController {
        render(scheduleList as JSON)
     }
 
+
+    def checkSeatAvailability() {
+       def isAvailableSeatToBook = busTicketService.checkSeatAvailability(params)
+       if(isAvailableSeatToBook){
+           render([isAvailableSeatToBook: true] as JSON)
+       }else {
+           render([isAvailableSeatToBook: false] as JSON)
+       }
+    }
+
     def saveBookingTicket() {
         def permissionKey = "tickerBookingPermission"
         boolean hasPermission = memberService.userPermissionCheck(permissionKey)
@@ -49,14 +59,13 @@ class BusTicketAdvanceController {
             } else {
                 flash.redirectParams = response.model
                 flash.message = AppUtil.infoMessage("Unable to Book")
-                redirect(controller: "busTicketAdvance", action: "bookingPanel", params: [id: params.id, date: params.date])
+                redirect(controller: "busTicketAdvance", action: "bookingPanel", params: [isSuccess: false, id: params.busTicketId, date: params.scheduledDate])
             }
         }else {
             flash.redirectParams = response.model
             flash.message = AppUtil.infoMessage("Sorry! You don't have permission to book ticket")
-            redirect(controller: "busTicketAdvance", action: "bookingPanel", params: [id: params.id, date: params.date])
+            redirect(controller: "busTicketAdvance", action: "bookingPanel", params:[id: params.busTicketId, date: params.scheduledDate])
         }
-
     }
 
     def returnBookedTicket() {

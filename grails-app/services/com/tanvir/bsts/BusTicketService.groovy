@@ -366,26 +366,53 @@ class BusTicketService {
         return response
     }
 
+   def checkSeatAvailability(def params){
+       def alreadyBookedSeats = []
+       def seatBooked = params["seatBooked[]"]
+       if(!seatBooked){
+           seatBooked = params["seatBooked"]
+       }
+       String seatBookedString = seatBooked.toString()
+       if(seatBookedString){
+           def seatList = seatBookedString.replaceAll("\\[","").replaceAll("\\]","").replaceAll(" ","").split(",")
+           PurchaseTicket.findAllByBusTicketTemplateIdAndScheduledDate(params.busTicketId, params.scheduledDate).each {bookedTicket->
+               String bookedTicketString = bookedTicket.seatBooked.toString()
+               def bookedTicketList = bookedTicketString.replaceAll("\\[","").replaceAll("\\]","").replaceAll(" ","").split(",")
+               seatList.each{ seat ->
+                   bookedTicketList.each { booked->
+                       if(booked == seat){
+                           alreadyBookedSeats.add(seat)
+                       }
+                   }
+               }
+           }
+       }
+
+       return !alreadyBookedSeats.size()
+    }
+
 
     def saveBookingTicketAdvance(GrailsParameterMap params, HttpServletRequest request) {
-        def totalBookedSeat = params["seatBooked[]"]?.size() ?: params["seatBooked"]?.size()
-        params.seatBooked = params["seatBooked[]"]?.toString() ?: params["seatBooked"]?.toString()
-        params.seatBookedForDisplay = params["seatBookedForDisplay[]"]?.toString() ?: params["seatBookedForDisplay"]?.toString()
-        BusTicketTemplate busTicket = BusTicketTemplate.get(params.busTicketId)
-        PurchaseTicket purchaseTicket = new PurchaseTicket(params)
-        purchaseTicket.totalBookedSeat = totalBookedSeat
-        purchaseTicket.discount = params.discount ? params.discount.toDouble() : 0.0
-        purchaseTicket.commission = params.commission ? params.commission.toDouble() : 0.0
-        purchaseTicket.receivedAmountAfterCommission = params.commission ? (purchaseTicket.receivedFromCustomer - params.commission.toDouble()) : purchaseTicket.receivedFromCustomer
-        purchaseTicket.saleBy = authenticationService.getMember()
-        purchaseTicket.busTicketTemplateId = busTicket.id
-        def response = AppUtil.saveResponse(false, purchaseTicket)
-        if (purchaseTicket.validate()) {
-            purchaseTicket.save()
-            if (!purchaseTicket.hasErrors()){
-                response.isSuccess = true
+            def response
+            def totalBookedSeat = params["seatBooked[]"]?.size() ?: params["seatBooked"]?.size()
+            params.seatBooked = params["seatBooked[]"]?.toString() ?: params["seatBooked"]?.toString()
+            params.seatBookedForDisplay = params["seatBookedForDisplay[]"]?.toString() ?: params["seatBookedForDisplay"]?.toString()
+            BusTicketTemplate busTicket = BusTicketTemplate.get(params.busTicketId)
+            PurchaseTicket purchaseTicket = new PurchaseTicket(params)
+            purchaseTicket.totalBookedSeat = totalBookedSeat
+            purchaseTicket.discount = params.discount ? params.discount.toDouble() : 0.0
+            purchaseTicket.commission = params.commission ? params.commission.toDouble() : 0.0
+            purchaseTicket.receivedAmountAfterCommission = params.commission ? (purchaseTicket.receivedFromCustomer - params.commission.toDouble()) : purchaseTicket.receivedFromCustomer
+            purchaseTicket.saleBy = authenticationService.getMember()
+            purchaseTicket.busTicketTemplateId = busTicket.id
+            response = AppUtil.saveResponse(false, purchaseTicket)
+            if (purchaseTicket.validate()) {
+                purchaseTicket.save()
+                if (!purchaseTicket.hasErrors()){
+                    response.isSuccess = true
+                }
             }
-        }
+
         return response
     }
 

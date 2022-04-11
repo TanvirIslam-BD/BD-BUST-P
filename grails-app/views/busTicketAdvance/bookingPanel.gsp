@@ -180,19 +180,25 @@
             <div id="legend" style="padding: 15px 0 0 20px; pointer-events: none;" class="seatCharts-legend"></div>
         </div>
     </div>
+
 </g:if>
 
 <g:else>
     <g:render template="noDataFound" />
 </g:else>
 
+
+<div id="splash-page" class="page-splash" style="display: none;">
+    <p id="loading" class="page-splash-message">
+        Processing.
+    </p>
+</div>
+
 <script>
 
     $('.book-confirm-button').on('click',function(e) {
 
         var ticketForm = $('#ticketForm');
-
-            Spiner.show();
 
             var ticketList = $(".selected-book-seats-item");
             var maxNoSeatAllow = 5
@@ -227,32 +233,13 @@
                 ticketForm.validate();
                 isValidate = ticketForm.valid();
                 if (isValidate) {
+                    Spiner.show();
                     ticketForm.find("input[type=text]").each(function() {
                         this.value = $.trim(this.value);
                     });
                     var formData = serializeObject(ticketForm)
                     formData.paymentType =  "book"
-                    $.ajax({
-                        url: BSTS.baseURL + 'busTicketAdvance/saveBookingTicket',
-                        method: 'GET',
-                        dataType: 'html',
-                        async: false,
-                        data: formData,
-                        success: function (data) {
-                            var bookingPanel = data;
-                            $("#advance-ticket-book-ui-body").html(bookingPanel);
-                            swal({
-                                html: true,
-                                content: {
-                                    element: 'p',
-                                    attributes: {
-                                        innerHTML: `<div class="swal2-html-container" style="display: block;">Ticket has been booked successfully!!!</div>`
-                                    }
-                                },
-                                icon:"success"
-                            });
-                        }
-                    });
+                    proceedSeatBooking(formData)
                 }else {
                     $.each(ticketForm.validate().errorList, function(key, value) {
                         $errorSpan = $("span[data-valmsg-for='" + value.element.id + "']");
@@ -307,7 +294,6 @@
 
 
         var ticketForm = $('#ticketForm');
-        Spiner.show();
         var ticketList = $(".selected-book-seats-item");
         var maxNoSeatAllow = 5
         if (ticketList.length < 1) {
@@ -341,29 +327,10 @@
             ticketForm.validate();
             isValidate = ticketForm.valid();
             if (isValidate) {
+                Spiner.show();
                 var formData = serializeObject(ticketForm)
                 formData.paymentType =  "sell"
-                $.ajax({
-                    url: BSTS.baseURL + 'busTicketAdvance/saveBookingTicket',
-                    method: 'GET',
-                    dataType: 'html',
-                    async: false,
-                    data: formData,
-                    success: function (data) {
-                        var bookingPanel = data;
-                        $("#advance-ticket-book-ui-body").html(bookingPanel);
-                        swal({
-                            html: true,
-                            content: {
-                                element: 'p',
-                                attributes: {
-                                    innerHTML: `<div class="swal2-html-container" style="display: block;">Ticket has been sold successfully!!!</div>`
-                                }
-                            },
-                            icon:"success"
-                        });
-                    }
-                });
+                proceedSeatBooking(formData)
             } else {
                 $.each(ticketForm.validate().errorList, function(key, value) {
                     $errorSpan = $("span[data-valmsg-for='" + value.element.id + "']");
@@ -386,6 +353,76 @@
 
 
     });
+
+
+    function proceedSeatBooking(formData){
+        $.ajax({
+            url: BSTS.baseURL + 'busTicketAdvance/checkSeatAvailability',
+            method: 'GET',
+            dataType: 'json',
+            async: false,
+            data: formData,
+            success: function (data) {
+                var isAvailable = data.isAvailableSeatToBook;
+                if(isAvailable){
+                    saveBookingSeat(formData)
+                }else {
+                    seatBookingStatusUpdate(formData)
+                }
+            }
+        });
+    }
+
+    function seatBookingStatusUpdate(formData){
+        $.ajax({
+            url: BSTS.baseURL + 'busTicketAdvance/bookingPanel',
+            method: 'GET',
+            dataType: 'html',
+            async: false,
+            data: {id: formData.busTicketId, date: formData.scheduledDate},
+            success: function (data) {
+                var bookingPanel = data;
+                $("#advance-ticket-book-ui-body").html(bookingPanel);
+                Spiner.hide();
+                swal({
+                    html: true,
+                    content: {
+                        element: 'p',
+                        attributes: {
+                            innerHTML: `<div class="swal2-html-container" style="display: block;">Selected seat(s) already booked!</div>`
+                        }
+                    },
+                    icon:"error"
+                });
+            }
+        });
+    }
+
+
+    function saveBookingSeat(formData){
+        $.ajax({
+            url: BSTS.baseURL + 'busTicketAdvance/saveBookingTicket',
+            method: 'GET',
+            dataType: 'html',
+            async: false,
+            data: formData,
+            success: function (data) {
+                var bookingPanel = data;
+                $("#advance-ticket-book-ui-body").html(bookingPanel);
+                Spiner.hide();
+                swal({
+                    html: true,
+                    content: {
+                        element: 'p',
+                        attributes: {
+                            innerHTML: `<div class="swal2-html-container" style="display: block;">Ticket has been sold successfully!!!</div>`
+                        }
+                    },
+                    icon:"success"
+                });
+            }
+        });
+    }
 
     function serializeObject(form) {
         var o = {}

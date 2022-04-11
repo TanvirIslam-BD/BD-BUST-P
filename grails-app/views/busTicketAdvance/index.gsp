@@ -162,4 +162,9 @@
         }
     });
 
+    $("#btn-refresh-trip").on("click", function () {
+        if ($('#ScheduleId').val() !== null || $('#ScheduleId').val() !== '')
+            $('#btnSearchSchedule').trigger('click');
+    });
+
 </script>
