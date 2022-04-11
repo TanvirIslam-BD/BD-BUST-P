@@ -3,6 +3,7 @@ package com.tanvir.bsts
 class RouteController {
 
     RouteService routeService
+    MemberService memberService
 
     def index() {
         def permissionKey = "routesViewPermission"

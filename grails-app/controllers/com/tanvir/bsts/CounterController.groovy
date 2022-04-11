@@ -3,6 +3,7 @@ package com.tanvir.bsts
 class CounterController {
 
     CounterService counterService
+    MemberService memberService
 
     def index() {
         def permissionKey = "countersViewPermission"

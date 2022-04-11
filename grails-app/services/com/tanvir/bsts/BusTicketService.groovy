@@ -134,7 +134,6 @@ class BusTicketService {
 
         def scheduleItemList = []
 
-
         Route route = Route.get(routeId)
         def scheduleTicketList = BusTicketTemplate.findAllByRoute(route)
 

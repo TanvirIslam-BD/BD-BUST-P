@@ -3,6 +3,7 @@ package com.tanvir.bsts
 class CoachController {
 
     CoachService coachService
+    MemberService memberService
 
     def index() {
         def permissionKey = "coachViewPermission"

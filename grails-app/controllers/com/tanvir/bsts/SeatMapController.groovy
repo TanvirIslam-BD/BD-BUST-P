@@ -3,7 +3,7 @@ package com.tanvir.bsts
 class SeatMapController {
 
     SeatMapService seatMapService
-
+    MemberService memberService
 
     def index() {
         def permissionKey = "seatMapViewPermission"

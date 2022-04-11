@@ -3,6 +3,7 @@ package com.tanvir.bsts
 class FaresController {
 
     FaresService faresService
+    MemberService memberService
 
     def index() {
         def permissionKey = "ticketFaresViewPermission"
