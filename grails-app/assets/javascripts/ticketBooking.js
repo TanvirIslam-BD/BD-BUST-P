@@ -1,4 +1,6 @@
 var firstSeatLabel = 1;
+var ticketTimer = null;
+var holdingTime = 60;//sec
 $(document).ready(function() {
     var seatMap = $('#seat-map');
     var ticketId = seatMap.attr("ticketid");
@@ -140,7 +142,8 @@ $(document).ready(function() {
                 ]
             },
             click: function () {
-                if (this.status() == 'available') {
+                var seatNode = this.node()
+                if (this.status() == 'available' && !seatNode.is(".selected")) {
                     $('#customer-phoneNumber').focus();
                     $('<tr class="selected-book-seats-item">' +
                         '<td class="border-1 text-center font_detail"> <b>Seat# '+this.settings.label+'</b><a href="#" class="cancel-cart-item">cancel</a></td>' +
@@ -164,6 +167,10 @@ $(document).ready(function() {
                     $totalPaidAmountInput.trigger("change");
                     $(".booked-seat-map-numbers").append('<input type="hidden" name="seatBooked" value="'+this.settings.id+'">')
                     $(".booked-seat-map-numbers").append('<input type="hidden" name="seatBookedForDisplay" value="'+ $("#"+this.settings.id).text() +'">')
+
+                    console.log("callHoldTicket")
+                    callHoldTicket(this.settings.id, false);
+
                     return 'selected';
 
                 } else if (this.status() == 'selected') {
@@ -182,11 +189,15 @@ $(document).ready(function() {
 
                     $(".booked-seat-map-numbers").find('input[value="'+this.settings.id+'"]').remove();
                     $(".booked-seat-map-numbers").find('input[value="'+$("#"+this.settings.id).text()+'"]').remove();
+                    console.log("callHoldTicket")
+                    callHoldTicket(this.settings.id, true);
                     return 'available';
 
                 } else if (this.status() == 'unavailable') {
                     return 'unavailable';
                 } else {
+                    seatNode.removeClass("selected")
+                    callHoldTicket(this.settings.id, true);
                     return this.style();
                 }
             }
@@ -316,12 +327,24 @@ $(document).ready(function() {
         }
     });
 
+
+    var ticketData = {}
+    const tripId = $('#ScheduleId').val();
+    ticketData.tripId = tripId
+    if (tripId !== null || tripId !== '') {
+        var form = $("#SearchScheduleFrom")
+        var routeId = form.find("#RouteId").val()
+        var date = form.find("#Date").val()
+        ticketData.routeId = routeId
+        ticketData.date = date
+    }
+
+    new PullRequest(BSTS.baseURL + "holdTicket/allHoldTickets", 100,
+        ticketData).startPoll()
+
     $(".fromToStoppage").on('change', function (e) {
 
-        $(".card-body.seat-booking-panel-with-seat-plan-design").append(" <div class=\"overlay show\">\n" +
-            "      <div class=\"spanner show\">\n" +
-            "      <div class=\"loader\"></div>\n" +
-            "   </div>")
+        showLoader()
 
         let $fts = $(this);
         let from = $fts.attr("id") === "fromStoppage" ? parseInt($fts.val()) : parseInt($('#fromStoppage').val());
@@ -375,6 +398,34 @@ $(document).ready(function() {
 
 });
 
+function callHoldTicket(seatNo = "", isSelected = false) {
+    if (!seatNo) return;
+    const tripId = $('#ScheduleId').val();
+    if (tripId !== null || tripId !== ''){
+        var form = $("#SearchScheduleFrom")
+        var routeId = form.find("#RouteId").val()
+        var date = form.find("#Date").val()
+        var displayName = $(`#${seatNo}`).text()
+        $.ajaxPOST(BSTS.baseURL + 'holdTicket/save',
+            {
+                "tripId": tripId,
+                "routeId": routeId,
+                "date": date,
+                "seatNo": seatNo,
+                "displayName": displayName,
+                "isSelected": isSelected,
+         });
+    }
+
+    if(!isSelected){
+        setTimeout(function () {
+            var selectedSeats = $(".seatCharts-seat.selected")
+            clearHoldingTickets(selectedSeats, holdingTime * 1000);
+        }, 2000);
+
+    }
+}
+
 
 function changeStoppage(routeId, from, to, busSeatMap, rowsCharacters) {
 
@@ -407,7 +458,7 @@ function changeStoppage(routeId, from, to, busSeatMap, rowsCharacters) {
 
 
 
-            $(".card-body.seat-booking-panel-with-seat-plan-design").find(".overlay.show").remove()
+            hideLoader()
 
         }
     });
@@ -498,4 +549,43 @@ function recalculateTotal(sc) {
     $('.total-amount-to-paid-to-calc').val(total)
     $('.total-paid-amount').val(total -  $(".booked-seat-discount-on-total").val());
     return total;
+}
+
+function stopTicketTimer() {
+    if (ticketTimer) {
+        clearTimeout(ticketTimer)
+        ticketTimer = null;
+    }
+}
+
+function clearHoldingTickets(selectedTickets, sessionTime) {
+    stopTicketTimer();
+    if (selectedTickets.length > 0) {
+        let holding = selectedTickets
+        if (holding.length > 0) {
+            ticketTimer = setTimeout(function () {
+                $.each(holding,function() {
+                    var seat = $(this)
+                    if(seat.is(".selected")){
+                        var seatNo = seat.attr("id")
+                        callHoldTicket(seatNo, true);
+                        seat.trigger("click");
+                    }
+
+                });
+            }, sessionTime);
+        }
+    }
+}
+
+
+function showLoader(){
+    $("body").append(" <div class=\"overlay show\">\n" +
+        "      <div class=\"spanner show\">\n" +
+        "      <div class=\"loader\"></div>\n" +
+        "   </div>")
+}
+
+function hideLoader(){
+    $("body").find(".overlay.show").remove()
 }

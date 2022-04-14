@@ -3,6 +3,7 @@
 
 <asset:javascript src="jquery.seat-charts.js"/>
 <asset:javascript src="ticketBooking.js"/>
+<asset:javascript src="PullDataRquest.js"/>
 
 <g:if test="${busTicket}">
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 seat-design-map-ui">
@@ -197,8 +198,11 @@
 <script>
 
     $('.book-confirm-button').on('click',function(e) {
+        showLoader()
 
-        var ticketForm = $('#ticketForm');
+        setTimeout(function () {
+
+            var ticketForm = $('#ticketForm');
 
             var ticketList = $(".selected-book-seats-item");
             var maxNoSeatAllow = 5
@@ -262,98 +266,108 @@
             }
 
 
+
+        }, 1000);
+
+
     });
 
     $('.booking-return-button').on('click',function(e) {
-        var formData = serializeObject($('#ticketForm'))
-        formData.paymentType =  "book"
-        $.ajax({
-            url: BSTS.baseURL + 'busTicketAdvance/returnBookedTicket',
-            method: 'GET',
-            dataType: 'html',
-            async: false,
-            data: formData,
-            success: function (data) {
-                var bookingPanel = data;
-                $("#advance-ticket-book-ui-body").html(bookingPanel);
-                swal({
-                    html: true,
-                    content: {
-                        element: 'p',
-                        attributes: {
-                            innerHTML: `<div class="swal2-html-container" style="display: block;">Ticket has been returned successfully!!!</div>`
-                        }
-                    },
-                    icon:"success"
-                });
-            }
-        });
+        showLoader()
+        setTimeout(function () {
+            var formData = serializeObject($('#ticketForm'))
+            formData.paymentType =  "book"
+            $.ajax({
+                url: BSTS.baseURL + 'busTicketAdvance/returnBookedTicket',
+                method: 'GET',
+                dataType: 'html',
+                async: false,
+                data: formData,
+                success: function (data) {
+                    var bookingPanel = data;
+                    $("#advance-ticket-book-ui-body").html(bookingPanel);
+                    swal({
+                        html: true,
+                        content: {
+                            element: 'p',
+                            attributes: {
+                                innerHTML: `<div class="swal2-html-container" style="display: block;">Ticket has been returned successfully!!!</div>`
+                            }
+                        },
+                        icon:"success"
+                    });
+                }
+            });
+        }, 1000);
+
     });
 
     $('.sell-confirm').on('click',function(e) {
+        showLoader()
 
+        setTimeout(function () {
+            var ticketForm = $('#ticketForm');
+            var ticketList = $(".selected-book-seats-item");
+            var maxNoSeatAllow = 5
+            if (ticketList.length < 1) {
+                swal("Seat No# Required!!!", "Please select seat first.", "error");
+                return false;
 
-        var ticketForm = $('#ticketForm');
-        var ticketList = $(".selected-book-seats-item");
-        var maxNoSeatAllow = 5
-        if (ticketList.length < 1) {
-            swal("Seat No# Required!!!", "Please select seat first.", "error");
-            return false;
+            } else if (ticketList.length > maxNoSeatAllow) {
+                swal("Max Seats Selected!!!", `You Can Not Sell More than ${maxNoSeatAllow} Tickets at a Time.`, "error");
+                return false;
+            } else if (!$('#customer-phoneNumber').val()) {
+                swal("Mobile Number Required!!!", "Please Enter Mobile Number.", "error");
+                return false;
 
-        } else if (ticketList.length > maxNoSeatAllow) {
-            swal("Max Seats Selected!!!", `You Can Not Sell More than ${maxNoSeatAllow} Tickets at a Time.`, "error");
-            return false;
-        } else if (!$('#customer-phoneNumber').val()) {
-            swal("Mobile Number Required!!!", "Please Enter Mobile Number.", "error");
-            return false;
+            } else if (!$("#customer-name").val()) {
+                swal("Customer Name Required!!!", "Please Enter Customer Name.", "error");
+                return false;
 
-        } else if (!$("#customer-name").val()) {
-            swal("Customer Name Required!!!", "Please Enter Customer Name.", "error");
-            return false;
+            } else if (!$("#fromStoppage").val()) {
+                swal("Destination Required!!!", "Please Select destination station (From).", "error");
+                return false;
 
-        } else if (!$("#fromStoppage").val()) {
-            swal("Destination Required!!!", "Please Select destination station (From).", "error");
-            return false;
+            } else if (!$("#toStoppage").val()) {
+                swal("Destination Required!!!", "Please Select destination station (To).", "error");
+                return false;
 
-        } else if (!$("#toStoppage").val()) {
-            swal("Destination Required!!!", "Please Select destination station (To).", "error");
-            return false;
-
-        } else if ($("#fromStoppage").val() == $("#toStoppage").val()) {
-            swal("From and To Same!!!", "Please Select different destination station (From or To).", "error");
-            return false;
-        }else {
-            var isValidate = true;
-            ticketForm.validate();
-            isValidate = ticketForm.valid();
-            if (isValidate) {
-                Spiner.show();
-                var formData = serializeObject(ticketForm)
-                formData.paymentType =  "sell"
-                proceedSeatBooking(formData)
-            } else {
-                $.each(ticketForm.validate().errorList, function(key, value) {
-                    $errorSpan = $("span[data-valmsg-for='" + value.element.id + "']");
-                    $errorSpan.html(value.message);
-                    $errorSpan.show();
-                });
-                Spiner.hide();
-                swal({
-                    html: true,
-                    content: {
-                        element: 'p',
-                        attributes: {
-                            innerHTML: `<div class="swal2-html-container" style="display: block;">Form values are invalid!!!</div>`
-                        }
-                    },
-                    icon:"error"
-                });
+            } else if ($("#fromStoppage").val() == $("#toStoppage").val()) {
+                swal("From and To Same!!!", "Please Select different destination station (From or To).", "error");
+                return false;
+            }else {
+                var isValidate = true;
+                ticketForm.validate();
+                isValidate = ticketForm.valid();
+                if (isValidate) {
+                    Spiner.show();
+                    var formData = serializeObject(ticketForm)
+                    formData.paymentType =  "sell"
+                    proceedSeatBooking(formData)
+                } else {
+                    $.each(ticketForm.validate().errorList, function(key, value) {
+                        $errorSpan = $("span[data-valmsg-for='" + value.element.id + "']");
+                        $errorSpan.html(value.message);
+                        $errorSpan.show();
+                    });
+                    Spiner.hide();
+                    swal({
+                        html: true,
+                        content: {
+                            element: 'p',
+                            attributes: {
+                                innerHTML: `<div class="swal2-html-container" style="display: block;">Form values are invalid!!!</div>`
+                            }
+                        },
+                        icon:"error"
+                    });
+                }
             }
-        }
+        }, 1000);
+
 
 
     });
-
 
     function proceedSeatBooking(formData){
         $.ajax({
@@ -398,7 +412,6 @@
         });
     }
 
-
     function saveBookingSeat(formData){
         $.ajax({
             url: BSTS.baseURL + 'busTicketAdvance/saveBookingTicket',
@@ -439,5 +452,6 @@
         })
         return o
     }
+
 
 </script>

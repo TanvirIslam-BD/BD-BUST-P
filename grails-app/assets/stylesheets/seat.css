@@ -16,7 +16,7 @@ div.seatCharts-seat.available {background-color: #344767;}
 .available-resale, div.seatCharts-seat.available-resale, div.seatCharts-seat.seatCharts-cell.available.resale, div.seatCharts-seat.seatCharts-cell.available.available-resale { background-color: rgb(118, 87, 9); }
 div.seatCharts-seat.available.first-class { background-color: rgb(58, 120, 195); }
 div.seatCharts-seat.focused {background-color: #607d8b;}
-div.seatCharts-seat.selected {background-color: #2196f3;}
+div.seatCharts-seat.selected {background-color: #ff9800;}
 div.seatCharts-seat.booked { background-color: rgb(50, 205, 50); cursor: not-allowed; }
 div.seatCharts-seat.counter-book.seller-book.booked { background-color: rgb(144, 232, 144); cursor: not-allowed; }
 div.seatCharts-seat.counter-book.booked { background-color: rgb(24, 103, 24); cursor: not-allowed; }
@@ -31,7 +31,9 @@ div.seatCharts-seat.unavailable.counter-sell { background-color: rgb(185, 4, 4);
 div.seatCharts-seat.female-sold.counter-sell { background-color: rgb(160, 6, 121) !important; }
 div.seatCharts-seat.female-sold.counter-sell.seller-sell { background-color: rgb(243, 131, 214) !important; }
 .disabled-seat, div.seatCharts-seat.disabled-seat, div.seatCharts-seat.seatCharts-cell.disabled-seat { cursor: not-allowed; pointer-events: none; background-color: rgb(243, 243, 243) !important; }
-.holding, div.seatCharts-seat.holding { pointer-events: none; background-color: rgb(169, 167, 167) !important; }
+.holding, div.seatCharts-seat.holding.unavailable {
+    pointer-events: none; background-color: #ff9800 !important;
+}
 .bus-steering-wheel {padding-left: 0px;display: flex;justify-content: center;}
 @media (min-width: 992px) {
     .btn-sale-group { }

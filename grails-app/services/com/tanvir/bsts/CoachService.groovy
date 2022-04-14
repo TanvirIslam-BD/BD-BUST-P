@@ -51,7 +51,6 @@ class CoachService {
             if (!params.sort) {
                 order("id", "desc")
             }
-            eq("member", authenticationService.getMember())
         }
         return [list: coachList, count: coachList.totalCount]
     }

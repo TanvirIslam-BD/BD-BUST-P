@@ -27,7 +27,7 @@ li.seatCharts-legendItem {
     box-shadow: 1px 2px 3px 0px rgb(176 176 176 / 75%);
 }
 div.seatCharts-seat {
-    background-color: #2196f3;
+    background-color: #ff9800;
     /* color: white; */
     /* -webkit-border-radius: 5px; */
     -moz-border-radius: 5px;
@@ -265,6 +265,10 @@ a.cancel-cart-item:hover {
 
 div.seatCharts-seat.unavailable::after {
     content: "\1F935";
+}
+
+div.seatCharts-seat.holding::after{
+    content: "";
 }
 img.seat-front-view {
     width: 275px;

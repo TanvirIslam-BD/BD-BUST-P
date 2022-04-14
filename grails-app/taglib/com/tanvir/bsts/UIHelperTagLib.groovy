@@ -36,6 +36,10 @@ class UIHelperTagLib {
         out << "/member/details?id=${authenticationService.getMember().id}"
     }
 
+    def memberId = { attrs, body ->
+        out << "${authenticationService.getMember().id}"
+    }
+
 
     def activeMembersListUI = { attrs, body ->
         def memberList = memberService.list(params)

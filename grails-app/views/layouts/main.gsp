@@ -112,7 +112,7 @@
                     </div>
                     <span class="nav-link-text ms-1">TICKETING</span>
                 </a>
-                <div class="collapse ${(session.activeTab == "DAILY TRIP" || session.activeTab == "BOOKED TICKETS") ? 'show' : ''}" id="ticketing">
+                <div class="collapse ${(session.activeTab == "DAILY TRIP" || session.activeTab == "BOOKED TICKETS" || session.activeTab == "HOLD TICKET") ? 'show' : ''}" id="ticketing">
                     <ul class="nav ms-4 ps-3">
                         <li class="nav-item">
                             <a class="nav-link ${session.activeTab == "DAILY TRIP" ? "active" : ""}" href="/busTicket">
@@ -121,7 +121,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link ${session.activeTab == "BOOKED TICKETS" ? "active" : ""}" href="/purchasedTicket">
-                                <span class="nav-link-text ms-1">BOOKED TICKETS</span>
+                                <span class="nav-link-text ms-1">BOOKED TICKET</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ${session.activeTab == "HOLD TICKET" ? "active" : ""}" href="/holdTicket">
+                                <span class="nav-link-text ms-1">HOLD TICKET</span>
                             </a>
                         </li>
                     </ul>
@@ -312,6 +317,7 @@
                             <i class="fa fa-user me-sm-1"></i>
                             <span class="d-sm-inline d-none"><UIHelper:memberName/></span>
                         </a>
+                        <input type="hidden" id="loggedUser" name="loggedUser" value="${UIHelper.memberId()}">
                     </li>
                     <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                         <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
