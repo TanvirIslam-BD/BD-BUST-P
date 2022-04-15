@@ -2,6 +2,8 @@ package com.tanvir.bsts
 
 import grails.converters.JSON
 
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -177,7 +179,10 @@ class UIHelperTagLib {
         def ticketId = attrs.ticketId ?: ""
         if(ticketId){
             BusTicketTemplate busTicket = BusTicketTemplate.get(ticketId)
-            def bookedCount = PurchaseTicket.findAllByBusTicketTemplateId(busTicket.id).sum {it.totalBookedSeat}
+            Date date = Calendar.getInstance().getTime()
+            DateFormat dateFormat = new SimpleDateFormat("MMM dd, YYYY")
+            String currentDate =  dateFormat.format(date)
+            def bookedCount = PurchaseTicket.findAllByBusTicketTemplateIdAndScheduledDate(busTicket.id, currentDate).sum {it.totalBookedSeat}
             if(bookedCount){
                 out << bookedCount
             }else {
@@ -209,7 +214,10 @@ class UIHelperTagLib {
         if(ticketId){
             BusTicketTemplate busTicket = BusTicketTemplate.get(ticketId)
             def totalSeat = busTicket.coach.seatCapacity
-            def bookedCount =  PurchaseTicket.findAllByBusTicketTemplateId(busTicket.id).sum {it.totalBookedSeat}
+            Date date = Calendar.getInstance().getTime()
+            DateFormat dateFormat = new SimpleDateFormat("MMM dd, YYYY")
+            String currentDate = dateFormat.format(date)
+            def bookedCount = PurchaseTicket.findAllByBusTicketTemplateIdAndScheduledDate(busTicket.id, currentDate).sum {it.totalBookedSeat}
             if(bookedCount){
                 out << totalSeat - bookedCount
             }else {

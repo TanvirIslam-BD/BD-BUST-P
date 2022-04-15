@@ -20,6 +20,8 @@ class BusTicketTemplate {
     Boolean isOnlineSale = false
     String seatClass = "ac"
 
+    Double flatFare = 0.00
+
     Collection<TicketCounterTime> ticketCounterTimes
 
     static hasMany = [ticketCounterTimes: TicketCounterTime]
@@ -32,6 +34,7 @@ class BusTicketTemplate {
         scheduleStartDateStr(nullable: true)
         scheduleEndDateStr(nullable: true)
         tripNo(nullable: true)
+        flatFare(nullable: true)
     }
 
 }

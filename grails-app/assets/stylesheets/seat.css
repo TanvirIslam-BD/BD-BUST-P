@@ -6,7 +6,7 @@ a { color: rgb(183, 26, 76); }
 .wrapper { width: 100%; background-color: rgb(255, 255, 255) !important; }
 .seat-container {/* margin: 0px auto; */text-align: left;}
 div.seatCharts-row { height: 35px; display: flex; justify-content: center; align-items: center; }
-.booking-details {float: left;text-align: left;font-size: 12px;height: 100%;position: relative;overflow-x: hidden;overflow-y: auto;border-left: 1px dotted #2196f34f;}
+.booking-details {float: left;text-align: left;font-size: 12px;height: 100%;position: relative;overflow-x: hidden;overflow-y: auto;border-left: 1px dotted #2196f34f;margin-top: 0;}
 .booking-details h2 { margin: 5px 0px 20px; font-size: 17px; font-weight: bold; }
 .booking-details h3 { margin: 5px 5px 0px 0px; font-size: 14px; }
 div.seatCharts-cell { color: rgb(24, 44, 78); height: 30px; width: 40px; line-height: 30px; }

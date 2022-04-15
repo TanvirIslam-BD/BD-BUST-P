@@ -11,7 +11,7 @@ class BusTicketController {
     BusTicketService busTicketService
 
     def index() {
-        def response = busTicketService.list(params)
+        def response = busTicketService.activeList(params)
         Date date = Calendar.getInstance().getTime()
         DateFormat dateFormat = new SimpleDateFormat("MMM dd, YYYY")
         String currentDate =  dateFormat.format(date)

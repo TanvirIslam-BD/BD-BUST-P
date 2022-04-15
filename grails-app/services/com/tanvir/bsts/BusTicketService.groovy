@@ -6,6 +6,10 @@ import grails.web.servlet.mvc.GrailsParameterMap
 import javax.servlet.http.HttpServletRequest
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
+
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+
 @Transactional
 class BusTicketService {
 
@@ -138,18 +142,28 @@ class BusTicketService {
         def scheduleTicketList = BusTicketTemplate.findAllByRoute(route)
 
         scheduleTicketList.each {
-            def scheduleItemTemplate = [
-                    Disabled: false,
-                    Group: null,
-                    Selected: false,
-                    Text: "2:20 AM (TAN)",
-                    ThirdValue: "TAN",
-                    Value: "1"
-            ]
-            scheduleItemTemplate.Text = uiHelperTagLib.parseTimeInFormat(time: it.boardingTime) + " (${it.tripNo})"
-            scheduleItemTemplate.Value = it.id
-            scheduleItemTemplate.ThirdValue = date
-            scheduleItemList.add(scheduleItemTemplate)
+
+            boolean isActive = true
+            Trip existTrip = Trip.findByTicketScheduleIdAndScheduleDate(it.id, date)
+            if(existTrip){
+                isActive = existTrip.isActive
+            }
+
+            if(isActive){
+                def scheduleItemTemplate = [
+                        Disabled: false,
+                        Group: null,
+                        Selected: false,
+                        Text: "2:20 AM (TAN)",
+                        ThirdValue: "TAN",
+                        Value: "1"
+                ]
+                scheduleItemTemplate.Text = uiHelperTagLib.parseTimeInFormat(time: it.boardingTime) + " (${it.tripNo})"
+                scheduleItemTemplate.Value = it.id
+                scheduleItemTemplate.ThirdValue = date
+                scheduleItemList.add(scheduleItemTemplate)
+            }
+
         }
 
         return scheduleItemList
@@ -165,6 +179,11 @@ class BusTicketService {
         if(seatFares){
             amount = seatFares[0].amount
             commission = seatFares[0].commissionAmount
+        }else {
+            BusTicketTemplate busTicketTemplate = BusTicketTemplate.get(params.scheduleId)
+            if(busTicketTemplate && busTicketTemplate.flatFare){
+                amount = busTicketTemplate.flatFare
+            }
         }
         return [amount: amount, commission: commission]
     }
@@ -459,9 +478,115 @@ class BusTicketService {
     }
 
 
+    def activeList(GrailsParameterMap params) {
+        params.max = params.max ?: GlobalConfig.itemsPerPage()
+        List<BusTicketTemplate> busTicketList = BusTicketTemplate.createCriteria().list(params) {
+            if (params?.colName && params?.colValue) {
+                like(params.colName, "%" + params.colValue + "%")
+            }
+            if (!params.sort) {
+                order("id", "desc")
+            }
+        }
+        Date date = Calendar.getInstance().getTime()
+        DateFormat dateFormat = new SimpleDateFormat("MMM dd, YYYY")
+        String currentDate =  dateFormat.format(date)
+        List<BusTicketTemplate> activeList = []
+        busTicketList.each {
+            boolean isActive = true
+            Trip existTrip = Trip.findByTicketScheduleIdAndScheduleDate(it.id, currentDate)
+            if(existTrip){
+                isActive = existTrip.isActive
+            }
+            if(isActive){
+                activeList.add(it)
+            }
+        }
+
+        return [list: activeList, count: activeList.size()]
+    }
+
+    def tripList(GrailsParameterMap params) {
+        params.max = params.max ?: GlobalConfig.itemsPerPage()
+        List<BusTicketTemplate> busTicketList = BusTicketTemplate.createCriteria().list(params) {
+            if (params?.colName && params?.colValue) {
+                like(params.colName, "%" + params.colValue + "%")
+            }
+            if (!params.sort) {
+                order("id", "desc")
+            }
+        }
+
+        Date date = Calendar.getInstance().getTime()
+        DateFormat dateFormat = new SimpleDateFormat("MMM dd, YYYY")
+        String currentDate =  dateFormat.format(date)
+
+        def tripList = []
+
+        busTicketList.each {scheduleTicket ->
+            def  tripData = [:]
+            def tripId = scheduleTicket.id
+            tripData.id = tripId
+            tripData.boardingTime = scheduleTicket?.boardingTime
+            tripData.tripNo = scheduleTicket.tripNo
+            tripData.route = scheduleTicket?.route?.name
+            tripData.seatClass = scheduleTicket?.coach?.seatClass?.toUpperCase()
+            tripData.flatFare = scheduleTicket?.flatFare ?: 0.00
+            tripData.seatMap = scheduleTicket?.coach?.seatMap?.name
+            tripData.fromStoppage = scheduleTicket?.route?.fromStoppage?.name
+            tripData.toStoppage = scheduleTicket?.route?.toStoppage?.name
+            tripData.coachNumber = scheduleTicket?.coach?.coachNumber
+            tripData.isActive = true
+
+            Trip oldTrip = Trip.findByTicketScheduleIdAndScheduleDate(tripId, currentDate)
+            if(oldTrip){
+                tripData.isActive = oldTrip.isActive
+            }
+
+            tripList.add(tripData)
+        }
+
+        return [currentDate: currentDate, list: tripList, count: busTicketList.totalCount]
+    }
+
+
     def delete(BusTicket busTicket) {
         try {
             busTicket.delete()
+        } catch (Exception e) {
+            println(e.getMessage())
+            return false
+        }
+        return true
+    }
+
+
+    def activateTrip(def params) {
+        try {
+            Integer tripId  =  params.tripId ? Integer.parseInt(params.tripId) : null
+            def isActivate = true
+            if(tripId && params.date){
+                Trip oldTrip = Trip.findByTicketScheduleIdAndScheduleDate(tripId, params.date)
+                if(oldTrip){
+                    if(oldTrip.isActive){
+                        oldTrip.isActive = false
+                    }else {
+                        oldTrip.isActive = true
+                    }
+                    oldTrip.save()
+                    isActivate = oldTrip.isActive
+                    return isActivate
+                } else {
+                    Trip trip = new Trip()
+                    trip.isActive = false
+                    trip.ticketScheduleId = params.tripId ? Integer.parseInt(params.tripId) : null
+                    trip.scheduleDate = params.date
+                    isActivate =   trip.isActive
+                    trip.save()
+                    return isActivate
+                }
+            }
+            return isActivate
         } catch (Exception e) {
             println(e.getMessage())
             return false

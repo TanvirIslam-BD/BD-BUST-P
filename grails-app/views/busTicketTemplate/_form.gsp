@@ -13,6 +13,11 @@
                    maxlength="128" type="text" value="${busTicketTemplate?.tripNo}" id="trip-no-input" onfocus="focused(this)">
         </div>
         <div class="form-group col-md">
+            <label class="required">Flat Fare</label>
+            <g:textField name="flatFare" class="form-control" value="${busTicketTemplate?.flatFare}" placeholder="Please Enter Fare Amount"/>
+            <UIHelper:renderErrorMessage fieldName="flatFare" model="${busTicketTemplate}" errorMessage="please.enter.amount"/>
+        </div>
+        <div class="form-group col-md">
             <label>Routes</label>
             <UIHelper:domainSelect class="form-control" domain="${Route}" name="route" value="${busTicketTemplate?.route ? busTicketTemplate?.route?.id : null}"/>
         </div>
@@ -21,16 +26,16 @@
             <UIHelper:domainSelect class="form-control" domain="${SeatMap}" name="seatMap" value="${busTicketTemplate ? busTicketTemplate?.seatMap?.id : null}"/>
             <UIHelper:renderErrorMessage fieldName="seatMap" model="${busTicketTemplate}" errorMessage="Seat Type"/>
         </div>
-        <div class="form-group col-md">
-            <label>Coach Type</label>
-            <UIHelper:seatClass name="seatClass" value="${busTicketTemplate?.seatClass}"/>
-        </div>
 
     </div>
     <div class="col-md-6">
         <div class="form-group col-md">
             <label>Coach </label>
             <UIHelper:domainSelect class="form-control" domain="${Coach}" name="coach" value="${busTicketTemplate?.coach ? busTicketTemplate?.coach?.id : null}"/>
+        </div>
+        <div class="form-group col-md">
+            <label>Coach Type</label>
+            <UIHelper:seatClass name="seatClass" value="${busTicketTemplate?.seatClass}"/>
         </div>
         <div class="form-group">
             <label class="control-label col-md" for="ScheduleStartDateStr">Start Date</label>

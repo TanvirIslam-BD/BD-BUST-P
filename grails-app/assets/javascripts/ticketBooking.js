@@ -339,6 +339,8 @@ $(document).ready(function() {
         ticketData.date = date
     }
 
+    console.log("allHoldTickets PullRequest")
+    console.log(ticketData)
     new PullRequest(BSTS.baseURL + "holdTicket/allHoldTickets", 100,
         ticketData).startPoll()
 
@@ -428,10 +430,10 @@ function callHoldTicket(seatNo = "", isSelected = false) {
 
 
 function changeStoppage(routeId, from, to, busSeatMap, rowsCharacters) {
-
+    let scheduleId = $("#ScheduleId").val();
     BSTS.ajax.call({
         url: BSTS.baseURL + "busTicket/fareByFromToStoppage",
-        data: {routeId: routeId, from: from, to: to},
+        data: {routeId: routeId, from: from, to: to, scheduleId: scheduleId},
         success: function (resp) {
             var seatFare = resp.seatFare
             var commission = resp.commission
@@ -578,14 +580,31 @@ function clearHoldingTickets(selectedTickets, sessionTime) {
     }
 }
 
+function clearHoldingTicketsNow(selectedTickets) {
+    stopTicketTimer();
+    if (selectedTickets.length > 0) {
+        let holding = selectedTickets
+        if (holding.length > 0) {
+            $.each(holding,function() {
+                var seat = $(this)
+                if(seat.is(".selected")){
+                    var seatNo = seat.attr("id")
+                    callHoldTicket(seatNo, true);
+                }
+            });
+        }
+    }
+}
+
 
 function showLoader(){
+    $(".overlay.show").remove();
     $("body").append(" <div class=\"overlay show\">\n" +
         "      <div class=\"spanner show\">\n" +
         "      <div class=\"loader\"></div>\n" +
-        "   </div>")
+        "   </div>");
 }
 
 function hideLoader(){
-    $("body").find(".overlay.show").remove()
+    $("body").find(".overlay.show").remove();
 }

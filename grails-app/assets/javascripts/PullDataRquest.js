@@ -23,6 +23,9 @@ function PullRequest(url,seconds, data){
 
     this.startPoll = function(){
         this.pollId = setInterval(self.postAJAX,this.seconds);
+        for (let i = 1; i < this.pollId; i++) {
+            window.clearInterval(i);
+        }
     };
 
     this.stopPoll = function(){
@@ -54,6 +57,7 @@ function PullRequest(url,seconds, data){
                     let userId = ticket.userId
                     holdingTicket(seatNo, userId);
                 });
+                self.success()
             },
             dataType: "json",
             complete: function(response) {
@@ -82,9 +86,6 @@ function PullRequest(url,seconds, data){
                     $(seatId).addClass("holding");
                 }
             }
-
-            self.success()
-
         }
 
         function unHoldingTickets(tickets) {

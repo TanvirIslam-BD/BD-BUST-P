@@ -10,6 +10,7 @@ class GlobalConfig {
             MANAGER: "MANAGER",
             DRIVER: "DRIVER",
             SUPERVISOR: "SUPERVISOR",
+            HELPER: "HELPER",
             OPERATOR: "OPERATOR",
     ]
 

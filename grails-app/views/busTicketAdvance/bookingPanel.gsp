@@ -41,7 +41,6 @@
                         </tr>
                     </thead>
                     <tbody class="table-striped">
-
                         <tr id="selected-seats-details-row">
                             <td class="border-1 text-center font_detail">
                                 <span class="orange-bold-text" id="selected-seats-count">
@@ -181,21 +180,15 @@
             <div id="legend" style="padding: 15px 0 0 20px; pointer-events: none;" class="seatCharts-legend"></div>
         </div>
     </div>
-
 </g:if>
 
 <g:else>
     <g:render template="noDataFound" />
 </g:else>
 
-
-<div id="splash-page" class="page-splash" style="display: none;">
-    <p id="loading" class="page-splash-message">
-        Processing.
-    </p>
-</div>
-
 <script>
+
+    console.log("script book");
 
     $('.book-confirm-button').on('click',function(e) {
         showLoader()
@@ -269,7 +262,6 @@
 
         }, 1000);
 
-
     });
 
     $('.booking-return-button').on('click',function(e) {
@@ -285,6 +277,8 @@
                 data: formData,
                 success: function (data) {
                     var bookingPanel = data;
+                    var selectedSeats = $(".seatCharts-seat.selected")
+                    clearHoldingTicketsNow(selectedSeats);
                     $("#advance-ticket-book-ui-body").html(bookingPanel);
                     swal({
                         html: true,
@@ -413,6 +407,7 @@
     }
 
     function saveBookingSeat(formData){
+        console.log("selectedSeats");
         $.ajax({
             url: BSTS.baseURL + 'busTicketAdvance/saveBookingTicket',
             method: 'GET',
@@ -421,6 +416,8 @@
             data: formData,
             success: function (data) {
                 var bookingPanel = data;
+                var selectedSeats = $(".seatCharts-seat.selected")
+                clearHoldingTicketsNow(selectedSeats);
                 $("#advance-ticket-book-ui-body").html(bookingPanel);
                 Spiner.hide();
                 swal({

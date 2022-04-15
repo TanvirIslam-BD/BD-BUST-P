@@ -151,8 +151,13 @@
                     </div>
                     <span class="nav-link-text ms-1">TRIP SETTING</span>
                 </a>
-                <div class="collapse ${(session.activeTab == "TICKET SCHEDULE"  || session.activeTab == "Ticket Fare") ? 'show' : ''}" id="tripSetting">
+                <div class="collapse ${(session.activeTab == "TICKET SCHEDULE"  || session.activeTab == "Ticket Fare" || session.activeTab == "TRIP") ? 'show' : ''}" id="tripSetting">
                     <ul class="nav ms-4 ps-3">
+                        <li class="nav-item">
+                            <a class="nav-link ${session.activeTab == "TRIP" ? "active" : ""}" href="/trips">
+                                <span class="nav-link-text ms-1">TRIP</span>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link ${session.activeTab == "TICKET SCHEDULE" ? "active" : ""}" href="/busTicketTemplate">
                                 <span class="nav-link-text ms-1">TICKET SCHEDULE</span>
@@ -299,7 +304,7 @@
 
 <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
     <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-2 shadow-none border-radius-xl position-sticky blur shadow-blur mt-2 left-auto top-1 z-index-sticky" id="navbarBlur" navbar-scroll="true">
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-2 shadow-none border-radius-xl mt-2" id="navbarBlur" navbar-scroll="true">
         <div class="container-fluid py-1 px-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">

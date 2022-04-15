@@ -18,7 +18,6 @@
 <div class="common-list-table-view-ui col-lg-13 mt-4">
     <div class="card">
         <div class="card-header">
-
             <form class="advance-ticket-book-ui-header search-panel form-horizontal" data-ajax="true" data-ajax-begin="Spiner.show()" data-ajax-complete="Spiner.hide()" data-ajax-method="POST" data-ajax-mode="replace" data-ajax-update="#advance-ticket-book-ui-body" id="SearchScheduleFrom" method="post" novalidate="novalidate" action="/busTicketAdvance/index">
 
                 <div class="validation-summary text-danger validation-summary-valid" data-valmsg-summary="true">
@@ -185,14 +184,15 @@
     });
 
     function showLoader(){
+        $(".overlay.show").remove();
         $("body").append(" <div class=\"overlay show\">\n" +
             "      <div class=\"spanner show\">\n" +
             "      <div class=\"loader\"></div>\n" +
-            "   </div>")
+            "   </div>");
     }
 
     function hideLoader(){
-        $("body").find(".overlay.show").remove()
+        $("body").find(".overlay.show").remove();
     }
 
 </script>
