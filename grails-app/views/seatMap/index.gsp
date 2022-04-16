@@ -1,3 +1,4 @@
+<%@ page import="com.tanvir.bsts.GlobalConfig" %>
 %{--Include Main Layout--}%
 <meta name="layout" content="main"/>
 
@@ -40,7 +41,7 @@
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SL.</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rows</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Columns</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Seat Format</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                         <th class="text-secondary opacity-7"></th>
                     </tr>
@@ -52,7 +53,7 @@
                                 <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${seatMap?.id}</span></td>
                                 <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${seatMap?.name}</span></td>
                                 <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${seatMap?.seatRows}</span></td>
-                                <td class="text-center text-sm"><span class="text-xs font-weight-bold">${seatMap?.seatColumns}</span></td>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold">${GlobalConfig.SEAT_FORMAT[Integer.parseInt(seatMap?.seatColumns?.toString())]}</span></td>
                                 <td class="text-center text-sm"><span class="badge badge-sm  bg-gradient-success">ACTIVE</span></td>
                                 <td class="text-center">
                                     <div class="btn-group">
