@@ -39,8 +39,8 @@
                     <thead>
                     <tr>
                         <th  scope="col" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ROUTE</th>
-                        <th  scope="col" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">TRAVELING DATE & TIME</th>
                         <th  scope="col" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">TRIP NO#</th>
+                        <th  scope="col" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">TRAVELING DATE & TIME</th>
                         <th  scope="col" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">COACH TYPE</th>
                         <th  scope="col" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SEAT PLAN</th>
                         <th  scope="col" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FLAT FARE</th>
@@ -57,13 +57,15 @@
                     <g:if test="${busTickets}">
                         <g:each in="${busTickets}" var="ticket">
                             <tr class="${ticket?.isActive ? "active-row" : "de-active-row"}" >
-                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">${ticket?.route} </span></td>
+                                <td class="align-middle text-center text-sm">
+                                    <span class="d-flex px-2 py-1 flex-column justify-content-center" style="overflow: hidden;">${ticket?.route}</span>
+                                </td>
+                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.tripNo} </span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold">
                                     <span id="ticket-date-schedule">${currentDate}</span>
                                     <span class="time-ticket-badge"><UIHelper:parseTimeInFormat time="${ticket?.boardingTime}"/></span>
                                 </span>
                                 </td>
-                                <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.tripNo} </span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.seatClass} </span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.seatMap} </span></td>
                                 <td class="align-middle text-center text-sm"><span class="text-xs font-weight-bold"> ${ticket?.flatFare} </span></td>
