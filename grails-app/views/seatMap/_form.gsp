@@ -1,15 +1,17 @@
+<%@ page import="com.tanvir.bsts.GlobalConfig" %>
 <div class="form-group">
     <label><g:message code="Name"/></label>
-    <g:textField name="name" class="form-control" value="${seatMap?.name}" placeholder="Example: 52 seats"/>
+    <g:textField name="name" class="form-control" value="${seatMap?.name}" placeholder="Example: 52 SEATS"/>
 </div>
 
 <div class="form-group">
-    <label><g:message code="Columns"/></label>
-    <g:select class="form-control" from="${3..4}" name="seatColumns" value="${seatMap?.seatColumns}"></g:select>
+    <label>Seat Format *</label>
+    <UIHelper:namedSelect class="form-control" name="seatColumns" key="${GlobalConfig.SEAT_FORMAT}"
+                          value="${seatMap?.seatColumns ?  Integer.parseInt(seatMap?.seatColumns?.toString()) : ''}"/>
 </div>
 
 <div class="form-group">
-    <label><g:message code="Rows"/> *</label>
+    <label>Number Of Row *</label>
     <g:select class="form-control" from="${2..26}" name="seatRows" value="${seatMap?.seatRows}"></g:select>
 </div>
 

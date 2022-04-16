@@ -1,3 +1,4 @@
+<%@ page import="com.tanvir.bsts.GlobalConfig" %>
 
 <meta name="layout" content="main"/>
 
@@ -62,7 +63,7 @@
                                 </td>
                                 <td class="text-center text-sm"><span class="d-flex px-2 py-1 text-xs font-weight-bold"> ${info?.registrationNumber} </span></td>
                                 <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${info?.seatCapacity} </span></td>
-                                <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${info?.seatMap?.name}</span></td>
+                                <td class="text-center text-sm"><span class="text-xs font-weight-bold"> ${GlobalConfig.SEAT_FORMAT[Integer.parseInt(info?.seatMap?.seatColumns?.toString())]}:${info?.seatMap?.name}</span></td>
                                 <td class="text-center text-sm"><span class="badge badge-sm  ${(info?.status == "ACTIVE") ?  "bg-gradient-success" :  "bg-gradient-secondary"}">${info?.status}</span></td>
                                 <td class="text-center">
                                     <div class="btn-group">

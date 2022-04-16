@@ -19,6 +19,11 @@ class GlobalConfig {
             OWN: "OWN",
     ]
 
+    public static final def SEAT_FORMAT = [
+            3: "1x2",
+            4: "2x2",
+    ]
+
     public static final def CITY_NAME = [
             DHAKA: "DHAKA",
             FARIDPUR: "FARIDPUR",

@@ -9,7 +9,7 @@
                     <h6>TRIPS (${currentDate})</h6>
                     <p class="text-sm mb-0">
                         <i class="fa fa-check text-info" aria-hidden="true"></i>
-                        Book the ticket from the trip list by click on book button
+                        Activate/Deactivate the trip from the list
                     </p>
                 </div>
                 <div class="col-lg-6 col-5 my-auto text-end">
