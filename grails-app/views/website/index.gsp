@@ -2,7 +2,7 @@
 <html lang="en" class="wide wow-animation smoothscroll scrollTo">
 <head>
     <!-- Site Title-->
-    <title>Green Dhaka Express</title>
+    <title>Green Dhaka Exclusive</title>
     <meta charset="utf-8">
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
