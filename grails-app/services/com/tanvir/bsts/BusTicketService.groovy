@@ -534,8 +534,10 @@ class BusTicketService {
             tripData.flatFare = scheduleTicket?.flatFare ?: 0.00
 
             def seatMap = scheduleTicket?.coach?.seatMap
-            def seatColumns = Integer.parseInt(seatMap?.seatColumns?.toString())
-            tripData.seatMap = GlobalConfig.SEAT_FORMAT[seatColumns] + ":" + seatMap?.name
+            if(seatMap){
+                def seatColumns = Integer.parseInt(seatMap?.seatColumns?.toString())
+                tripData.seatMap = GlobalConfig.SEAT_FORMAT[seatColumns] + ":" + seatMap?.name
+            }
             tripData.fromStoppage = scheduleTicket?.route?.fromStoppage?.name
             tripData.toStoppage = scheduleTicket?.route?.toStoppage?.name
             tripData.coachNumber = scheduleTicket?.coach?.coachNumber
